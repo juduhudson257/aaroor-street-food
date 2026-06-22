@@ -1,0 +1,25 @@
+{
+  "name": "aaroor-street-food",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "http-server -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/juduhudson257/aaroor-street-food.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/juduhudson257/aaroor-street-food/issues"
+  },
+  "homepage": "https://github.com/juduhudson257/aaroor-street-food#readme",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

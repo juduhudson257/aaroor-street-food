@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | The Divine Voice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .admin-login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            background-color: var(--background);
+        }
+        .admin-login-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow-medium);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        .admin-login-card h2 {
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+        .admin-input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .admin-input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        .admin-input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--borders);
+            border-radius: 6px;
+            font-family: inherit;
+        }
+        .admin-login-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--primary-gold);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .admin-login-btn:hover {
+            background: var(--primary-gold-dark);
+        }
+        #login-error {
+            color: #d32f2f;
+            margin-top: 10px;
+            display: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="logo.jpg" alt="The Divine Voice" class="header-logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Back to Site</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-login-container">
+        <div class="admin-login-card">
+            <h2>Admin Portal Access</h2>
+            <form id="admin-login-form">
+                <div class="admin-input-group">
+                    <label for="admin-user">Username</label>
+                    <input type="text" id="admin-user" required>
+                </div>
+                <div class="admin-input-group">
+                    <label for="admin-pass">Password</label>
+                    <input type="password" id="admin-pass" required>
+                </div>
+                <button type="submit" class="admin-login-btn">Login</button>
+                <div id="login-error">Invalid credentials. Please try again.</div>
+            </form>
+            <a href="admin-dashboard.html" class="capsule-btn" style="margin-top: 20px; display: block; text-align: center;">Enter</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('admin-login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-user').value;
+            const pass = document.getElementById('admin-pass').value;
+            if (user === 'divinevoice' && pass === 'AAROORFOODS2026') {
+                sessionStorage.setItem('divine_admin_auth', 'true');
+                window.location.href = 'admin-dashboard.html';
+            } else {
+                document.getElementById('login-error').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

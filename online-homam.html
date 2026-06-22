@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Homam booking | The Divine Voice</title>
+    <meta name="description" content="Participate in sacred fire rituals from anywhere in the world. Book authentic homam services performed by Vedic priests.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div style="background-color: var(--white); border-bottom: 1px solid var(--borders); padding: 8px 0; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; gap: 20px;">
+                <span><i class="fa-solid fa-square-check" style="color: var(--primary-gold);"></i> 100% Authentic Rituals</span>
+                <span><i class="fa-solid fa-user-tie" style="color: var(--primary-gold);"></i> Performed by Experienced Priests</span>
+                <span><i class="fa-solid fa-video" style="color: var(--primary-gold);"></i> Live & Transparent Process</span>
+            </div>
+            <div>
+                <span><i class="fa-solid fa-headset" style="color: var(--primary-gold);"></i> Need Help? <a href="#" style="color: var(--primary-gold); font-weight: 700;">Chat on WhatsApp</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER -->
+    <header style="position: sticky; top: 0;">
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="logo.jpg" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li class="active"><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
+                    <input type="text" placeholder="Track Order ID...">
+                </form>
+                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="user-menu-btn" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count-badge">0</span>
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobile-nav" style="display: none; position: fixed; top: 120px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="puja-products.html">Puja Products</a></li>
+            <li><a href="online-homam.html" style="font-weight: 600; color: var(--primary-gold);">Online Homam</a></li>
+            <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html">Donate For Food</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO SECTION WITH SACRED FIRE -->
+    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.5), rgba(26, 24, 21, 0.85)), url('homam banner final_divine.png'); padding: 100px 0 60px;">
+        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto;">
+            <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Rituals. Peaceful Life.</span>
+            <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px; line-height: 1.2;">Online Homam</h2>
+            <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Book authentic homam services performed by Vedic priests. Participate from anywhere, receive blessings always.</p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#services-grid-anchor" class="primary-btn">Book a Homam</a>
+                <a href="#how-it-works-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white);"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICE HIGHLIGHTS BAR -->
+    <section class="trust-features-bar" style="background-color: var(--white);">
+        <div class="container trust-features-grid" style="justify-content: space-around;">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-user-tie"></i></div>
+                <div class="trust-info">
+                    <h4>Experienced Vedic Priests</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-scroll"></i></div>
+                <div class="trust-info">
+                    <h4>Sankalpam in Your Name</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-video"></i></div>
+                <div class="trust-info">
+                    <h4>Live Video Available</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                <div class="trust-info">
+                    <h4>E-Certificate Provided</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-box-open"></i></div>
+                <div class="trust-info">
+                    <h4>Prasadam Delivered</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOMAM SERVICES SECTION -->
+    <section class="section-padding" id="services-grid-anchor">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+                <div>
+                    <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Our Homam Services</h2>
+                </div>
+                <a href="#" onclick="window.appState.showToast('Viewing all 15 Homams.', 'info'); return false;" style="color: var(--primary-gold); font-weight: 600;">View All Homam Services <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));">
+                <!-- Homam Card 1 -->
+                <div class="homam-details-card">
+                    <img src="product-image.jpg" alt="Ganapathi Homam">
+                    <div class="homam-details-content">
+                        <h3>Ganapathi Homam</h3>
+                        <p>Removes obstacles and brings wisdom, success and prosperity.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
+                            <span class="price-val">₹2,100</span>
+                            <button class="primary-btn" onclick="openHomamBooking('Ganapathi Homam', 2100)" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Homam Card 2 -->
+                <div class="homam-details-card">
+                    <img src="product-image.jpg" alt="Lakshmi Homam">
+                    <div class="homam-details-content">
+                        <h3>Lakshmi Homam</h3>
+                        <p>Invites wealth, abundance and financial stability.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
+                            <span class="price-val">₹2,500</span>
+                            <button class="primary-btn" onclick="openHomamBooking('Lakshmi Homam', 2500)" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Homam Card 3 -->
+                <div class="homam-details-card">
+                    <img src="product-image.jpg" alt="Sudharshana Homam">
+                    <div class="homam-details-content">
+                        <h3>Sudharshana Homam</h3>
+                        <p>Protects from negative energies and removes doshas.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
+                            <span class="price-val">₹2,300</span>
+                            <button class="primary-btn" onclick="openHomamBooking('Sudharshana Homam', 2300)" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Homam Card 4 -->
+                <div class="homam-details-card">
+                    <img src="product-image.jpg" alt="Navagraha Homam">
+                    <div class="homam-details-content">
+                        <h3>Navagraha Homam</h3>
+                        <p>Balances all planetary influences and brings harmony.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
+                            <span class="price-val">₹3,100</span>
+                            <button class="primary-btn" onclick="openHomamBooking('Navagraha Homam', 3100)" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Homam Card 5 -->
+                <div class="homam-details-card">
+                    <img src="product-image.jpg" alt="Ayush Homam">
+                    <div class="homam-details-content">
+                        <h3>Ayush Homam</h3>
+                        <p>Promotes health, longevity and general well-being.</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
+                            <span class="price-val">₹2,400</span>
+                            <button class="primary-btn" onclick="openHomamBooking('Ayush Homam', 2400)" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS TIMELINE SECTION -->
+    <section class="section-padding" id="how-it-works-anchor" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">How Online Homam Works</h2>
+                <p class="section-subtitle">A simple 6-step Vedic process ensuring that you receive the spiritual benefits from anywhere.</p>
+            </div>
+
+            <div class="timeline-flow">
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">1</div>
+                    <h4>Choose Homam</h4>
+                    <p>Select the homam service you wish to perform.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">2</div>
+                    <h4>Fill Details</h4>
+                    <p>Enter your name, gotra, star, date and purpose for the homam.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">3</div>
+                    <h4>Make Payment</h4>
+                    <p>Complete the payment securely through our payment gateway.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">4</div>
+                    <h4>Homam Performed</h4>
+                    <p>Priests perform the homam on the selected date & time.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">5</div>
+                    <h4>Watch Live (Optional)</h4>
+                    <p>You can watch the homam live from anywhere.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">6</div>
+                    <h4>Receive Blessings</h4>
+                    <p>Receive prasadam and e-certificate at your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CUSTOM HOMAM BOOKING / NEED HELP INFO -->
+    <section class="section-padding">
+        <div class="container">
+            <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; margin-bottom: 12px;">Can't find the homam you're looking for?</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px;">We also offer customized homams as per your needs. Our team will guide you.</p>
+                    <button class="primary-btn" onclick="window.appState.showToast('Custom Homam Request Form will open shortly. Our priests will reach you.', 'info');">Request Custom Homam</button>
+                </div>
+                
+                <div style="border-left: 1px solid var(--borders); padding-left: 40px;">
+                    <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Need Help?</h4>
+                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">Our spiritual experts are here to assist you.</p>
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem;">
+                        <li><a href="#" style="color: #25d366; font-weight: 600;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
+                        <li><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> +91 98765 43210</li>
+                        <li><i class="fa-solid fa-envelope" style="color: var(--primary-gold);"></i> support@thedivinevoice.in</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-about-logo">
+                    <img src="logo.jpg" alt="The Divine Voice Logo" class="footer-logo-img">
+                </div>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#user-portal">My Account</a></li>
+                    <li><a href="#track-order">Order Tracking</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Refund</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" id="contact-us">
+                <h4>Contact Us</h4>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@thedivinevoice.in</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <div style="display: flex; gap: 10px;">
+                <span class="payment-methods-img" style="color: var(--white); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">Razorpay | VISA | Mastercard | UPI</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HOMAM BOOKING MODAL -->
+    <div class="modal-overlay" id="homam-booking-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="document.getElementById('homam-booking-modal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Book Homam</h3>
+            <h4 id="homam-name-title" style="text-align: center; color: var(--primary-gold); margin-bottom: 20px;"></h4>
+            <form id="homam-booking-form">
+                <input type="hidden" id="homam-price">
+                <div class="form-group">
+                    <label>Devotee Name</label>
+                    <input type="text" id="devotee-name" placeholder="Name of Person performing homam" required>
+                </div>
+                <div class="form-group">
+                    <label>Rashi & Nakshatram (Star)</label>
+                    <input type="text" id="devotee-star" placeholder="e.g. Mesha, Ashwini" required>
+                </div>
+                <div class="form-group">
+                    <label>Gothram</label>
+                    <input type="text" id="devotee-gotra" placeholder="Enter Gothram" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" id="devotee-date" required>
+                </div>
+                <div class="form-group">
+                    <label>Sankalpam Purpose</label>
+                    <input type="text" id="devotee-purpose" placeholder="e.g. Good Health, Business Growth" required>
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Total Dakshina:</span>
+                    <span id="homam-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Proceed to Payment</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART DRAWER MODAL -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+        <div class="cart-drawer" id="cart-drawer">
+            <div class="cart-drawer-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div id="login-form-wrapper">
+                <h3 class="modal-title">Sign In</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+            </div>
+            <div id="register-form-wrapper" style="display: none;">
+                <h3 class="modal-title">Create Account</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Checkout</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="cust-name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="cust-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Total Amount Payable:</span>
+                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-nav');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Open Homam Booking Modal
+        function openHomamBooking(name, price) {
+            document.getElementById('homam-name-title').textContent = name;
+            document.getElementById('homam-total-val').textContent = `₹${price}`;
+            document.getElementById('homam-price').value = price;
+            document.getElementById('homam-booking-modal').classList.add('active');
+        }
+
+        // Submit Booking Form
+        document.getElementById('homam-booking-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const homamName = document.getElementById('homam-name-title').textContent;
+            const price = parseInt(document.getElementById('homam-price').value);
+            const devotee = document.getElementById('devotee-name').value;
+            const star = document.getElementById('devotee-star').value;
+            const gotra = document.getElementById('devotee-gotra').value;
+            const date = document.getElementById('devotee-date').value;
+
+            const mockHomamOrder = {
+                id: 'H-' + Math.floor(100000 + Math.random() * 900000),
+                name: `${homamName} (For: ${devotee}, Gotra: ${gotra})`,
+                price: price,
+                image: 'https://images.unsplash.com/photo-1609137144813-f8db422e6cf8?auto=format&fit=crop&w=500&q=80'
+            };
+
+            // Add directly to cart
+            window.appState.addToCart(mockHomamOrder, 'homam');
+            document.getElementById('homam-booking-modal').classList.remove('active');
+            document.getElementById('homam-booking-form').reset();
+            // Open Cart Drawer
+            document.getElementById('cart-drawer-overlay').classList.add('active');
+        });
+    </script>
+</body>
+</html>

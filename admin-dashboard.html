@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | The Divine Voice</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background: #000000;
+            background-image: radial-gradient(circle at top left, #1a1a1a, #000000 70%);
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        .admin-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+        .admin-sidebar {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 30px 0;
+            display: flex;
+            flex-direction: column;
+        }
+        .admin-sidebar .brand {
+            padding: 0 20px 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .admin-sidebar .brand img {
+            width: 80px;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        .admin-sidebar .brand h3 {
+            margin-top: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0;
+        }
+        .admin-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .admin-menu li {
+            padding: 16px 30px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: rgba(255, 255, 255, 0.6);
+            display: flex;
+            align-items: center;
+            font-weight: 300;
+        }
+        .admin-menu li:hover {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        .admin-menu li.active {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border-left: 4px solid #fff;
+            box-shadow: inset 20px 0 30px -20px rgba(255,255,255,0.2);
+        }
+        .admin-menu li i {
+            width: 30px;
+            font-size: 1.1rem;
+        }
+        .admin-content {
+            flex: 1;
+            padding: 40px;
+            overflow-y: auto;
+        }
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+        .admin-header h1 {
+            color: #fff;
+            font-weight: 300;
+            letter-spacing: 1px;
+            font-size: 2rem;
+            margin: 0;
+        }
+        .admin-logout {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 24px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+            font-weight: 300;
+        }
+        .admin-logout:hover {
+            background: #fff;
+            color: #000;
+        }
+        .admin-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .admin-panel.active {
+            display: block;
+        }
+        .admin-panel h2 {
+            font-weight: 300;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+            margin-top: 0;
+            margin-bottom: 25px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: #fff;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .form-group input:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+        .form-group input[type="file"] {
+            padding: 10px;
+            background: transparent;
+            border: 1px dashed rgba(255,255,255,0.2);
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(255,255,255,0.4);
+            transform: translateY(-2px);
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 30px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .data-table th, .data-table td {
+            padding: 16px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-weight: 300;
+        }
+        .data-table th {
+            background: rgba(255, 255, 255, 0.05);
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        .data-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+        .data-table img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .action-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+        .action-btn:hover {
+            background: #fff;
+            color: #000;
+        }
+        .banner-preview {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <script>
+        if (sessionStorage.getItem('divine_admin_auth') !== 'true') {
+            window.location.href = 'admin-login.html';
+        }
+    </script>
+    <div class="admin-layout">
+        <div class="admin-sidebar">
+            <div class="brand">
+                <img src="logo.jpg" alt="Logo">
+                <h3>Admin Panel</h3>
+            </div>
+            <ul class="admin-menu">
+                <li class="active" data-target="panel-banners"><i class="fa-solid fa-image"></i> Banners</li>
+                <li data-target="panel-products"><i class="fa-solid fa-om"></i> Puja Products</li>
+                <li data-target="panel-homams"><i class="fa-solid fa-fire"></i> Online Homams</li>
+                <li data-target="panel-prasadhams"><i class="fa-solid fa-bowl-food"></i> Prasadham</li>
+                <li data-target="panel-donations"><i class="fa-solid fa-hand-holding-heart"></i> Food Donations</li>
+            </ul>
+        </div>
+        <div class="admin-content">
+            <div class="admin-header">
+                <h1 id="page-title">Manage Banners</h1>
+                <button class="admin-logout" onclick="logoutAdmin()">Logout</button>
+            </div>
+
+            <!-- Banners Panel -->
+            <div id="panel-banners" class="admin-panel active">
+                <h2>Website Banners</h2>
+                <div class="form-group">
+                    <label>Home Page Banner</label>
+                    <input type="file" id="banner-home" accept="image/*" onchange="uploadBanner(event, 'home')">
+                    <img id="preview-home" class="banner-preview" src="home banner_divine.jpeg">
+                </div>
+                <div class="form-group">
+                    <label>Puja Products Banner</label>
+                    <input type="file" id="banner-puja" accept="image/*" onchange="uploadBanner(event, 'puja')">
+                    <img id="preview-puja" class="banner-preview" src="pooja banner_divine.png">
+                </div>
+                <div class="form-group">
+                    <label>Online Homam Banner</label>
+                    <input type="file" id="banner-homam" accept="image/*" onchange="uploadBanner(event, 'homam')">
+                    <img id="preview-homam" class="banner-preview" src="homam banner final_divine.png">
+                </div>
+                <div class="form-group">
+                    <label>Temple Prasadham Banner</label>
+                    <input type="file" id="banner-prasadham" accept="image/*" onchange="uploadBanner(event, 'prasadham')">
+                    <img id="preview-prasadham" class="banner-preview" src="prasadham banner final_divine.png">
+                </div>
+                <div class="form-group">
+                    <label>Donate For Food Banner</label>
+                    <input type="file" id="banner-donate" accept="image/*" onchange="uploadBanner(event, 'donate')">
+                    <img id="preview-donate" class="banner-preview" src="food donation banner final _divine.jpeg">
+                </div>
+            </div>
+
+            <!-- Products Panel -->
+            <div id="panel-products" class="admin-panel">
+                <h2>Manage Puja Products</h2>
+                <form id="form-product" onsubmit="saveItem(event, 'products')">
+                    <input type="hidden" id="prod-id">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" id="prod-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <input type="text" id="prod-category" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" id="prod-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Upload</label>
+                        <input type="file" id="prod-image-file" accept="image/*">
+                        <input type="hidden" id="prod-image-base64">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Product</button>
+                    <button type="button" class="btn-primary" style="background:#888;" onclick="resetForm('form-product')">Clear</button>
+                </form>
+                <table class="data-table">
+                    <thead><tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr></thead>
+                    <tbody id="table-products"></tbody>
+                </table>
+            </div>
+
+            <!-- Homams Panel -->
+            <div id="panel-homams" class="admin-panel">
+                <h2>Manage Online Homams</h2>
+                <form id="form-homam" onsubmit="saveItem(event, 'homams')">
+                    <input type="hidden" id="homam-id">
+                    <div class="form-group">
+                        <label>Homam Name</label>
+                        <input type="text" id="homam-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Description (Offers/Profiles)</label>
+                        <textarea id="homam-desc" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Cost (₹)</label>
+                        <input type="number" id="homam-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Upload</label>
+                        <input type="file" id="homam-image-file" accept="image/*">
+                        <input type="hidden" id="homam-image-base64">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Homam</button>
+                    <button type="button" class="btn-primary" style="background:#888;" onclick="resetForm('form-homam')">Clear</button>
+                </form>
+                <table class="data-table">
+                    <thead><tr><th>Image</th><th>Name</th><th>Cost</th><th>Action</th></tr></thead>
+                    <tbody id="table-homams"></tbody>
+                </table>
+            </div>
+
+            <!-- Prasadhams Panel -->
+            <div id="panel-prasadhams" class="admin-panel">
+                <h2>Manage Temple Prasadham</h2>
+                <form id="form-prasadham" onsubmit="saveItem(event, 'prasadhams')">
+                    <input type="hidden" id="pras-id">
+                    <div class="form-group">
+                        <label>Prasadham Name</label>
+                        <input type="text" id="pras-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Temple Name</label>
+                        <input type="text" id="pras-temple" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Price (₹)</label>
+                        <input type="number" id="pras-price" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Image Upload</label>
+                        <input type="file" id="pras-image-file" accept="image/*">
+                        <input type="hidden" id="pras-image-base64">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Prasadham</button>
+                    <button type="button" class="btn-primary" style="background:#888;" onclick="resetForm('form-prasadham')">Clear</button>
+                </form>
+                <table class="data-table">
+                    <thead><tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr></thead>
+                    <tbody id="table-prasadhams"></tbody>
+                </table>
+            </div>
+
+            <!-- Donations Panel -->
+            <div id="panel-donations" class="admin-panel">
+                <h2>Manage Food Donations Pricing</h2>
+                <form id="form-donation" onsubmit="saveDonationPrices(event)">
+                    <div class="form-group">
+                        <label>1 Meal Price (₹)</label>
+                        <input type="number" id="don-1" required value="50">
+                    </div>
+                    <div class="form-group">
+                        <label>10 Meals Price (₹)</label>
+                        <input type="number" id="don-10" required value="500">
+                    </div>
+                    <div class="form-group">
+                        <label>50 Meals Price (₹)</label>
+                        <input type="number" id="don-50" required value="2500">
+                    </div>
+                    <div class="form-group">
+                        <label>100 Meals Price (₹)</label>
+                        <input type="number" id="don-100" required value="5000">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Donation Pricing</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
+    <script src="admin-app.js"></script>
+</body>
+</html>

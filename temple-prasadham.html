@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temple Prasadham | The Divine Voice</title>
+    <meta name="description" content="Receive authentic, pure, and hygienically prepared temple prasadham offered to the deities. Delivered directly to your home.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header style="position: sticky; top: 0;">
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="logo.jpg" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li class="active"><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
+                    <input type="text" placeholder="Track Order ID...">
+                </form>
+                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="user-menu-btn" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count-badge">0</span>
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobile-nav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="puja-products.html">Puja Products</a></li>
+            <li><a href="online-homam.html">Online Homam</a></li>
+            <li><a href="temple-prasadham.html" style="font-weight: 600; color: var(--primary-gold);">Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html">Donate For Food</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO BANNER -->
+    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.4), rgba(26, 24, 21, 0.8)), url('prasadham banner final_divine.png');">
+        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto;">
+            <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Taste. Blessed Life.</span>
+            <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px;">Temple Prasadham</h2>
+            <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Receive the blessings of the deities with our pure, authentic and hygienically prepared temple prasadham.</p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#all-prasadham-anchor" class="primary-btn">Order Now</a>
+                <a href="#faq-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white);"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST HIGHLIGHTS BAR -->
+    <section class="trust-features-bar">
+        <div class="container trust-features-grid" style="justify-content: space-around;">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-hotel"></i></div>
+                <div class="trust-info">
+                    <h4>Prepared in Temple</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                <div class="trust-info">
+                    <h4>Pure & Natural Ingredients</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-hands-bubbles"></i></div>
+                <div class="trust-info">
+                    <h4>Hygienically Packed</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-truck"></i></div>
+                <div class="trust-info">
+                    <h4>Safe & Fast Delivery</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-mug-hot"></i></div>
+                <div class="trust-info">
+                    <h4>Freshly Prepared Everyday</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TODAY'S SPECIAL PRASADHAM -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Today's Special Prasadham</h2>
+            
+            <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;">
+                <div>
+                    <img src="product-image.jpg" alt="Sakkarai Pongal Special" style="border-radius: 8px; box-shadow: var(--shadow-light);">
+                </div>
+                <div>
+                    <span style="background-color: var(--primary-gold); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">TODAY'S SPECIAL</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; margin-top: 15px; margin-bottom: 12px;">Sakkarai Pongal</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Sweet pongal made with rice, jaggery, ghee and cashews. Prepared with utmost devotion and offered to the deities today.</p>
+                    
+                    <div style="background-color: var(--background); padding: 15px 25px; border-radius: 6px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 0.85rem; color: var(--text-secondary); display: block;">Price per pack</span>
+                            <span style="font-size: 1.6rem; font-weight: 700; color: var(--primary-gold);">₹150 <span style="font-size: 0.95rem; font-weight: 500; color: var(--text-secondary);">/ Pack</span></span>
+                        </div>
+                        <button class="primary-btn" onclick="window.appState.addToCart({id: 'pr2', name: 'Sakkarai Pongal', price: 150, image: 'product-image.jpg'}, 'prasadham')">Order Now</button>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--borders); padding-top: 20px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fa-solid fa-gopuram" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary); display: block;">Offered at:</span>
+                            <strong style="font-size: 0.95rem; color: var(--text-dark);">Arulmigu Lakshmi Narayana Perumal Temple</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORY LIST -->
+    <section class="container">
+        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Prasadham Categories</h3>
+        <div class="horizontal-categories-nav" style="margin-bottom: 45px;">
+            <button class="category-tab-btn active"><i class="fa-solid fa-cookie"></i> Laddus</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-mug-hot"></i> Pongal</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-circle"></i> Chakkarai</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-seedling"></i> Puliyodarai Mix</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-circle-notch"></i> Vadai</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-pepper-hot"></i> Powder Mixes</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-cubes"></i> Panchamirtham</button>
+            <button class="category-tab-btn"><i class="fa-solid fa-list"></i> All Prasadham</button>
+        </div>
+    </section>
+
+    <!-- AVAILABLE PRASADHAM GRID -->
+    <section class="section-padding" id="all-prasadham-anchor" style="padding-top: 0;">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+                <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Available Prasadham</h2>
+                <a href="#" style="color: var(--primary-gold); font-weight: 600;">View All Prasadham <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+
+            <div class="products-grid">
+                <!-- Prasadham 1 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr1" onclick="window.appState.toggleWishlist('pr1')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Boondi Laddu">
+                    </div>
+                    <div class="product-details">
+                        <h4>Boondi Laddu</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="review-count">(128)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹180</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr1', name: 'Boondi Laddu', price: 180, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prasadham 2 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr2" onclick="window.appState.toggleWishlist('pr2')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Sakkarai Pongal">
+                    </div>
+                    <div class="product-details">
+                        <h4>Sakkarai Pongal</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="review-count">(98)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹150</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr2', name: 'Sakkarai Pongal', price: 150, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prasadham 3 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr3" onclick="window.appState.toggleWishlist('pr3')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Puliyodarai Mix">
+                    </div>
+                    <div class="product-details">
+                        <h4>Puliyodarai Mix</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="review-count">(74)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹120</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr3', name: 'Puliyodarai Mix', price: 120, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prasadham 4 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr4" onclick="window.appState.toggleWishlist('pr4')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Chakkarai Pongal Mix">
+                    </div>
+                    <div class="product-details">
+                        <h4>Chakkarai Pongal Mix</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="review-count">(58)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹110</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr4', name: 'Chakkarai Pongal Mix', price: 110, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prasadham 5 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr5" onclick="window.appState.toggleWishlist('pr5')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Panchamirtham">
+                    </div>
+                    <div class="product-details">
+                        <h4>Panchamirtham</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <span class="review-count">(82)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹160</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr5', name: 'Panchamirtham', price: 160, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Prasadham 6 -->
+                <div class="product-card">
+                    <button class="wishlist-btn" data-id="pr6" onclick="window.appState.toggleWishlist('pr6')">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                    <div class="product-img-wrapper">
+                        <img src="product-image.jpg" alt="Vadai (Temple Style)">
+                    </div>
+                    <div class="product-details">
+                        <h4>Vadai (Temple Style)</h4>
+                        <div class="rating-container">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star-half-stroke"></i>
+                            <span class="review-count">(67)</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price-val">₹140</span>
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'pr6', name: 'Vadai (Temple Style)', price: 140, image: 'product-image.jpg'}, 'prasadham')">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DELIVERY SELECTION SECTION -->
+    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px;">
+                <!-- Date/Time Picker Form -->
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 25px;">Choose Delivery details</h3>
+                    
+                    <div class="date-time-selectors-grid">
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-calendar-days" style="color: var(--primary-gold);"></i> Select Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fa-regular fa-clock" style="color: var(--primary-gold);"></i> Delivery Time Slot (Optional)</label>
+                            <select>
+                                <option>Anytime</option>
+                                <option>Morning (8:00 AM - 12:00 PM)</option>
+                                <option>Afternoon (12:00 PM - 4:00 PM)</option>
+                                <option>Evening (4:00 PM - 8:00 PM)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Delivery Method</label>
+                        <div style="display: flex; gap: 30px; margin-top: 10px;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="del-method" checked>
+                                <span><strong>Home Delivery</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Delivered directly to your doorstep</span></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="radio" name="del-method">
+                                <span><strong>Temple Pickup</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Collect from temple counter</span></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bulk Orders / Special Requests -->
+                <div style="border-left: 1px solid var(--borders); padding-left: 50px; display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 15px;">Bulk Orders / Special Requests</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6;">For bulk orders, temple events, wedding functions or corporate orders, get in touch with us.</p>
+                    <a href="#" class="secondary-btn" style="align-self: flex-start; border-color: #25d366; color: #25d366;" onclick="window.appState.showToast('WhatsApp support will launch to coordinate bulk orders.', 'info'); return false;"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION (ACCORDION) -->
+    <section class="section-padding" id="faq-anchor">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Frequently Asked Questions</h2>
+            </div>
+
+            <div class="faq-accordion">
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleFaq(this)">
+                        <span>Is the prasadham prepared in the temple?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Yes, all prasadhams are prepared inside the temple kitchen by authorized priests following traditional rituals and hygiene standards.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleFaq(this)">
+                        <span>How is the prasadham delivered?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Packed in vacuum-sealed, food-grade containers and delivered through fast courier networks to maintain freshness.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item">
+                    <div class="accordion-header" onclick="toggleFaq(this)">
+                        <span>Can I order in bulk for events?</span>
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Yes, we accept bulk orders for marriages, temple festivals, and corporate functions. Please contact us on WhatsApp at least 3 days in advance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM TRUST FOOTER BAR -->
+    <section class="trust-features-bar" style="background-color: #FAF8F5;">
+        <div class="container trust-features-grid">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-gopuram"></i></div>
+                <div class="trust-info">
+                    <h4>100% Vegetarian</h4>
+                    <p>No Onion & Garlic</p>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-seedling"></i></div>
+                <div class="trust-info">
+                    <h4>Pure Ingredients</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-hands-praying"></i></div>
+                <div class="trust-info">
+                    <h4>Offered to Deities First</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-box-open"></i></div>
+                <div class="trust-info">
+                    <h4>Packed with Devotion</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-heart"></i></div>
+                <div class="trust-info">
+                    <h4>Delivered with Blessings</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-about-logo">
+                    <img src="logo.jpg" alt="The Divine Voice Logo" class="footer-logo-img">
+                </div>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#user-portal">My Account</a></li>
+                    <li><a href="#track-order">Order Tracking</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Refund</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" id="contact-us">
+                <h4>Contact Us</h4>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@thedivinevoice.in</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <div style="display: flex; gap: 10px;">
+                <span class="payment-methods-img" style="color: var(--white); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">Razorpay | VISA | Mastercard | UPI</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER MODAL -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+        <div class="cart-drawer" id="cart-drawer">
+            <div class="cart-drawer-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div id="login-form-wrapper">
+                <h3 class="modal-title">Sign In</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+            </div>
+            <div id="register-form-wrapper" style="display: none;">
+                <h3 class="modal-title">Create Account</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Checkout</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="cust-name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="cust-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Total Amount Payable:</span>
+                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-nav');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Toggle Accordion Item
+        function toggleFaq(header) {
+            const item = header.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            // Close all
+            document.querySelectorAll('.accordion-item').forEach(el => {
+                el.classList.remove('active');
+            });
+
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Divine Voice | About Us</title>
+    <meta name="description" content="About The Divine Voice - authentic puja products, homam services, prasadam, and service to humanity.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="logo.jpg" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li class="active"><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
+                    <input type="text" placeholder="Track Order ID...">
+                </form>
+                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="user-menu-btn" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count-badge">0</span>
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+    <div id="mobile-nav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
+            <li><a href="index.html" style="font-weight: 600; color: var(--primary-gold);">Home</a></li>
+            <li><a href="puja-products.html">Puja Products</a></li>
+            <li><a href="online-homam.html">Online Homam</a></li>
+            <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html">Donate For Food</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- ABOUT HERO -->
+    <section class="hero-sec">
+        <div class="hero-bg-mandala"></div>
+        <div class="container hero-grid">
+            <div class="hero-left">
+                <h2>About Us</h2>
+                <p class="hero-intro"><span>Rooted in Tradition.</span> Driven by Devotion.</p>
+                <p>The Divine Voice is more than a store — it is a spiritual movement dedicated to preserving our sacred traditions and serving humanity with devotion and sincerity.</p>
+            </div>
+            <div class="hero-right">
+                <div class="hero-img-composition">
+                    <img src="hero-pooja.jpg" alt="About The Divine Voice" style="height: 100%; object-fit: cover;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="padding-top: 60px; padding-bottom: 60px;">
+        <div class="container about-story-grid">
+            <div class="about-story-img">
+                <img src="hero-pooja.jpg" alt="Our Story" style="border-radius: 16px; box-shadow: var(--shadow-medium);">
+            </div>
+            <div class="about-story-content">
+                <div class="section-title-wrapper" style="text-align: left; margin-bottom: 30px;">
+                    <p style="color: var(--primary-gold); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px;">Our Story</p>
+                    <h2 class="section-title" style="margin-bottom: 16px;">Born from devotion, built for every seeker.</h2>
+                    <p class="section-subtitle" style="margin: 0; text-align: left; max-width: 100%;">Born out of a deep love for Sanatana Dharma and a desire to make authentic puja items, homam services, and temple prasadam accessible to everyone, we began our journey with a simple mission — to connect devotees with divinity.</p>
+                </div>
+                <p>Every product we offer, every service we provide, and every meal we donate is a step towards preserving our rich heritage and spreading positivity in the world.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Our Purpose</h2>
+                <p class="section-subtitle">Guided by devotion, service and purity in everything we do.</p>
+            </div>
+            <div class="mission-cards">
+                <div class="mission-card">
+                    <div class="feature-box-icon"><i class="fa-solid fa-bullseye"></i></div>
+                    <h4>Our Mission</h4>
+                    <p>To provide authentic spiritual products, ritual services, and prasadam while contributing to the well-being of society through food donations.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="feature-box-icon"><i class="fa-solid fa-eye"></i></div>
+                    <h4>Our Vision</h4>
+                    <p>To be a trusted spiritual brand that inspires devotion, uplifts lives, and creates a positive impact in communities.</p>
+                </div>
+                <div class="mission-card">
+                    <div class="feature-box-icon"><i class="fa-solid fa-heart"></i></div>
+                    <h4>Our Values</h4>
+                    <p><strong>Integrity & Transparency</strong><br><strong>Devotion & Respect</strong><br><strong>Compassion & Service</strong><br><strong>Quality & Authenticity</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Why Choose The Divine Voice?</h2>
+                <p class="section-subtitle">We bridge the gap between age-old Vedic practices and modern ease, keeping purity intact.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h4>100% Authentic</h4>
+                    <p>All our products and services are authentic and temple-approved.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <h4>Ethically Sourced</h4>
+                    <p>Sourced from trusted artisans and temples across India.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-droplet"></i></div>
+                    <h4>Pure & Natural</h4>
+                    <p>No harmful chemicals. Only pure, natural and satvic ingredients.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-truck-fast"></i></div>
+                    <h4>Safe Delivery</h4>
+                    <p>Packed with care and delivered to your doorstep safely.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-hands-holding-heart"></i></div>
+                    <h4>Serving Humanity</h4>
+                    <p>A part of every purchase supports our Annadanam food donation services.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h4>Devotee Support</h4>
+                    <p>We are always here to assist you on your spiritual journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="donation-stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>1,25,000+</h3>
+                    <p>Meals Served</p>
+                </div>
+                <div class="stat-box">
+                    <h3>850+</h3>
+                    <p>Donors</p>
+                </div>
+                <div class="stat-box">
+                    <h3>120+</h3>
+                    <p>Events</p>
+                </div>
+                <div class="stat-box">
+                    <h3>50+</h3>
+                    <p>Villages Reached</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding" style="background-color: var(--white);">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Our Priests & Experts</h2>
+                <p class="section-subtitle">Our team of experienced Vedic priests and spiritual experts perform every ritual with utmost devotion, following authentic Vedic procedures handed down through generations.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="logo.jpg" alt="Sri. Venkatesh Sharma">
+                    <h5>Sri. Venkatesh Sharma</h5>
+                    <span>Vedic Priest</span>
+                </div>
+                <div class="team-card">
+                    <img src="logo.jpg" alt="Sri. Raghunandan Bhattar">
+                    <h5>Sri. Raghunandan Bhattar</h5>
+                    <span>Vedic Scholar</span>
+                </div>
+                <div class="team-card">
+                    <img src="logo.jpg" alt="Sri. Somashekara Dikshithar">
+                    <h5>Sri. Somashekara Dikshithar</h5>
+                    <span>Homam Expert</span>
+                </div>
+                <div class="team-card">
+                    <img src="logo.jpg" alt="Sri. Narayanan Iyer">
+                    <h5>Sri. Narayanan Iyer</h5>
+                    <span>Puja Vidwan</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-padding">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">What Our Devotees Say</h2>
+            </div>
+            <div class="testimonials-slider-container">
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">The products are of excellent quality and the prasadam is always pure and delicious. Truly blessed to be a part of The Divine Voice.</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Lakshmi Priya">
+                        <div class="testimonial-user-info">
+                            <h5>Lakshmi Priya</h5>
+                            <span>Devotee</span>
+                            <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Their homam services are very authentic and the priests are well knowledgeable. We felt immense peace and positivity.</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Ramesh Kumar">
+                        <div class="testimonial-user-info">
+                            <h5>Ramesh Kumar</h5>
+                            <span>Verified Devotee</span>
+                            <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Donating for food through The Divine Voice gives us great satisfaction. They are doing a wonderful service.</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Meena Subramaniam">
+                        <div class="testimonial-user-info">
+                            <h5>Meena Subramaniam</h5>
+                            <span>Donor</span>
+                            <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="trust-features-bar" style="background-color: #FAF8F5;">
+        <div class="container trust-features-grid">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <div class="trust-info"><h4>100% Secure Payments</h4></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-rotate-left"></i></div>
+                <div class="trust-info"><h4>Easy Returns & Refunds</h4></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="trust-info"><h4>On-time Delivery</h4></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-box"></i></div>
+                <div class="trust-info"><h4>Packed with Care</h4></div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-headset"></i></div>
+                <div class="trust-info"><h4>24/7 Devotee Support</h4></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-about-logo">
+                    <img src="logo.jpg" alt="The Divine Voice Logo" class="footer-logo-img">
+                </div>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#user-portal">My Account</a></li>
+                    <li><a href="#track-order">Order Tracking</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Refund</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="footer-col" id="contact-us">
+                <h4>Contact Us</h4>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@thedivinvoice.in</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

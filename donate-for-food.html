@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate For Food | The Divine Voice</title>
+    <meta name="description" content="Sponsor a meal and earn blessings. 100% of your donation is used for feeding the needy, homeless, and children.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div style="background-color: var(--white); border-bottom: 1px solid var(--borders); padding: 8px 0; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; gap: 20px;">
+                <span><i class="fa-solid fa-heart" style="color: var(--primary-gold);"></i> 100% Donations for Food</span>
+                <span><i class="fa-solid fa-eye" style="color: var(--primary-gold);"></i> Pure & Transparent</span>
+                <span><i class="fa-solid fa-hands-praying" style="color: var(--primary-gold);"></i> Feed the Needy</span>
+            </div>
+            <div>
+                <span><i class="fa-solid fa-headset" style="color: var(--primary-gold);"></i> Need Help? <a href="#" style="color: var(--primary-gold); font-weight: 700;">Chat on WhatsApp</a></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- STICKY HEADER -->
+    <header style="position: sticky; top: 0;">
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="logo.jpg" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li class="active"><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
+                    <input type="text" placeholder="Track Order ID...">
+                </form>
+                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="user-menu-btn" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count-badge">0</span>
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobile-nav" style="display: none; position: fixed; top: 120px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="puja-products.html">Puja Products</a></li>
+            <li><a href="online-homam.html">Online Homam</a></li>
+            <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html" style="font-weight: 600; color: var(--primary-gold);">Donate For Food</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO SECTION -->
+    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.4), rgba(26, 24, 21, 0.8)), url('food donation banner final _divine.jpeg');">
+        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto;">
+            <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Feed Bodies. Nourish Souls.</span>
+            <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px;">Donate For Food</h2>
+            <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Your donation helps us provide fresh, nutritious food to the needy and spread the blessings of compassion.</p>
+            <div style="display: flex; gap: 16px;">
+                <a href="#contribution-anchor" class="primary-btn">Donate Now</a>
+                <a href="#how-it-works-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white);"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- TRUST HIGHLIGHTS BAR -->
+    <section class="trust-features-bar">
+        <div class="container trust-features-grid" style="justify-content: space-around;">
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-eye"></i></div>
+                <div class="trust-info">
+                    <h4>100% Transparency</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-apple-whole"></i></div>
+                <div class="trust-info">
+                    <h4>Pure & Hygienic Food</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="trust-info">
+                    <h4>Regular Food Distribution</h4>
+                </div>
+            </div>
+            <div class="trust-item">
+                <div class="trust-icon"><i class="fa-solid fa-hands-praying"></i></div>
+                <div class="trust-info">
+                    <h4>Trusted by Thousands</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONATION STATISTICS COUNTER -->
+    <section class="donation-stats-section">
+        <div class="container">
+            <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; margin-bottom: 12px;">Your Donation. Their Smile.</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 40px;">Together, let's create a hunger-free world.</p>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>25,680+</h3>
+                    <p>Meals Served</p>
+                </div>
+                <div class="stat-box">
+                    <h3>860+</h3>
+                    <p>Donors</p>
+                </div>
+                <div class="stat-box">
+                    <h3>120+</h3>
+                    <p>Distribution Events</p>
+                </div>
+                <div class="stat-box">
+                    <h3>50+</h3>
+                    <p>Villages Covered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW YOUR DONATION HELPS -->
+    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">How Your Donation Helps</h2>
+            </div>
+
+            <div class="features-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-bowl-rice"></i></div>
+                    <h4>Nutritious Meals</h4>
+                    <p>We prepare fresh, nutritious meals with love and devotion daily.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-users"></i></div>
+                    <h4>Feed the Needy</h4>
+                    <p>Meals are provided directly to the needy, elderly, children and the homeless.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-hands-praying"></i></div>
+                    <h4>Divine Blessings</h4>
+                    <p>Your act of kindness brings immense blessings and positive energy to your family.</p>
+                </div>
+                <div class="feature-box">
+                    <div class="feature-box-icon"><i class="fa-solid fa-globe"></i></div>
+                    <h4>Create Impact</h4>
+                    <p>You help build a better society filled with compassion and care.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CHOOSE YOUR CONTRIBUTION -->
+    <section class="section-padding" id="contribution-anchor">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">Choose Your Contribution</h2>
+                <p class="section-subtitle">Every meal you sponsor brings hope and happiness.</p>
+            </div>
+
+            <div class="contribution-grid">
+                <!-- Card 1 -->
+                <div class="contribution-card popular">
+                    <h4>Feed 1 Person</h4>
+                    <span class="amount">₹50</span>
+                    <p>Provide a fresh, nutritious meal for one person.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Feed 1 Person', 50)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="contribution-card">
+                    <h4>Feed 5 People</h4>
+                    <span class="amount">₹250</span>
+                    <p>Provide meals for five needy people.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Feed 5 People', 250)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="contribution-card">
+                    <h4>Feed 10 People</h4>
+                    <span class="amount">₹500</span>
+                    <p>Provide meals for ten needy people.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Feed 10 People', 500)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="contribution-card">
+                    <h4>Feed 25 People</h4>
+                    <span class="amount">₹1,250</span>
+                    <p>Provide meals for twenty-five needy people.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Feed 25 People', 1250)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="contribution-card">
+                    <h4>Feed 50 People</h4>
+                    <span class="amount">₹2,500</span>
+                    <p>Provide meals for fifty needy people.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Feed 50 People', 2500)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+
+                <!-- Card 6 (Custom) -->
+                <div class="contribution-card">
+                    <h4>Custom Amount</h4>
+                    <span class="amount" style="font-size: 1.4rem; margin-top: 10px; margin-bottom: 22px;">₹ Enter Value</span>
+                    <p>Enter any custom amount you wish to contribute.</p>
+                    <button class="primary-btn" onclick="openDonationModal('Custom Sponsor', 0)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANNADANAM QUOTE & INFO ROW -->
+    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items: center;">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1610116306796-6ebd30d79143?auto=format&fit=crop&w=600&q=80" alt="Annadanam Meal Plate" style="border-radius: 8px; box-shadow: var(--shadow-medium);">
+                </div>
+                <div>
+                    <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 20px; line-height: 1.3;">Annadanam is the greatest service.</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6; font-style: italic;">"When you feed one person, you are not just filling their stomach, you are filling their heart with hope."<br><strong>- Serve Food, Earn Blessings</strong></p>
+                    
+                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 30px;">
+                        <li><i class="fa-solid fa-check" style="color: var(--primary-gold); margin-right: 8px;"></i> All donations are used only for food preparation and distribution.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--primary-gold); margin-right: 8px;"></i> No administrative charges are deducted from your donation.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--primary-gold); margin-right: 8px;"></i> 100% transparent process with regular updates.</li>
+                        <li><i class="fa-solid fa-check" style="color: var(--primary-gold); margin-right: 8px;"></i> Receive tax benefits & receipts immediately.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="section-padding" id="how-it-works-anchor">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">How It Works</h2>
+            </div>
+
+            <div class="timeline-flow">
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">1</div>
+                    <h4>You Donate</h4>
+                    <p>Choose the amount and make a secure donation.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">2</div>
+                    <h4>We Prepare</h4>
+                    <p>We prepare fresh and hygienic meals with pure ingredients.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">3</div>
+                    <h4>We Distribute</h4>
+                    <p>Meals are distributed to the needy with love and respect.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">4</div>
+                    <h4>They Are Blessed</h4>
+                    <p>You bring smiles, hope and blessings into many lives.</p>
+                </div>
+                <div class="timeline-step">
+                    <div class="timeline-step-badge">5</div>
+                    <h4>You Earn Blessings</h4>
+                    <p>Your kindness returns to you as happiness and abundance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DONOR TESTIMONIALS CAROUSEL -->
+    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <h2 class="section-title">What Our Donors Say</h2>
+            </div>
+
+            <div class="testimonials-slider-container">
+                <!-- Donor Testimonial 1 -->
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">Donating for food through The Divine Voice gives us great satisfaction. We know every rupee is used to serve nutritious meals.</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Ramesh Kumar">
+                        <div class="testimonial-user-info">
+                            <h5>Ramesh Kumar</h5>
+                            <span>Regular Donor</span>
+                            <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donor Testimonial 2 -->
+                <div class="testimonial-card" style="display: none;">
+                    <p class="testimonial-quote">A truly pure initiative. The team provides transparent distribution videos. May God bless all the coordinators.</p>
+                    <div class="testimonial-user">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Lakshmi Priya">
+                        <div class="testimonial-user-info">
+                            <h5>Lakshmi Priya</h5>
+                            <span>Devoted Supporter</span>
+                            <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="carousel-dots">
+                    <button class="carousel-dot active"></button>
+                    <button class="carousel-dot"></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALL TO ACTION FOR SPONSORSHIP -->
+    <section class="section-padding" style="text-align: center;">
+        <div class="container" style="max-width: 600px; margin: 0 auto;">
+            <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 15px;">Be a Part of This Divine Cause</h3>
+            <p style="color: var(--text-secondary); margin-bottom: 30px; line-height: 1.6;">Together, let's build a hunger-free and compassionate world.</p>
+            <button class="primary-btn" onclick="openDonationModal('General Donation', 0)">Donate Now</button>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-about-logo">
+                    <img src="logo.jpg" alt="The Divine Voice Logo" class="footer-logo-img">
+                </div>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#user-portal">My Account</a></li>
+                    <li><a href="#track-order">Order Tracking</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Refund</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" id="contact-us">
+                <h4>Contact Us</h4>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@thedivinevoice.in</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-bottom">
+            <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <div style="display: flex; gap: 10px;">
+                <span class="payment-methods-img" style="color: var(--white); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">Razorpay | VISA | Mastercard | UPI</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- DONATION MODAL -->
+    <div class="modal-overlay" id="donation-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" onclick="document.getElementById('donation-modal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Donate for Annadanam</h3>
+            <h4 id="donation-package-title" style="text-align: center; color: var(--primary-gold); margin-bottom: 20px;"></h4>
+            <form id="donation-package-form">
+                <input type="hidden" id="donation-pack-base-price">
+                <div class="form-group" id="custom-amount-group" style="display: none;">
+                    <label>Enter Donation Amount (₹)</label>
+                    <input type="number" id="donation-custom-val" placeholder="Minimum ₹50" min="50">
+                </div>
+                <div class="form-group">
+                    <label>Donor Name</label>
+                    <input type="text" id="donor-fullname" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="donor-email" placeholder="Email for tax receipt" required>
+                </div>
+                <div class="form-group">
+                    <label>PAN Card Number (For Tax Exemption)</label>
+                    <input type="text" id="donor-pan" placeholder="Optional PAN details">
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Sponsorship Total:</span>
+                    <span id="donation-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Donate Securely</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- CART DRAWER MODAL -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+        <div class="cart-drawer" id="cart-drawer">
+            <div class="cart-drawer-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div id="login-form-wrapper">
+                <h3 class="modal-title">Sign In</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+            </div>
+            <div id="register-form-wrapper" style="display: none;">
+                <h3 class="modal-title">Create Account</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Checkout</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="cust-name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="cust-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Total Amount Payable:</span>
+                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-nav');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Open Donation Modal
+        function openDonationModal(title, amount) {
+            document.getElementById('donation-package-title').textContent = title;
+            document.getElementById('donation-pack-base-price').value = amount;
+            
+            const customGroup = document.getElementById('custom-amount-group');
+            const totalEl = document.getElementById('donation-total-val');
+            const customInput = document.getElementById('donation-custom-val');
+            
+            if (amount === 0) {
+                customGroup.style.display = 'block';
+                totalEl.textContent = '₹0';
+                customInput.required = true;
+                customInput.value = '';
+            } else {
+                customGroup.style.display = 'none';
+                totalEl.textContent = `₹${amount}`;
+                customInput.required = false;
+                customInput.value = '';
+            }
+
+            document.getElementById('donation-modal').classList.add('active');
+        }
+
+        function updateDonationTotalValue() {
+            const totalEl = document.getElementById('donation-total-val');
+            const customInput = document.getElementById('donation-custom-val');
+            totalEl.textContent = `₹${customInput.value || 0}`;
+        }
+
+        document.getElementById('donation-custom-val').addEventListener('input', updateDonationTotalValue);
+
+        // Handle Donation Form Submit
+        document.getElementById('donation-package-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const title = document.getElementById('donation-package-title').textContent;
+            const baseAmount = parseInt(document.getElementById('donation-pack-base-price').value);
+            const amount = baseAmount === 0 ? parseInt(document.getElementById('donation-custom-val').value || '0') : baseAmount;
+            const donor = document.getElementById('donor-fullname').value;
+            const email = document.getElementById('donor-email').value;
+
+            const mockDonationOrder = {
+                id: 'D-' + Math.floor(100000 + Math.random() * 900000),
+                name: `Donation: ${title} (Donor: ${donor})`,
+                price: amount,
+                image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80'
+            };
+
+            // Add directly to cart
+            window.appState.addToCart(mockDonationOrder, 'donation');
+            document.getElementById('donation-modal').classList.remove('active');
+            document.getElementById('donation-package-form').reset();
+            document.getElementById('donation-total-val').textContent = '₹0';
+            // Open Cart Drawer
+            document.getElementById('cart-drawer-overlay').classList.add('active');
+        });
+    </script>
+</body>
+</html>

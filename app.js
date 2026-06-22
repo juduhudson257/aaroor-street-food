@@ -1,0 +1,532 @@
+// The Divine Voice - Global Application State & UI Interactions
+
+// Sample Data Structures
+const DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
+const PRODUCTS = [
+    { id: 'p1', name: 'Temple Brass Diya', category: 'diyas', price: 799, rating: 4.8, reviews: 128, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p2', name: 'Pure Kumkum', category: 'kumkum', price: 149, rating: 4.9, reviews: 96, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p3', name: 'Turmeric Powder', category: 'turmeric', price: 129, rating: 4.7, reviews: 78, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p4', name: 'Premium Incense Sticks', category: 'incense', price: 199, rating: 4.8, reviews: 156, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p5', name: 'Brass Bell', category: 'brass', price: 499, rating: 4.7, reviews: 64, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p6', name: 'Camphor', category: 'camphor', price: 89, rating: 4.6, reviews: 38, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p7', name: 'Puja Thali Set', category: 'kits', price: 1299, rating: 4.9, reviews: 52, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p8', name: 'Cotton Wicks', category: 'essentials', price: 69, rating: 4.5, reviews: 45, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p9', name: 'Sandalwood Paste', category: 'essentials', price: 119, rating: 4.8, reviews: 27, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p10', name: 'Panchamrit Box', category: 'kits', price: 299, rating: 4.7, reviews: 33, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p11', name: 'Ghee Diya (Pack of 5)', category: 'diyas', price: 249, rating: 4.7, reviews: 71, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
+    { id: 'p12', name: 'Tulsi Mala', category: 'essentials', price: 199, rating: 4.9, reviews: 44, image: DEFAULT_PRODUCT_IMAGE, inStock: false }
+];
+
+const HOMAMS = [
+    { id: 'h1', name: 'Ganapathi Homam', description: 'Removes obstacles and brings wisdom, success and prosperity.', price: 2100, image: DEFAULT_PRODUCT_IMAGE },
+    { id: 'h2', name: 'Lakshmi Homam', description: 'Invites wealth, abundance and financial stability.', price: 2500, image: DEFAULT_PRODUCT_IMAGE },
+    { id: 'h3', name: 'Sudharshana Homam', description: 'Protects from negative energies and removes doshas.', price: 2300, image: DEFAULT_PRODUCT_IMAGE },
+    { id: 'h4', name: 'Navagraha Homam', description: 'Balances all planetary influences and brings harmony.', price: 3100, image: DEFAULT_PRODUCT_IMAGE },
+    { id: 'h5', name: 'Ayush Homam', description: 'Promotes health, longevity and general well-being.', price: 2400, image: DEFAULT_PRODUCT_IMAGE }
+];
+
+const PRASADHAMS = [
+    { id: 'pr1', name: 'Boondi Laddu', price: 180, rating: 4.8, reviews: 128, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
+    { id: 'pr2', name: 'Sakkarai Pongal', price: 150, rating: 4.9, reviews: 98, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
+    { id: 'pr3', name: 'Puliyodarai Mix', price: 120, rating: 4.7, reviews: 74, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
+    { id: 'pr4', name: 'Chakkarai Pongal Mix', price: 110, rating: 4.6, reviews: 58, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
+    { id: 'pr5', name: 'Panchamirtham', price: 160, rating: 4.8, reviews: 82, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
+    { id: 'pr6', name: 'Vadai (Temple Style)', price: 140, rating: 4.7, reviews: 67, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' }
+];
+
+// App State Manager
+class AppState {
+    constructor() {
+        this.cart = JSON.parse(localStorage.getItem('divine_cart')) || [];
+        this.wishlist = JSON.parse(localStorage.getItem('divine_wishlist')) || [];
+        this.currentUser = JSON.parse(localStorage.getItem('divine_user')) || null;
+        this.orders = JSON.parse(localStorage.getItem('divine_orders')) || [];
+        this.selectedFilters = {
+            categories: [],
+            priceRange: '',
+            availability: 'in-stock'
+        };
+        this.sortOption = 'popularity';
+        this.searchQuery = '';
+        this.currentCategoryTab = 'all';
+    }
+
+    // Cart Operations
+    addToCart(item, type = 'product') {
+        const cartItem = this.cart.find(i => i.id === item.id && i.type === type);
+        if (cartItem) {
+            cartItem.quantity += 1;
+        } else {
+            this.cart.push({
+                id: item.id,
+                name: item.name,
+                price: item.price,
+                image: item.image,
+                type: type,
+                quantity: 1
+            });
+        }
+        this.saveCart();
+        this.showToast(`${item.name} added to cart!`);
+    }
+
+    removeFromCart(id, type = 'product') {
+        this.cart = this.cart.filter(i => !(i.id === id && i.type === type));
+        this.saveCart();
+        this.showToast('Item removed from cart');
+    }
+
+    updateQuantity(id, type, quantity) {
+        const item = this.cart.find(i => i.id === id && i.type === type);
+        if (item) {
+            item.quantity = Math.max(1, parseInt(quantity));
+            this.saveCart();
+        }
+    }
+
+    clearCart() {
+        this.cart = [];
+        this.saveCart();
+    }
+
+    getCartTotal() {
+        return this.cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+    }
+
+    saveCart() {
+        localStorage.setItem('divine_cart', JSON.stringify(this.cart));
+        this.updateCartBadge();
+        this.renderCartModal();
+    }
+
+    updateCartBadge() {
+        const badges = document.querySelectorAll('.cart-count-badge');
+        const count = this.cart.reduce((total, item) => total + item.quantity, 0);
+        badges.forEach(badge => {
+            badge.textContent = count;
+            badge.style.display = count > 0 ? 'flex' : 'none';
+        });
+    }
+
+    // Wishlist Operations
+    toggleWishlist(id) {
+        const index = this.wishlist.indexOf(id);
+        if (index > -1) {
+            this.wishlist.splice(index, 1);
+            this.showToast('Removed from Wishlist');
+        } else {
+            this.wishlist.push(id);
+            this.showToast('Added to Wishlist');
+        }
+        localStorage.setItem('divine_wishlist', JSON.stringify(this.wishlist));
+        this.updateWishlistUI();
+    }
+
+    updateWishlistUI() {
+        document.querySelectorAll('.wishlist-btn').forEach(btn => {
+            const id = btn.dataset.id;
+            if (this.wishlist.includes(id)) {
+                btn.classList.add('active');
+                btn.querySelector('i').className = 'fa-solid fa-heart';
+            } else {
+                btn.classList.remove('active');
+                btn.querySelector('i').className = 'fa-regular fa-heart';
+            }
+        });
+    }
+
+    // Auth Operations
+    registerUser(name, email, password) {
+        const users = JSON.parse(localStorage.getItem('divine_users_list')) || [];
+        if (users.find(u => u.email === email)) {
+            this.showToast('Email already registered!', 'error');
+            return false;
+        }
+        const newUser = { name, email, password };
+        users.push(newUser);
+        localStorage.setItem('divine_users_list', JSON.stringify(users));
+        this.loginUser(email, password);
+        return true;
+    }
+
+    loginUser(email, password) {
+        const users = JSON.parse(localStorage.getItem('divine_users_list')) || [];
+        const user = users.find(u => u.email === email && u.password === password);
+        if (user) {
+            this.currentUser = { name: user.name, email: user.email };
+            localStorage.setItem('divine_user', JSON.stringify(this.currentUser));
+            this.updateUserUI();
+            this.showToast(`Welcome back, ${user.name}!`);
+            document.getElementById('auth-modal')?.classList.remove('active');
+            return true;
+        }
+        this.showToast('Invalid credentials!', 'error');
+        return false;
+    }
+
+    logoutUser() {
+        this.currentUser = null;
+        localStorage.removeItem('divine_user');
+        this.updateUserUI();
+        this.showToast('Logged out successfully');
+    }
+
+    updateUserUI() {
+        const userBtn = document.getElementById('user-menu-btn');
+        if (userBtn) {
+            if (this.currentUser) {
+                userBtn.innerHTML = `<div class="user-avatar">${this.currentUser.name[0].toUpperCase()}</div>`;
+            } else {
+                userBtn.innerHTML = `<i class="fa-regular fa-user"></i>`;
+            }
+        }
+    }
+
+    // Order Tracking & Checkout
+    placeOrder(customerInfo) {
+        const orderId = 'DV-' + Math.floor(100000 + Math.random() * 900000);
+        const newOrder = {
+            orderId: orderId,
+            date: new Date().toLocaleDateString(),
+            items: [...this.cart],
+            total: this.getCartTotal(),
+            status: 'Processing',
+            customerInfo: customerInfo
+        };
+        this.orders.push(newOrder);
+        localStorage.setItem('divine_orders', JSON.stringify(this.orders));
+        this.clearCart();
+        return orderId;
+    }
+
+    // Helper functions
+    showToast(message, type = 'success') {
+        const container = document.getElementById('toast-container') || this.createToastContainer();
+        const iconClass = type === 'success'
+            ? 'fa-circle-check'
+            : type === 'error'
+                ? 'fa-circle-xmark'
+                : type === 'warning'
+                    ? 'fa-triangle-exclamation'
+                    : 'fa-circle-info';
+
+        const toast = document.createElement('div');
+        toast.className = `toast-message ${type}`;
+        toast.innerHTML = `
+            <div class="toast-icon"><i class="fa-solid ${iconClass}"></i></div>
+            <div class="toast-content"><p>${message}</p></div>
+            <button type="button" class="toast-close" aria-label="Dismiss notification">&times;</button>
+        `;
+
+        container.appendChild(toast);
+        requestAnimationFrame(() => toast.classList.add('show'));
+
+        const removeToast = () => {
+            toast.classList.remove('show');
+            toast.classList.add('hiding');
+            setTimeout(() => toast.remove(), 300);
+        };
+
+        toast.querySelector('.toast-close').addEventListener('click', removeToast);
+        setTimeout(removeToast, 5000);
+    }
+
+    createToastContainer() {
+        const container = document.createElement('div');
+        container.id = 'toast-container';
+        document.body.appendChild(container);
+        return container;
+    }
+
+    renderCartModal() {
+        const drawer = document.getElementById('cart-drawer');
+        if (!drawer) return;
+        const listContainer = drawer.querySelector('.cart-items-list');
+        const subtotalEl = drawer.querySelector('.cart-subtotal-val');
+        if (!listContainer || !subtotalEl) return;
+
+        if (this.cart.length === 0) {
+            listContainer.innerHTML = `
+                <div class="empty-cart-state">
+                    <i class="fa-solid fa-shopping-bag"></i>
+                    <p>Your cart is empty</p>
+                    <a href="puja-products.html" class="primary-btn">Shop Products</a>
+                </div>
+            `;
+            subtotalEl.textContent = '₹0';
+            return;
+        }
+
+        listContainer.innerHTML = this.cart.map(item => `
+            <div class="cart-drawer-item">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="item-details">
+                    <h4>${item.name}</h4>
+                    <span class="item-category">${item.type.toUpperCase()}</span>
+                    <span class="item-price">₹${item.price}</span>
+                    <div class="item-quantity-controls">
+                        <button onclick="window.appState.changeQuantity('${item.id}', '${item.type}', -1)"><i class="fa-solid fa-minus"></i></button>
+                        <span>${item.quantity}</span>
+                        <button onclick="window.appState.changeQuantity('${item.id}', '${item.type}', 1)"><i class="fa-solid fa-plus"></i></button>
+                    </div>
+                </div>
+                <button class="remove-item-btn" onclick="window.appState.removeItem('${item.id}', '${item.type}')">
+                    <i class="fa-regular fa-trash-can"></i>
+                </button>
+            </div>
+        `).join('');
+
+        subtotalEl.textContent = `₹${this.getCartTotal()}`;
+    }
+
+    changeQuantity(id, type, change) {
+        const item = this.cart.find(i => i.id === id && i.type === type);
+        if (item) {
+            const newQty = item.quantity + change;
+            if (newQty <= 0) {
+                this.removeFromCart(id, type);
+            } else {
+                this.updateQuantity(id, type, newQty);
+            }
+        }
+    }
+
+    removeItem(id, type) {
+        this.removeFromCart(id, type);
+    }
+}
+
+// Instantiate Global State
+window.appState = new AppState();
+
+// DOM Content Loaded Handler
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial UI Syncs
+    window.appState.updateCartBadge();
+    window.appState.updateUserUI();
+    window.appState.updateWishlistUI();
+
+    // Sticky Header Scroll Effect
+    const header = document.querySelector('header');
+    if (header) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+    }
+
+    // Modal Toggles (Cart & Auth)
+    setupModals();
+
+    // Setup Testimonial Sliders
+    setupTestimonialCarousels();
+});
+
+function setupModals() {
+    // Cart Drawer Toggle
+    const cartBtn = document.getElementById('cart-btn');
+    const closeCartBtn = document.getElementById('close-cart-btn');
+    const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
+
+    if (cartBtn && cartDrawerOverlay) {
+        cartBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            cartDrawerOverlay.classList.add('active');
+            window.appState.renderCartModal();
+        });
+    }
+    if (closeCartBtn && cartDrawerOverlay) {
+        closeCartBtn.addEventListener('click', () => {
+            cartDrawerOverlay.classList.remove('active');
+        });
+    }
+    // Click outside cart drawer to close
+    if (cartDrawerOverlay) {
+        cartDrawerOverlay.addEventListener('click', (e) => {
+            if (e.target === cartDrawerOverlay) {
+                cartDrawerOverlay.classList.remove('active');
+            }
+        });
+    }
+
+    // Auth Modal Toggle
+    const userBtn = document.getElementById('user-menu-btn');
+    const authModal = document.getElementById('auth-modal');
+    const closeAuthBtn = document.getElementById('close-auth-btn');
+
+    if (userBtn && authModal) {
+        userBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (window.appState.currentUser) {
+                // Show dynamic user portal modal or profile settings (or log out choice)
+                if (confirm(`Logged in as ${window.appState.currentUser.name}. Would you like to Logout?`)) {
+                    window.appState.logoutUser();
+                }
+            } else {
+                authModal.classList.add('active');
+            }
+        });
+    }
+    if (closeAuthBtn && authModal) {
+        closeAuthBtn.addEventListener('click', () => {
+            authModal.classList.remove('active');
+        });
+    }
+    // Click outside auth modal to close
+    if (authModal) {
+        authModal.addEventListener('click', (e) => {
+            if (e.target === authModal) {
+                authModal.classList.remove('active');
+            }
+        });
+    }
+
+    // Login/Register Form Toggle
+    const showRegister = document.getElementById('show-register');
+    const showLogin = document.getElementById('show-login');
+    const loginForm = document.getElementById('login-form-wrapper');
+    const registerForm = document.getElementById('register-form-wrapper');
+
+    if (showRegister && showLogin && loginForm && registerForm) {
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginForm.style.display = 'none';
+            registerForm.style.display = 'block';
+        });
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerForm.style.display = 'none';
+            loginForm.style.display = 'block';
+        });
+    }
+
+    // Login & Register Form Submits
+    const loginFormEl = document.getElementById('login-form');
+    const registerFormEl = document.getElementById('register-form');
+
+    if (loginFormEl) {
+        loginFormEl.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = loginFormEl.querySelector('input[type="email"]').value;
+            const password = loginFormEl.querySelector('input[type="password"]').value;
+            window.appState.loginUser(email, password);
+        });
+    }
+
+    if (registerFormEl) {
+        registerFormEl.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = registerFormEl.querySelector('input[placeholder="Full Name"]').value;
+            const email = registerFormEl.querySelector('input[placeholder="Email Address"]').value;
+            const password = registerFormEl.querySelector('input[placeholder="Password"]').value;
+            window.appState.registerUser(name, email, password);
+        });
+    }
+
+    // Order Tracking Modal setup
+    setupCheckoutAndOrderTracking();
+}
+
+function setupCheckoutAndOrderTracking() {
+    // Checkout Modal Elements
+    const checkoutModal = document.getElementById('checkout-modal');
+    const checkoutBtn = document.getElementById('checkout-btn');
+    const closeCheckoutBtn = document.getElementById('close-checkout-btn');
+    const checkoutForm = document.getElementById('checkout-form');
+
+    if (checkoutBtn && checkoutModal) {
+        checkoutBtn.addEventListener('click', () => {
+            if (window.appState.cart.length === 0) {
+                window.appState.showToast('Your cart is empty', 'error');
+                return;
+            }
+            document.getElementById('cart-drawer-overlay').classList.remove('active');
+            checkoutModal.classList.add('active');
+            // Populate total
+            document.getElementById('checkout-total-val').textContent = `₹${window.appState.getCartTotal()}`;
+        });
+    }
+
+    if (closeCheckoutBtn && checkoutModal) {
+        closeCheckoutBtn.addEventListener('click', () => {
+            checkoutModal.classList.remove('active');
+        });
+    }
+    // Click outside checkout modal to close
+    if (checkoutModal) {
+        checkoutModal.addEventListener('click', (e) => {
+            if (e.target === checkoutModal) {
+                checkoutModal.classList.remove('active');
+            }
+        });
+    }
+
+    if (checkoutForm && checkoutModal) {
+        checkoutForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const customerInfo = {
+                name: checkoutForm.querySelector('#cust-name').value,
+                email: checkoutForm.querySelector('#cust-email').value,
+                phone: checkoutForm.querySelector('#cust-phone').value,
+                address: checkoutForm.querySelector('#cust-address').value
+            };
+            const orderId = window.appState.placeOrder(customerInfo);
+            checkoutModal.classList.remove('active');
+            window.appState.showToast(`Order Placed Successfully! Your Order ID is ${orderId}.`, 'success');
+        });
+    }
+
+    // Search bar / tracking bar setup
+    const searchForm = document.getElementById('header-search-form');
+    if (searchForm) {
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const q = searchForm.querySelector('input').value.trim();
+            if (q.startsWith('DV-')) {
+                // Track Order
+                const order = window.appState.orders.find(o => o.orderId === q);
+                if (order) {
+                    window.appState.showToast(`Order Found! ID: ${order.orderId} | Status: ${order.status}`, 'success');
+                } else {
+                    window.appState.showToast(`Order ${q} not found. Please verify the ID.`, 'error');
+                }
+            } else if (q) {
+                window.location.href = `puja-products.html?q=${encodeURIComponent(q)}`;
+            }
+        });
+    }
+}
+
+function setupTestimonialCarousels() {
+    const sliders = document.querySelectorAll('.testimonials-slider-container');
+    sliders.forEach(slider => {
+        const slides = slider.querySelectorAll('.testimonial-card');
+        const dots = slider.querySelectorAll('.carousel-dot');
+        let activeIdx = 0;
+
+        if (slides.length <= 1) return;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.style.display = i === index ? 'block' : 'none';
+            });
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+            activeIdx = index;
+        }
+
+        dots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => showSlide(idx));
+        });
+
+        // Auto slide every 5 seconds
+        setInterval(() => {
+            let next = (activeIdx + 1) % slides.length;
+            showSlide(next);
+        }, 5000);
+    });
+}
