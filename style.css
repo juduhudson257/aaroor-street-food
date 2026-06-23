@@ -198,21 +198,21 @@ header.sticky {
 }
 
 .brand-logo-img {
-    height: 48px;
-    width: 48px;
+    height: 60px;
+    width: 60px;
     object-fit: contain;
 }
 
 /* Real Logo Image */
 .header-logo-img {
-    height: 48px;
+    height: 60px;
     width: auto;
     object-fit: contain;
     display: block;
 }
 
 .footer-logo-img {
-    height: 44px;
+    height: 56px;
     width: auto;
     object-fit: contain;
     display: block;
