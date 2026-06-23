@@ -55,6 +55,10 @@
                 <button id="user-menu-btn" title="My Account">
                     <i class="fa-regular fa-user"></i>
                 </button>
+                <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count-badge" style="display: none;">0</span>
+                </button>
                 <button id="cart-btn" title="Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count-badge">0</span>
@@ -191,7 +195,7 @@
 
             <div class="contribution-grid">
                 <!-- Card 1 -->
-                <div class="contribution-card popular">
+                <div class="contribution-card popular" data-donation-key="don-1">
                     <h4>Feed 1 Person</h4>
                     <span class="amount">₹50</span>
                     <p>Provide a fresh, nutritious meal for one person.</p>
@@ -207,7 +211,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div class="contribution-card">
+                <div class="contribution-card" data-donation-key="don-10">
                     <h4>Feed 10 People</h4>
                     <span class="amount">₹500</span>
                     <p>Provide meals for ten needy people.</p>
@@ -223,7 +227,7 @@
                 </div>
 
                 <!-- Card 5 -->
-                <div class="contribution-card">
+                <div class="contribution-card" data-donation-key="don-50">
                     <h4>Feed 50 People</h4>
                     <span class="amount">₹2,500</span>
                     <p>Provide meals for fifty needy people.</p>
@@ -418,11 +422,9 @@
             </div>
         </div>
 
-        <div class="container footer-bottom">
-            <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
-            <div style="display: flex; gap: 10px;">
-                <span class="payment-methods-img" style="color: var(--white); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">Razorpay | VISA | Mastercard | UPI</span>
-            </div>
+        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+            <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <a href="admin-login.html" class="admin-enter-link">Enter</a>
         </div>
     </footer>
 
@@ -550,6 +552,7 @@
     </div>
 
     <script src="app.js"></script>
+    <script src="catalog-sync.js"></script>
     <script>
         function toggleMobileMenu() {
             var menu = document.getElementById('mobile-nav');

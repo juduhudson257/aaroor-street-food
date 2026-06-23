@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Wishlist | The Divine Voice</title>
+    <meta name="description" content="View your saved puja products, online homams, and prasadam items on The Divine Voice.">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Style Sheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- STICKY HEADER -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="brand-wrapper">
+                <img src="divine logo.png" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
+            </a>
+
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-actions">
+                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
+                    <input type="text" placeholder="Track Order ID...">
+                </form>
+                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <button id="user-menu-btn" title="My Account">
+                    <i class="fa-regular fa-user"></i>
+                </button>
+                <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count-badge" style="display: none;">0</span>
+                </button>
+                <button id="cart-btn" title="Shopping Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-count-badge">0</span>
+                </button>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE NAVIGATION SIDEBAR -->
+    <div id="mobile-nav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="puja-products.html">Puja Products</a></li>
+            <li><a href="online-homam.html">Online Homam</a></li>
+            <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html">Donate For Food</a></li>
+            <li><a href="about-us.html">About Us</a></li>
+            <li><a href="#contact-us">Contact Us</a></li>
+        </ul>
+    </div>
+
+    <!-- HERO BANNER -->
+    <section class="inner-hero-section">
+        <div class="container hero-banner-content">
+            <h2>Your Wishlist</h2>
+            <p>A collection of your favorite items, saved for later.</p>
+        </div>
+    </section>
+
+    <!-- WISHLIST LAYOUT -->
+    <section class="container section-padding">
+        <!-- DYNAMIC WISHLIST GRID -->
+        <div class="products-grid" id="wishlist-grid">
+            <!-- Items will be loaded dynamically via JavaScript -->
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <div class="footer-about-logo">
+                    <img src="divine logo.png" alt="The Divine Voice Logo" class="footer-logo-img">
+                </div>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <div class="footer-socials">
+                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="puja-products.html">Puja Products</a></li>
+                    <li><a href="online-homam.html">Online Homam</a></li>
+                    <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
+                    <li><a href="donate-for-food.html">Donate For Food</a></li>
+                    <li><a href="about-us.html">About Us</a></li>
+                    <li><a href="#contact-us">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Service</h4>
+                <ul>
+                    <li><a href="#user-portal">My Account</a></li>
+                    <li><a href="#track-order">Order Tracking</a></li>
+                    <li><a href="#shipping">Shipping Policy</a></li>
+                    <li><a href="#returns">Return & Refund</a></li>
+                    <li><a href="#terms">Terms & Conditions</a></li>
+                    <li><a href="#privacy">Privacy Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col" id="contact-us">
+                <h4>Contact Us</h4>
+                <ul class="contact-info-list">
+                    <li>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>support@thedivinevoice.in</span>
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Mon - Sat: 9:00 AM - 8:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+            <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <a href="admin-login.html" class="admin-enter-link">Enter</a>
+        </div>
+    </footer>
+
+    <!-- CART DRAWER MODAL -->
+    <div class="cart-drawer-overlay" id="cart-drawer-overlay">
+        <div class="cart-drawer" id="cart-drawer">
+            <div class="cart-drawer-header">
+                <h3>Your Shopping Cart</h3>
+                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="cart-items-list"></div>
+            <div class="cart-drawer-footer">
+                <div class="cart-subtotal">
+                    <span>Subtotal:</span>
+                    <span class="cart-subtotal-val">₹0</span>
+                </div>
+                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AUTHENTICATION MODAL -->
+    <div class="modal-overlay" id="auth-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div id="login-form-wrapper">
+                <h3 class="modal-title">Sign In</h3>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+            </div>
+            <div id="register-form-wrapper" style="display: none;">
+                <h3 class="modal-title">Create Account</h3>
+                <form id="register-form">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Full Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                </form>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div class="modal-overlay" id="checkout-modal">
+        <div class="modal-container">
+            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <h3 class="modal-title">Checkout</h3>
+            <form id="checkout-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="cust-name" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" id="cust-email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="cust-phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
+                </div>
+                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                    <span>Total Amount Payable:</span>
+                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                </div>
+                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            var menu = document.getElementById('mobile-nav');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+</body>
+</html>

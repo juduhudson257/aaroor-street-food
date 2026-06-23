@@ -271,7 +271,7 @@ nav ul li.active a::after {
     color: var(--primary-gold);
 }
 
-.cart-count-badge {
+.cart-count-badge, .wishlist-count-badge {
     position: absolute;
     top: -8px;
     right: -8px;
@@ -1944,4 +1944,29 @@ html {
 /* Puja Products page banner */
 .pooja-products-hero {
     background-image: url('pooja banner_divine.png');
+}
+
+/* Admin Link Footer Styles */
+.footer-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.copyright-text {
+  margin: 0 0 8px 0; /* Keeps a small gap above the link */
+  font-size: 14px;
+}
+
+.admin-enter-link {
+  display: inline-block;
+  font-size: 12px;
+  text-decoration: none;
+  color: #777; /* Soft color to keep it subtle */
+  transition: color 0.2s ease;
+}
+
+/* Enhances the touch/hover feedback for mobile and desktop */
+.admin-enter-link:hover, 
+.admin-enter-link:active {
+  color: #000; 
 }

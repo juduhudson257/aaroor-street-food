@@ -79,7 +79,6 @@ function renderTables() {
             <td>${p.name} (${p.category})</td>
             <td>₹${p.price}</td>
             <td>
-                <button class="action-btn" onclick="editItem('${p.id}', 'products')"><i class="fa-solid fa-pen"></i></button>
                 <button class="action-btn" onclick="deleteItem('${p.id}', 'products')"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>
@@ -93,7 +92,6 @@ function renderTables() {
             <td>${h.name}</td>
             <td>₹${h.price}</td>
             <td>
-                <button class="action-btn" onclick="editItem('${h.id}', 'homams')"><i class="fa-solid fa-pen"></i></button>
                 <button class="action-btn" onclick="deleteItem('${h.id}', 'homams')"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>
@@ -107,7 +105,6 @@ function renderTables() {
             <td>${pr.name}</td>
             <td>₹${pr.price}</td>
             <td>
-                <button class="action-btn" onclick="editItem('${pr.id}', 'prasadhams')"><i class="fa-solid fa-pen"></i></button>
                 <button class="action-btn" onclick="deleteItem('${pr.id}', 'prasadhams')"><i class="fa-solid fa-trash"></i></button>
             </td>
         </tr>

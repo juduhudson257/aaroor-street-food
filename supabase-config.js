@@ -1,20 +1,25 @@
 // supabase-config.js
 
-// Replace these with your actual Supabase project URL and anon key
 const SUPABASE_URL = 'https://kkorztusjlxmfclobgdc.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_hnF_UCHhlbm2rUeXzT28AQ_OEH6BDnt';
-const SUPABASE_BUCKET ='divine_voice_sx85fm_0'; // updated bucket name
+const SUPABASE_BUCKET = 'DIVINE_VOICE';
 
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+function getSupabaseClient() {
+    const lib = window.supabase;
+    if (!lib || typeof lib.createClient !== 'function') {
+        throw new Error('Supabase library did not load. Check your internet connection and refresh the page.');
+    }
+    return lib.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
 
 async function uploadToSupabase(file, bucketName = SUPABASE_BUCKET) {
-    // Generate a unique file name to avoid collisions
     const fileExt = file.name.split('.').pop();
     const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
-    const filePath = `${fileName}`;
+    const filePath = `public/${fileName}`;
 
     try {
-        const { data, error } = await supabase.storage
+        const supabase = getSupabaseClient();
+        const { error } = await supabase.storage
             .from(bucketName)
             .upload(filePath, file, {
                 cacheControl: '3600',
@@ -23,11 +28,10 @@ async function uploadToSupabase(file, bucketName = SUPABASE_BUCKET) {
 
         if (error) {
             console.error('Error uploading image to Supabase:', error);
-            alert('Failed to upload image. Make sure your Supabase credentials are correct and the bucket exists.');
+            alert(`Failed to upload image: ${error.message}`);
             return null;
         }
 
-        // Get public URL
         const { data: publicUrlData } = supabase.storage
             .from(bucketName)
             .getPublicUrl(filePath);
@@ -35,9 +39,9 @@ async function uploadToSupabase(file, bucketName = SUPABASE_BUCKET) {
         return publicUrlData.publicUrl;
     } catch (err) {
         console.error('Unexpected error during upload:', err);
+        alert(err.message || 'Unexpected error during upload.');
         return null;
     }
 }
 
-// Expose the upload function globally for admin-app.js
 window.uploadToSupabase = uploadToSupabase;

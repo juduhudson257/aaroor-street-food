@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Divine Voice | Pure Spiritual Journey, Puja & homams</title>
-    <meta name="description" content="Discover peace and purpose with authentic puja products, online homam services, temple prasadham, and community food donations at The Divine Voice.">
+    <meta name="description"
+        content="Discover peace and purpose with authentic puja products, online homam services, temple prasadham, and community food donations at The Divine Voice.">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Style Sheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Clerk SDK -->
+    <script>
+        // Set publishable key before SDK loads
+        window.__clerk_publishable_key = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+        data-clerk-publishable-key="pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
+
 <body>
 
     <!-- STICKY HEADER -->
@@ -35,11 +45,21 @@
                 <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
                     <input type="text" placeholder="Track Order ID...">
                 </form>
-                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
+                <button
+                    onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';"
+                    title="Search & Track Order">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <button id="user-menu-btn" title="My Account">
-                    <i class="fa-regular fa-user"></i>
+                <div class="clerk-auth-buttons">
+                    <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
+                </div>
+                <div class="clerk-user-menu" style="display:none; align-items:center;">
+                    <div id="clerk-user-btn-mount"></div>
+                    <button id="clerk-sign-out" class="btn-primary" style="margin-left:8px;">Sign Out</button>
+                </div>
+                <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
+                    <i class="fa-regular fa-heart"></i>
+                    <span class="wishlist-count-badge" style="display: none;">0</span>
                 </button>
                 <button id="cart-btn" title="Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
@@ -53,7 +73,8 @@
     </header>
 
     <!-- MOBILE NAVIGATION SIDEBAR -->
-    <div id="mobile-nav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
+    <div id="mobile-nav"
+        style="display: none; position: fixed; top: 80px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
         <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
             <li><a href="index.html" style="font-weight: 600; color: var(--primary-gold);">Home</a></li>
             <li><a href="puja-products.html">Puja Products</a></li>
@@ -71,10 +92,12 @@
         <div class="container hero-grid">
             <div class="hero-left">
                 <h2>Find Peace.<br><span>Live with Purpose.</span></h2>
-                <p>Authentic rituals, pure puja products, and selfless service to bring positivity in your life and society.</p>
+                <p>Authentic rituals, pure puja products, and selfless service to bring positivity in your life and
+                    society.</p>
                 <div class="hero-ctas">
                     <a href="puja-products.html" class="primary-btn">Explore Puja Products</a>
-                    <a href="online-homam.html" class="secondary-btn"><i class="fa-regular fa-circle-play"></i> Book Online Homam</a>
+                    <a href="online-homam.html" class="secondary-btn"><i class="fa-regular fa-circle-play"></i> Book
+                        Online Homam</a>
                 </div>
             </div>
             <div class="hero-right">
@@ -133,178 +156,83 @@
                 <div>
                     <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Best Sellers</h2>
                 </div>
-                <a href="puja-products.html" style="color: var(--primary-gold); font-weight: 600;">View All Products <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="puja-products.html" style="color: var(--primary-gold); font-weight: 600;">View All Products <i
+                        class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <div class="products-grid">
-                <!-- Product Card 1 -->
-                <div class="product-card">
-                    <button class="wishlist-btn" data-id="p4" onclick="window.appState.toggleWishlist('p4')">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <div class="product-img-wrapper">
-                        <img src="product-image.jpg" alt="Incense Sticks">
-                    </div>
-                    <div class="product-details">
-                        <h4>Premium Incense Sticks</h4>
-                        <div class="rating-container">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="review-count">(328)</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-val">₹149</span>
-                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'p4', name: 'Premium Incense Sticks', price: 149, image: 'product-image.jpg'})">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 2 -->
-                <div class="product-card">
-                    <button class="wishlist-btn" data-id="p11" onclick="window.appState.toggleWishlist('p11')">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <div class="product-img-wrapper">
-                        <img src="product-image.jpg" alt="Brass Diya (Small)">
-                    </div>
-                    <div class="product-details">
-                        <h4>Brass Diya (Small)</h4>
-                        <div class="rating-container">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="review-count">(243)</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-val">₹299</span>
-                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'p11', name: 'Brass Diya (Small)', price: 299, image: 'product-image.jpg'})">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="product-card">
-                    <button class="wishlist-btn" data-id="p2" onclick="window.appState.toggleWishlist('p2')">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <div class="product-img-wrapper">
-                        <img src="product-image.jpg" alt="Kumkum (100g)">
-                    </div>
-                    <div class="product-details">
-                        <h4>Kumkum (100g)</h4>
-                        <div class="rating-container">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="review-count">(242)</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-val">₹89</span>
-                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'p2', name: 'Kumkum (100g)', price: 89, image: 'product-image.jpg'})">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 4 -->
-                <div class="product-card">
-                    <button class="wishlist-btn" data-id="p3" onclick="window.appState.toggleWishlist('p3')">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <div class="product-img-wrapper">
-                        <img src="product-image.jpg" alt="Turmeric Powder (100g)">
-                    </div>
-                    <div class="product-details">
-                        <h4>Turmeric Powder (100g)</h4>
-                        <div class="rating-container">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <span class="review-count">(276)</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-val">₹69</span>
-                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'p3', name: 'Turmeric Powder (100g)', price: 69, image: 'product-image.jpg'})">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 5 -->
-                <div class="product-card">
-                    <button class="wishlist-btn" data-id="p9" onclick="window.appState.toggleWishlist('p9')">
-                        <i class="fa-regular fa-heart"></i>
-                    </button>
-                    <div class="product-img-wrapper">
-                        <img src="product-image.jpg" alt="Sandalwood Paste (50g)">
-                    </div>
-                    <div class="product-details">
-                        <h4>Sandalwood Paste (50g)</h4>
-                        <div class="rating-container">
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star"></i>
-                            <i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="review-count">(369)</span>
-                        </div>
-                        <div class="price-row">
-                            <span class="price-val">₹199</span>
-                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: 'p9', name: 'Sandalwood Paste (50g)', price: 199, image: 'product-image.jpg'})">Add To Cart</button>
-                        </div>
-                    </div>
-                </div>
+            <div class="products-grid" id="best-sellers-grid">
+                <!-- Loaded from admin catalog via catalog-sync.js -->
             </div>
         </div>
     </section>
 
     <!-- SHOP BY CATEGORY SECTION -->
-    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+    <section class="section-padding"
+        style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div class="section-title-wrapper">
                 <h2 class="section-title">Shop by Category</h2>
-                <p class="section-subtitle">Specially curated and sacred essentials for your everyday prayer requirements.</p>
+                <p class="section-subtitle">Specially curated and sacred essentials for your everyday prayer
+                    requirements.</p>
             </div>
 
             <div class="categories-showcase-grid">
                 <a href="puja-products.html?category=diyas" class="category-icon-card">
                     <!-- Elegant Custom SVG Icons -->
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><path d="M12 2 C12 2 7 8 7 12 C7 14.7 9.2 17 12 17 C14.8 17 17 14.7 17 12 C17 8 12 2 12 2 Z" fill="#E9D0A3" opacity="0.5"/><path d="M3 17 C3 21 7 22 12 22 C17 22 21 21 21 17"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <path d="M12 2 C12 2 7 8 7 12 C7 14.7 9.2 17 12 17 C14.8 17 17 14.7 17 12 C17 8 12 2 12 2 Z"
+                            fill="#E9D0A3" opacity="0.5" />
+                        <path d="M3 17 C3 21 7 22 12 22 C17 22 21 21 21 17" />
+                    </svg>
                     <span>Diyas & Lamps</span>
                 </a>
                 <a href="puja-products.html?category=essentials" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><circle cx="12" cy="12" r="8" fill="#E9D0A3" opacity="0.5"/><path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="8" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M12 2 L12 6 M12 18 L12 22 M2 12 L6 12 M18 12 L22 12" />
+                    </svg>
                     <span>Puja Essentials</span>
                 </a>
                 <a href="puja-products.html?category=incense" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><path d="M7 22 L7 10 M12 22 L12 6 M17 22 L17 12 M5 5 C5 5 7 3 7 5 C7 7 5 9 5 9 M10 3 C10 3 12 1 12 3 C12 5 10 7 10 7"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <path
+                            d="M7 22 L7 10 M12 22 L12 6 M17 22 L17 12 M5 5 C5 5 7 3 7 5 C7 7 5 9 5 9 M10 3 C10 3 12 1 12 3 C12 5 10 7 10 7" />
+                    </svg>
                     <span>Incense & Dhoop</span>
                 </a>
                 <a href="puja-products.html?category=kits" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2" fill="#E9D0A3" opacity="0.5"/><path d="M8 6 V4 A2 2 0 0 1 10 2 H14 A2 2 0 0 1 16 4 V6"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <rect x="3" y="6" width="18" height="14" rx="2" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M8 6 V4 A2 2 0 0 1 10 2 H14 A2 2 0 0 1 16 4 V6" />
+                    </svg>
                     <span>Puja Kits</span>
                 </a>
                 <a href="puja-products.html?category=brass" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><path d="M18 8 A6 6 0 0 0 6 8 V16 H18 V8 Z" fill="#E9D0A3" opacity="0.5"/><path d="M12 2 V6 M12 16 V22"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <path d="M18 8 A6 6 0 0 0 6 8 V16 H18 V8 Z" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M12 2 V6 M12 16 V22" />
+                    </svg>
                     <span>Brass Items</span>
                 </a>
                 <a href="puja-products.html?category=essentials" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><circle cx="12" cy="12" r="5" fill="#E9D0A3" opacity="0.5"/><path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2 Z"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="5" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M12 2 C8 2 5 5 5 9 C5 14 12 22 12 22 C12 22 19 14 19 9 C19 5 16 2 12 2 Z" />
+                    </svg>
                     <span>Flowers & Garlands</span>
                 </a>
                 <a href="puja-products.html?category=camphor" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><path d="M12 3 L20 7.5 V16.5 L12 21 L4 16.5 V7.5 Z" fill="#E9D0A3" opacity="0.5"/><path d="M12 3 V21 M4 7.5 L20 16.5 M20 7.5 L4 16.5"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <path d="M12 3 L20 7.5 V16.5 L12 21 L4 16.5 V7.5 Z" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M12 3 V21 M4 7.5 L20 16.5 M20 7.5 L4 16.5" />
+                    </svg>
                     <span>Camphor & Oils</span>
                 </a>
                 <a href="puja-products.html?category=essentials" class="category-icon-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5"><circle cx="12" cy="12" r="9" fill="#E9D0A3" opacity="0.5"/><path d="M12 3 C15 3 18 6 18 12 C18 18 15 21 12 21"/></svg>
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C88A2D" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="9" fill="#E9D0A3" opacity="0.5" />
+                        <path d="M12 3 C15 3 18 6 18 12 C18 18 15 21 12 21" />
+                    </svg>
                     <span>Coconut & More</span>
                 </a>
             </div>
@@ -320,7 +248,8 @@
         <div class="container">
             <div class="section-title-wrapper">
                 <h2 class="section-title">Why Choose The Divine Voice?</h2>
-                <p class="section-subtitle">We bridge the gap between age-old Vedic practices and modern ease, keeping purity intact.</p>
+                <p class="section-subtitle">We bridge the gap between age-old Vedic practices and modern ease, keeping
+                    purity intact.</p>
             </div>
 
             <div class="features-grid">
@@ -359,7 +288,8 @@
     </section>
 
     <!-- WHAT DEVOTEES SAY (TESTIMONIALS) -->
-    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+    <section class="section-padding"
+        style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div class="section-title-wrapper">
                 <h2 class="section-title">What Devotees Say</h2>
@@ -368,14 +298,18 @@
             <div class="testimonials-slider-container">
                 <!-- Testimonial 1 -->
                 <div class="testimonial-card">
-                    <p class="testimonial-quote">The products are of excellent quality and the prasadham is always pure and delicious. Truly blessed to be a part of The Divine Voice.</p>
+                    <p class="testimonial-quote">The products are of excellent quality and the prasadham is always pure
+                        and delicious. Truly blessed to be a part of The Divine Voice.</p>
                     <div class="testimonial-user">
-                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80" alt="Lakshmi Priya">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+                            alt="Lakshmi Priya">
                         <div class="testimonial-user-info">
                             <h5>Lakshmi Priya</h5>
                             <span>Devotee</span>
                             <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
                             </div>
                         </div>
                     </div>
@@ -383,14 +317,18 @@
 
                 <!-- Testimonial 2 -->
                 <div class="testimonial-card" style="display: none;">
-                    <p class="testimonial-quote">Their homam services are very authentic and the priests are well knowledgeable. We felt immense peace and positivity.</p>
+                    <p class="testimonial-quote">Their homam services are very authentic and the priests are well
+                        knowledgeable. We felt immense peace and positivity.</p>
                     <div class="testimonial-user">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80" alt="Ramesh Kumar">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
+                            alt="Ramesh Kumar">
                         <div class="testimonial-user-info">
                             <h5>Ramesh Kumar</h5>
                             <span>Verified Devotee</span>
                             <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
                             </div>
                         </div>
                     </div>
@@ -398,14 +336,18 @@
 
                 <!-- Testimonial 3 -->
                 <div class="testimonial-card" style="display: none;">
-                    <p class="testimonial-quote">Donating for food through The Divine Voice gives us great satisfaction. They are doing a wonderful service.</p>
+                    <p class="testimonial-quote">Donating for food through The Divine Voice gives us great satisfaction.
+                        They are doing a wonderful service.</p>
                     <div class="testimonial-user">
-                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80" alt="Meena Subramaniam">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=150&q=80"
+                            alt="Meena Subramaniam">
                         <div class="testimonial-user-info">
                             <h5>Meena Subramaniam</h5>
                             <span>Donor</span>
                             <div style="color: #FFB800; font-size: 0.8rem; margin-top: 4px;">
-                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                                    class="fa-solid fa-star"></i>
                             </div>
                         </div>
                     </div>
@@ -428,9 +370,11 @@
                 <p>Subscribe to get updates on new products, special offers and spiritual insights.</p>
             </div>
             <div>
-                <form class="newsletter-form" onsubmit="event.preventDefault(); window.appState.showToast('Subscribed successfully!', 'success'); this.reset();">
+                <form class="newsletter-form"
+                    onsubmit="event.preventDefault(); window.appState.showToast('Subscribed successfully!', 'success'); this.reset();">
                     <input type="email" placeholder="Enter your email address" required>
-                    <button type="submit" class="primary-btn" style="background-color: var(--primary-gold);">Subscribe</button>
+                    <button type="submit" class="primary-btn"
+                        style="background-color: var(--primary-gold);">Subscribe</button>
                 </form>
             </div>
         </div>
@@ -472,8 +416,6 @@
         </div>
     </section>
 
-    <button class="admin-login-bottom-btn" onclick="window.location.href='admin-login.html';">Admin Login</button>
-
     <!-- FOOTER -->
     <footer>
         <div class="container footer-grid">
@@ -481,7 +423,8 @@
                 <div class="footer-about-logo">
                     <img src="divine logo.png" alt="The Divine Voice Logo" class="footer-logo-img">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the
+                    needy.</p>
                 <div class="footer-socials">
                     <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
                     <a href="#"><i class="fa-brands fa-instagram"></i></a>
@@ -537,11 +480,9 @@
             </div>
         </div>
 
-        <div class="container footer-bottom">
-            <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
-            <div style="display: flex; gap: 10px;">
-                <span class="payment-methods-img" style="color: var(--white); font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;">Razorpay | VISA | Mastercard | UPI</span>
-            </div>
+        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+            <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
+            <a href="admin-login.html" class="admin-enter-link">Enter</a>
         </div>
     </footer>
 
@@ -550,7 +491,8 @@
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
                 <h3>Your Shopping Cart</h3>
-                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i
+                        class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="cart-items-list">
                 <!-- Cart Items will be dynamically loaded here by app.js -->
@@ -560,53 +502,13 @@
                     <span>Subtotal:</span>
                     <span class="cart-subtotal-val">₹0</span>
                 </div>
-                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to
+                    Checkout</button>
             </div>
         </div>
     </div>
 
-    <!-- AUTHENTICATION MODAL -->
-    <div class="modal-overlay" id="auth-modal">
-        <div class="modal-container">
-            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
-            
-            <div id="login-form-wrapper">
-                <h3 class="modal-title">Sign In</h3>
-                <form id="login-form">
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="Enter your email" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Enter password" required>
-                    </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
-                </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
-            </div>
 
-            <div id="register-form-wrapper" style="display: none;">
-                <h3 class="modal-title">Create Account</h3>
-                <form id="register-form">
-                    <div class="form-group">
-                        <label>Full Name</label>
-                        <input type="text" placeholder="Full Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email Address</label>
-                        <input type="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
-                </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
-            </div>
-        </div>
-    </div>
 
     <!-- CHECKOUT MODAL -->
     <div class="modal-overlay" id="checkout-modal">
@@ -634,7 +536,8 @@
                     <label>Coupon Code (Optional)</label>
                     <input type="text" id="cust-coupon" placeholder="Enter Coupon Code">
                 </div>
-                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                <div
+                    style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
                     <span>Total Amount Payable:</span>
                     <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
                 </div>
@@ -645,11 +548,51 @@
 
     <!-- Script File -->
     <script src="app.js"></script>
+    <script src="catalog-sync.js"></script>
     <script>
         function toggleMobileMenu() {
             var menu = document.getElementById('mobile-nav');
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
     </script>
+
+    <!-- Clerk Init -->
+    <script>
+        (async function initClerk() {
+            const publishableKey = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';
+
+            // Clerk browser SDK is loaded synchronously above — call .load() now
+            await window.Clerk.load({ publishableKey });
+
+            const authButtons = document.querySelector('.clerk-auth-buttons');
+            const userMenu = document.querySelector('.clerk-user-menu');
+            const mountEl = document.getElementById('clerk-user-btn-mount');
+
+            function updateUI() {
+                if (window.Clerk.user) {
+                    authButtons.style.display = 'none';
+                    userMenu.style.display = 'flex';
+                    if (mountEl && !mountEl.hasChildNodes()) {
+                        window.Clerk.mountUserButton(mountEl);
+                    }
+                } else {
+                    authButtons.style.display = 'flex';
+                    userMenu.style.display = 'none';
+                }
+            }
+
+            window.Clerk.addListener(updateUI);
+            updateUI();
+
+            document.getElementById('clerk-login').addEventListener('click', () => {
+                window.Clerk.openSignIn();
+            });
+
+            document.getElementById('clerk-sign-out').addEventListener('click', async () => {
+                await window.Clerk.signOut();
+            });
+        })();
+    </script>
 </body>
+
 </html>

@@ -133,6 +133,58 @@ class AppState {
                 btn.querySelector('i').className = 'fa-regular fa-heart';
             }
         });
+        this.updateWishlistBadge();
+        this.renderWishlistItems();
+    }
+
+    updateWishlistBadge() {
+        const badges = document.querySelectorAll('.wishlist-count-badge');
+        const count = this.wishlist.length;
+        badges.forEach(badge => {
+            badge.textContent = count;
+            badge.style.display = count > 0 ? 'flex' : 'none';
+        });
+    }
+
+    renderWishlistItems() {
+        const wishlistContainer = document.getElementById('wishlist-grid');
+        if (!wishlistContainer) return;
+
+        if (this.wishlist.length === 0) {
+            wishlistContainer.innerHTML = `<div class="empty-state" style="text-align: center; grid-column: 1 / -1; padding: 40px;">
+                <i class="fa-regular fa-heart" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 20px;"></i>
+                <h3>Your Wishlist is Empty</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">You haven't added any items to your wishlist yet.</p>
+                <a href="puja-products.html" class="primary-btn">Explore Products</a>
+            </div>`;
+            return;
+        }
+
+        const allItems = [...PRODUCTS, ...HOMAMS, ...PRASADHAMS];
+        const wishlistedItems = allItems.filter(item => this.wishlist.includes(item.id));
+
+        wishlistContainer.innerHTML = wishlistedItems.map(product => `
+            <div class="product-card">
+                <div class="product-img-wrapper">
+                    <img src="${product.image}" alt="${product.name}">
+                    <button class="wishlist-btn ${this.wishlist.includes(product.id) ? 'active' : ''}" data-id="${product.id}" onclick="window.appState.toggleWishlist('${product.id}')" title="Wishlist">
+                        <i class="${this.wishlist.includes(product.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">${product.category || 'Homam/Prasadham'}</span>
+                    <h3>${product.name}</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i>
+                        <span>${product.rating || '4.8'} (${product.reviews || '100'})</span>
+                    </div>
+                    <div class="product-bottom">
+                        <span class="product-price">₹${product.price}</span>
+                        ${product.id.startsWith('h') ? `<button class="primary-btn" onclick="window.location.href='online-homam.html'">Book Now</button>` : `<button class="primary-btn" onclick="window.appState.addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">Add to Cart</button>`}
+                    </div>
+                </div>
+            </div>
+        `).join('');
     }
 
     // Auth Operations
@@ -305,6 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.appState.updateCartBadge();
     window.appState.updateUserUI();
     window.appState.updateWishlistUI();
+    window.appState.renderWishlistItems();
 
     // Sticky Header Scroll Effect
     const header = document.querySelector('header');
@@ -352,12 +405,32 @@ function setupModals() {
         });
     }
 
+    // Clerk Login Button - Redirect to Clerk Sign-In Page
+    const clerkLoginBtn = document.getElementById('clerk-login');
+    if (clerkLoginBtn) {
+        clerkLoginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Use Clerk SDK to redirect to sign-in page
+            if (window.Clerk) {
+                window.Clerk.redirectToSignIn();
+            } else {
+                // Fallback redirect if Clerk SDK is not loaded yet
+                window.location.href = '/sign-in';
+            }
+        });
+    }
+
     // Auth Modal Toggle
     const userBtn = document.getElementById('user-menu-btn');
     const authModal = document.getElementById('auth-modal');
     const closeAuthBtn = document.getElementById('close-auth-btn');
 
     if (userBtn && authModal) {
+        // Custom auth modal handling removed; Clerk sign-in handles authentication.
+// The following block is no longer needed:
+// userBtn.addEventListener('click', (e) => {
+//   e.preventDefault();
+        // Removed legacy auth modal handling – now using Clerk for sign‑in
         userBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (window.appState.currentUser) {
