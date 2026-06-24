@@ -49,12 +49,6 @@
             </nav>
 
             <div class="header-actions">
-                <form id="header-search-form" class="catalog-search-bar" style="margin-right: 10px; display: none;">
-                    <input type="text" placeholder="Track Order ID...">
-                </form>
-                <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
                 <div class="clerk-auth-buttons">
                     <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
                 </div>
@@ -78,16 +72,23 @@
     </header>
 
     <!-- MOBILE NAVIGATION SIDEBAR -->
-    <div id="mobile-nav" style="display: none; position: fixed; top: 120px; left: 0; right: 0; background-color: var(--white); border-bottom: 1px solid var(--borders); z-index: 999; padding: 20px;">
-        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px; text-align: center;">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="puja-products.html">Puja Products</a></li>
-            <li><a href="online-homam.html">Online Homam</a></li>
-            <li><a href="temple-prasadham.html">Temple Prasadham</a></li>
-            <li><a href="donate-for-food.html" style="font-weight: 600; color: var(--primary-gold);">Donate For Food</a></li>
-            <li><a href="about-us.html">About Us</a></li>
-            <li><a href="#contact-us">Contact Us</a></li>
+    <div id="mobile-nav" style="display: none;">
+        <ul>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li><a href="puja-products.html"><i class="fa-solid fa-om"></i> Puja Products</a></li>
+            <li><a href="online-homam.html"><i class="fa-solid fa-fire"></i> Online Homam</a></li>
+            <li><a href="temple-prasadham.html"><i class="fa-solid fa-gopuram"></i> Temple Prasadham</a></li>
+            <li><a href="donate-for-food.html" style="font-weight: 600; color: var(--primary-gold);"><i class="fa-solid fa-hand-holding-heart"></i> Donate For Food</a></li>
+            <li><a href="about-us.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
+            <li><a href="#contact-us"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
+            <li><a href="wishlist.html"><i class="fa-solid fa-heart"></i> My Wishlist</a></li>
         </ul>
+        <div class="mobile-menu-actions">
+            <button class="mobile-action-btn primary" onclick="window.Clerk.user ? window.Clerk.signOut() : window.Clerk.redirectToSignIn()">
+                <i class="fa-solid fa-user"></i>
+                <span id="mobile-auth-label">Login / Sign Up</span>
+            </button>
+        </div>
     </div>
 
     <!-- HERO SECTION -->
@@ -633,13 +634,16 @@
             const userMenu = document.querySelector('.clerk-user-menu');
             const mountEl = document.getElementById('clerk-user-btn-mount');
             function updateUI() {
+                const label = document.getElementById('mobile-auth-label');
                 if (window.Clerk.user) {
                     authButtons.style.display = 'none';
                     userMenu.style.display = 'flex';
                     if (mountEl && !mountEl.hasChildNodes()) window.Clerk.mountUserButton(mountEl);
+                    if (label) label.textContent = 'Sign Out';
                 } else {
                     authButtons.style.display = 'flex';
                     userMenu.style.display = 'none';
+                    if (label) label.textContent = 'Login / Sign Up';
                 }
             }
             window.Clerk.addListener(updateUI);
