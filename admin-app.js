@@ -112,9 +112,10 @@ function renderTables() {
 }
 
 function renderBanners() {
-    ['home', 'puja', 'homam', 'prasadham', 'donate'].forEach(key => {
+    ['home', 'puja', 'homam', 'prasadham', 'donate', 'about-hero', 'about-story'].forEach(key => {
         if (adminData.banners[key]) {
-            document.getElementById(`preview-${key}`).src = adminData.banners[key];
+            const preview = document.getElementById(`preview-${key}`);
+            if (preview) preview.src = adminData.banners[key];
         }
     });
 }

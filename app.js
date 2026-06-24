@@ -405,20 +405,8 @@ function setupModals() {
         });
     }
 
-    // Clerk Login Button - Redirect to Clerk Sign-In Page
-    const clerkLoginBtn = document.getElementById('clerk-login');
-    if (clerkLoginBtn) {
-        clerkLoginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            // Use Clerk SDK to redirect to sign-in page
-            if (window.Clerk) {
-                window.Clerk.redirectToSignIn();
-            } else {
-                // Fallback redirect if Clerk SDK is not loaded yet
-                window.location.href = '/sign-in';
-            }
-        });
-    }
+    // Clerk Login Button handling moved to index.html to avoid duplicate listener conflicts
+    // (clerkLoginBtn handler removed from app.js)
 
     // Auth Modal Toggle
     const userBtn = document.getElementById('user-menu-btn');

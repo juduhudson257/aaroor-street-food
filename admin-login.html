@@ -208,23 +208,8 @@
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value;
 
-            // Hash the credentials with SHA-256 before comparing (credentials never exposed in plain-text)
-            const encoder = new TextEncoder();
-            const userHash = Array.from(
-                new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(user)))
-            ).map(b => b.toString(16).padStart(2, '0')).join('');
-            const passHash = Array.from(
-                new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(pass)))
-            ).map(b => b.toString(16).padStart(2, '0')).join('');
-
-            const validUserHash = 'b2f59e4c738cc98bcdb5b7da46b96dde4c9e34ec9aea6d1a3e1f14fef6be8b4c';
-            const validPassHash = '3f2a1c6e6bba56fb4fdb9e8f4a3d5e7c3b2a1f8e9d6c5b4a3f2e1d0c9b8a7f6';
-
-            if (userHash === validUserHash && passHash === validPassHash) {
-
-                const token = Array.from(
-                    new Uint8Array(await crypto.subtle.digest('SHA-256', encoder.encode(user + pass + Date.now())))
-                ).map(b => b.toString(16).padStart(2, '0')).join('');
+            if (user === 'ADMIN' && pass === 'DIVINEVOICE') {
+                const token = 'divine_admin_token_' + Date.now();
                 sessionStorage.setItem('divine_admin_token', token);
                 sessionStorage.setItem('divine_admin_auth', 'true');
                 sessionStorage.setItem('divine_admin_ts', Date.now().toString());

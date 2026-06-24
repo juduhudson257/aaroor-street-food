@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Style Sheet -->
     <link rel="stylesheet" href="style.css">
+    <!-- Clerk SDK -->
+    <script>window.__clerk_publishable_key = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';</script>
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
 <body>
 
@@ -27,7 +30,7 @@
     </div>
 
     <!-- STICKY HEADER -->
-    <header style="position: sticky; top: 0;">
+    <header>
         <div class="container header-container">
             <a href="index.html" class="brand-wrapper">
                 <img src="divine logo.png" alt="The Divine Voice - A Spiritual Journey" class="header-logo-img">
@@ -52,9 +55,13 @@
                 <button onclick="document.getElementById('header-search-form').style.display = document.getElementById('header-search-form').style.display === 'none' ? 'flex' : 'none';" title="Search & Track Order">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
-                <button id="user-menu-btn" title="My Account">
-                    <i class="fa-regular fa-user"></i>
-                </button>
+                <div class="clerk-auth-buttons">
+                    <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
+                </div>
+                <div class="clerk-user-menu" style="display:none; align-items:center;">
+                    <div id="clerk-user-btn-mount"></div>
+                    <button id="clerk-sign-out" class="btn-primary" style="margin-left:8px;">Sign Out</button>
+                </div>
                 <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
                     <i class="fa-regular fa-heart"></i>
                     <span class="wishlist-count-badge" style="display: none;">0</span>
@@ -423,6 +430,7 @@
         </div>
 
         <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+            <p><strong>POWERED BY HELIX</strong></p>
             <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
             <a href="admin-login.html" class="admin-enter-link">Enter</a>
         </div>
@@ -615,6 +623,30 @@
             // Open Cart Drawer
             document.getElementById('cart-drawer-overlay').classList.add('active');
         });
+    </script>
+    <!-- Clerk Init -->
+    <script>
+        (async function initClerk() {
+            const publishableKey = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';
+            await window.Clerk.load({ publishableKey });
+            const authButtons = document.querySelector('.clerk-auth-buttons');
+            const userMenu = document.querySelector('.clerk-user-menu');
+            const mountEl = document.getElementById('clerk-user-btn-mount');
+            function updateUI() {
+                if (window.Clerk.user) {
+                    authButtons.style.display = 'none';
+                    userMenu.style.display = 'flex';
+                    if (mountEl && !mountEl.hasChildNodes()) window.Clerk.mountUserButton(mountEl);
+                } else {
+                    authButtons.style.display = 'flex';
+                    userMenu.style.display = 'none';
+                }
+            }
+            window.Clerk.addListener(updateUI);
+            updateUI();
+            document.getElementById('clerk-login').addEventListener('click', () => window.Clerk.redirectToSignIn());
+            document.getElementById('clerk-sign-out').addEventListener('click', async () => await window.Clerk.signOut());
+        })();
     </script>
 </body>
 </html>

@@ -1357,7 +1357,7 @@ footer {
     margin-top: 80px;
 }
 .pooja-products-hero {
-    background-image: linear-gradient(rgba(26, 24, 21, 0.12), rgba(26, 24, 21, 0.12)), url('pooja%20banner_divine.png');
+    background-image: linear-gradient(rgba(26, 24, 21, 0.12), rgba(26, 24, 21, 0.12)), url("pooja banner_divine.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

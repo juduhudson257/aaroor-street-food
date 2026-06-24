@@ -5,7 +5,9 @@ const BANNER_DEFAULTS = {
     puja: 'pooja banner_divine.png',
     homam: 'homam banner final_divine.png',
     prasadham: 'prasadham banner final_divine.png',
-    donate: 'food donation banner final _divine.jpeg'
+    donate: 'food donation banner final _divine.jpeg',
+    'about-hero': 'hero-pooja.jpg',
+    'about-story': 'hero-pooja.jpg'
 };
 
 const DONATION_CARD_MAP = {
@@ -76,9 +78,16 @@ function applySiteBanners() {
     const banners = loadJson('divine_admin_banners') || {};
     const page = (window.location.pathname.split('/').pop() || 'index.html').toLowerCase();
 
-    const homeImg = document.querySelector('.hero-sec .hero-right img');
-    if (homeImg && (banners.home || page === 'index.html')) {
-        homeImg.src = banners.home || BANNER_DEFAULTS.home;
+    if (page === 'index.html' || page === '') {
+        const homeImg = document.querySelector('.hero-sec .hero-right img');
+        if (homeImg) {
+            homeImg.src = banners.home || BANNER_DEFAULTS.home;
+        }
+    } else if (page === 'about-us.html') {
+        const aboutHeroImg = document.querySelector('.hero-sec .hero-right img');
+        if (aboutHeroImg) aboutHeroImg.src = banners['about-hero'] || BANNER_DEFAULTS['about-hero'];
+        const aboutStoryImg = document.querySelector('.about-story-img img');
+        if (aboutStoryImg) aboutStoryImg.src = banners['about-story'] || BANNER_DEFAULTS['about-story'];
     }
 
     const bannerConfigs = [
