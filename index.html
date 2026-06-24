@@ -633,28 +633,31 @@
             const loader = document.getElementById('loading-screen');
             const video  = document.getElementById('loader-video');
             const body   = document.body;
-            const MAX_MS = 7000;
+            const MAX_MS = 3500; // Reduced max load timeout for better UX
 
+            let loaderHidden = false;
             function hideLoader() {
+                if (loaderHidden) return;
+                loaderHidden = true;
                 loader.classList.add('hidden');
                 body.classList.remove('loading');
                 body.classList.add('loaded');
             }
 
             // Hide after video ends naturally
-            video.addEventListener('ended', hideLoader);
+            if (video) {
+                video.addEventListener('ended', hideLoader);
+                // In case the video stops or doesn't start playing
+                video.addEventListener('suspend', hideLoader);
+                video.addEventListener('stalled', hideLoader);
+                video.addEventListener('error', hideLoader);
+            }
+
+            // Hide as soon as the window completely loads
+            window.addEventListener('load', hideLoader);
 
             // Safety fallback: hide after MAX_MS regardless
-            const fallback = setTimeout(hideLoader, MAX_MS);
-
-            // If video loads quickly and ends before fallback, clear the timer
-            video.addEventListener('ended', () => clearTimeout(fallback));
-
-            // If video fails to load, still hide after fallback
-            video.addEventListener('error', () => {
-                clearTimeout(fallback);
-                hideLoader();
-            });
+            setTimeout(hideLoader, MAX_MS);
         })();
     </script>
 </body>
