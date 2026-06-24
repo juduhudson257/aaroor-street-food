@@ -36,7 +36,7 @@ function loadJson(key) {
 
 function syncCatalogFromAdmin() {
     const adminProducts = loadJson('divine_admin_products');
-    if (adminProducts && adminProducts.length && typeof PRODUCTS !== 'undefined') {
+    if (Array.isArray(adminProducts) && typeof PRODUCTS !== 'undefined') {
         const defaults = Object.fromEntries(PRODUCTS.map(p => [p.id, p]));
         PRODUCTS.length = 0;
         adminProducts.forEach(item => {
@@ -51,7 +51,7 @@ function syncCatalogFromAdmin() {
     }
 
     const adminHomams = loadJson('divine_admin_homams');
-    if (adminHomams && adminHomams.length && typeof HOMAMS !== 'undefined') {
+    if (Array.isArray(adminHomams) && typeof HOMAMS !== 'undefined') {
         const defaults = Object.fromEntries(HOMAMS.map(h => [h.id, h]));
         HOMAMS.length = 0;
         adminHomams.forEach(item => {
@@ -60,7 +60,7 @@ function syncCatalogFromAdmin() {
     }
 
     const adminPrasadhams = loadJson('divine_admin_prasadhams');
-    if (adminPrasadhams && adminPrasadhams.length && typeof PRASADHAMS !== 'undefined') {
+    if (Array.isArray(adminPrasadhams) && typeof PRASADHAMS !== 'undefined') {
         const defaults = Object.fromEntries(PRASADHAMS.map(p => [p.id, p]));
         PRASADHAMS.length = 0;
         adminPrasadhams.forEach(item => {
@@ -153,7 +153,7 @@ function renderHomamGrid() {
                 <p>${escapeHtml(h.description)}</p>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed var(--borders); padding-top: 15px;">
                     <span class="price-val">₹${h.price.toLocaleString('en-IN')}</span>
-                    <button class="primary-btn" onclick="openHomamBooking('${escapeHtml(h.name)}', ${h.price})" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
+                    <button class="primary-btn" onclick="window.location.href='book-homam.html?homam=' + encodeURIComponent('${escapeHtml(h.name)}')" style="padding: 10px 20px; font-size: 0.85rem;">Book Now</button>
                 </div>
             </div>
         </div>

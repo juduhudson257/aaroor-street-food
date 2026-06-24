@@ -193,6 +193,17 @@
 
 
 
+    <!-- OUR ACHIEVEMENTS -->
+    <section class="achievements-slider" id="our-achievements">
+        <div class="container" style="text-align: center; margin-bottom: 30px;">
+            <h2 class="section-title">Our Achievements</h2>
+            <p class="section-subtitle">Moments of grace and recognition on our journey.</p>
+        </div>
+        <div id="achievements-track" class="film-slide-track" style="justify-content: center;">
+            <!-- Rendered via JS -->
+        </div>
+    </section>
+
     <section class="section-padding">
         <div class="container">
             <div class="section-title-wrapper">
@@ -308,15 +319,15 @@
                 <ul class="contact-info-list">
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
-                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                        <span>House of LSR,<br>4/405, Suncity Gardens,<br>Naal Road, Pangkal,<br>Sooramangalam,<br>Thirukkuvalai, Nagapattinam - 610204</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-phone"></i>
-                        <span>+91 98765 43210</span>
+                        <span>8148147056 / 7395845437</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <span>support@thedivinvoice.in</span>
+                        <span>voice4bhakthi@gmail.com</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-clock"></i>
@@ -363,6 +374,47 @@
             document.getElementById('clerk-login').addEventListener('click', () => window.Clerk.redirectToSignIn());
             document.getElementById('clerk-sign-out').addEventListener('click', async () => await window.Clerk.signOut());
         })();
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var track = document.getElementById('achievements-track');
+            if (!track) return;
+
+            var raw = localStorage.getItem('divine_admin_achievements');
+            var achievements = [];
+            try { achievements = JSON.parse(raw) || []; } catch(e) { achievements = []; }
+
+            if (achievements.length === 0) {
+                // Show placeholder — section is always visible
+                track.style.justifyContent = 'center';
+                track.style.animation = 'none';
+                track.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px 30px;">' +
+                    '<i class="fa-solid fa-trophy" style="font-size:3rem;color:#C9A84C;opacity:0.5;"></i>' +
+                    '<p style="font-size:1rem;font-weight:500;color:#888;text-align:center;font-family:Inter,sans-serif;">Achievements coming soon.<br><span style="font-size:0.85rem;color:#bbb;">Upload images from the Admin Dashboard to display them here.</span></p>' +
+                    '</div>';
+                return;
+            }
+
+            // Build image items
+            var html = '';
+            achievements.forEach(function(ach) {
+                html += '<div class="achievement-item">' +
+                    '<img src="' + ach.image + '" alt="' + (ach.name || 'Achievement') + '">' +
+                    (ach.name ? '<div class="achievement-caption">' + ach.name + '</div>' : '') +
+                    '</div>';
+            });
+
+            if (achievements.length >= 4) {
+                // Duplicate the set once so the CSS animation can loop seamlessly
+                track.innerHTML = html + html;
+                track.style.animation = 'scroll-film 30s linear infinite';
+            } else {
+                // Just show them centered, no scrolling
+                track.innerHTML = html;
+                track.style.justifyContent = 'center';
+                track.style.animation = 'none';
+            }
+        });
     </script>
 </body>
 </html>

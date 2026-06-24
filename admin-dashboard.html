@@ -345,8 +345,9 @@
                 <li class="active" data-target="panel-banners"><i class="fa-solid fa-image"></i> Banners</li>
                 <li data-target="panel-products"><i class="fa-solid fa-om"></i> Puja Products</li>
                 <li data-target="panel-homams"><i class="fa-solid fa-fire"></i> Online Homams</li>
-                <li data-target="panel-prasadhams"><i class="fa-solid fa-bowl-food"></i> Prasadham</li>
-                <li data-target="panel-donations"><i class="fa-solid fa-hand-holding-heart"></i> Food Donations</li>
+                <li data-target="panel-prasadhams"><i class="fa-solid fa-apple-whole"></i> Prasadhams</li>
+                <li data-target="panel-achievements"><i class="fa-solid fa-trophy"></i> Achievements</li>
+                <li data-target="panel-donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</li>
                 <li onclick="logoutAdmin()" style="margin-top: 20px; color: #000000; border-top: 1px solid #f0f0f0; padding-top: 20px;"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
             </ul>
         </div>
@@ -486,6 +487,29 @@
                 <table class="data-table">
                     <thead><tr><th>Image</th><th>Name</th><th>Price</th><th>Action</th></tr></thead>
                     <tbody id="table-prasadhams"></tbody>
+                </table>
+            </div>
+
+            <!-- Achievements Panel -->
+            <div id="panel-achievements" class="admin-panel">
+                <h2>Manage Achievements</h2>
+                <form id="form-achievement" onsubmit="saveItem(event, 'achievements')">
+                    <input type="hidden" id="ach-id">
+                    <div class="form-group">
+                        <label>Achievement Title (Optional)</label>
+                        <input type="text" id="ach-name" placeholder="E.g. 2025 Best Service Award">
+                    </div>
+                    <div class="form-group">
+                        <label>Image Upload (Required)</label>
+                        <input type="file" id="ach-image-file" accept="image/*" required>
+                        <input type="hidden" id="ach-image-base64">
+                    </div>
+                    <button type="submit" class="btn-primary">Save Achievement</button>
+                    <button type="button" class="btn-secondary" onclick="resetForm('form-achievement')">Clear</button>
+                </form>
+                <table class="data-table">
+                    <thead><tr><th>Image</th><th>Title</th><th>Action</th></tr></thead>
+                    <tbody id="table-achievements"></tbody>
                 </table>
             </div>
 

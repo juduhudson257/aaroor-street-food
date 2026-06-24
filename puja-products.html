@@ -77,8 +77,8 @@
     </div>
 
     <!-- HERO BANNER -->
-    <section class="inner-hero-section pooja-products-hero">
-        <div class="container hero-banner-content">
+    <section class="inner-hero-section pooja-products-hero" style="padding: 200px 0 80px; margin-top: 0; position: relative; z-index: 10;">
+        <div class="container hero-banner-content" style="position: relative; z-index: 20;">
             <h2>Puja Products</h2>
             <p>Explore our wide range of authentic puja products, made with devotion and delivered to your home.</p>
         </div>
@@ -97,15 +97,8 @@
 
                 <div class="filter-section">
                     <h4>Categories</h4>
-                    <div class="filter-options-list">
-                        <label class="filter-option"><input type="checkbox" name="cat" value="diyas"> Diyas (32)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="kumkum"> Kumkum (18)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="turmeric"> Turmeric (14)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="incense"> Incense (27)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="camphor"> Camphor (12)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="brass"> Brass Items (25)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="kits"> Puja Kits (20)</label>
-                        <label class="filter-option"><input type="checkbox" name="cat" value="essentials"> Temple Essentials (30)</label>
+                    <div class="filter-options-list" id="category-filter-list">
+                        <p style="color: var(--text-secondary); font-size: 0.85rem;">No products added yet.</p>
                     </div>
                 </div>
 
@@ -121,9 +114,9 @@
 
                 <div class="filter-section">
                     <h4>Availability</h4>
-                    <div class="filter-options-list">
-                        <label class="filter-option"><input type="checkbox" name="avail" value="in-stock" checked> In Stock (120)</label>
-                        <label class="filter-option"><input type="checkbox" name="avail" value="out-of-stock"> Out of Stock (8)</label>
+                    <div class="filter-options-list" id="availability-filter-list">
+                        <label class="filter-option"><input type="checkbox" name="avail" value="in-stock" checked> In Stock</label>
+                        <label class="filter-option"><input type="checkbox" name="avail" value="out-of-stock"> Out of Stock</label>
                     </div>
                 </div>
 
@@ -155,15 +148,6 @@
                     <!-- Products will be loaded dynamically via JavaScript -->
                 </div>
 
-                <!-- PAGINATION -->
-                <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: 50px;">
-                    <button class="carousel-dot active" style="width: auto; height: auto; border-radius: 4px; padding: 6px 12px; background-color: var(--primary-gold); color: var(--white); font-weight: 700; font-size: 0.9rem;">1</button>
-                    <button class="carousel-dot" style="width: auto; height: auto; border-radius: 4px; padding: 6px 12px; background-color: var(--white); border: 1px solid var(--borders); color: var(--text-dark); font-weight: 700; font-size: 0.9rem;">2</button>
-                    <button class="carousel-dot" style="width: auto; height: auto; border-radius: 4px; padding: 6px 12px; background-color: var(--white); border: 1px solid var(--borders); color: var(--text-dark); font-weight: 700; font-size: 0.9rem;">3</button>
-                    <span style="font-weight: 700; color: var(--text-secondary);">...</span>
-                    <button class="carousel-dot" style="width: auto; height: auto; border-radius: 4px; padding: 6px 12px; background-color: var(--white); border: 1px solid var(--borders); color: var(--text-dark); font-weight: 700; font-size: 0.9rem;">11</button>
-                    <button class="carousel-dot" style="width: auto; height: auto; border-radius: 4px; padding: 6px 12px; background-color: var(--white); border: 1px solid var(--borders); color: var(--text-dark); font-weight: 700; font-size: 0.9rem;"><i class="fa-solid fa-chevron-right"></i></button>
-                </div>
             </div>
 
         </div>
@@ -230,15 +214,15 @@
                 <ul class="contact-info-list">
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
-                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                        <span>House of LSR,<br>4/405, Suncity Gardens,<br>Naal Road, Pangkal,<br>Sooramangalam,<br>Thirukkuvalai, Nagapattinam - 610204</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-phone"></i>
-                        <span>+91 98765 43210</span>
+                        <span>8148147056 / 7395845437</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <span>support@thedivinevoice.in</span>
+                        <span>voice4bhakthi@gmail.com</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-clock"></i>
@@ -378,12 +362,68 @@
             document.getElementById('clerk-login').addEventListener('click', () => window.Clerk.redirectToSignIn());
             document.getElementById('clerk-sign-out').addEventListener('click', async () => await window.Clerk.signOut());
         })();
-    </script>
-    <script>
+
+        // Populate category filter sidebar dynamically from real PRODUCTS data
+        function buildCategoryFilters() {
+            const container = document.getElementById('category-filter-list');
+            if (!container) return;
+
+            if (PRODUCTS.length === 0) {
+                container.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem;">No products added yet.</p>';
+                return;
+            }
+
+            // Count products per category
+            const categoryCount = {};
+            PRODUCTS.forEach(p => {
+                const cat = p.category || 'other';
+                categoryCount[cat] = (categoryCount[cat] || 0) + 1;
+            });
+
+            // Preserve any already-checked state
+            const alreadyChecked = new Set(window.appState.selectedFilters.categories);
+
+            container.innerHTML = Object.entries(categoryCount)
+                .sort((a, b) => b[1] - a[1])
+                .map(([cat, count]) => {
+                    const label = cat.charAt(0).toUpperCase() + cat.slice(1).replace(/-/g, ' ');
+                    const checked = alreadyChecked.has(cat) ? 'checked' : '';
+                    return `<label class="filter-option"><input type="checkbox" name="cat" value="${cat}" ${checked}> ${label} (${count})</label>`;
+                })
+                .join('');
+
+            // Update availability counts
+            const inStockCount = PRODUCTS.filter(p => p.inStock !== false).length;
+            const outOfStockCount = PRODUCTS.length - inStockCount;
+            const availContainer = document.getElementById('availability-filter-list');
+            if (availContainer) {
+                const inStockChecked = window.appState.selectedFilters.availability !== 'out-of-stock' ? 'checked' : '';
+                const outOfStockChecked = window.appState.selectedFilters.availability === 'out-of-stock' ? 'checked' : '';
+                availContainer.innerHTML = `
+                    <label class="filter-option"><input type="checkbox" name="avail" value="in-stock" ${inStockChecked}> In Stock (${inStockCount})</label>
+                    <label class="filter-option"><input type="checkbox" name="avail" value="out-of-stock" ${outOfStockChecked}> Out of Stock (${outOfStockCount})</label>
+                `;
+            }
+        }
+
         // Render Dynamic Catalog Products
         function renderCatalog() {
             const grid = document.getElementById('catalog-grid');
             if (!grid) return;
+
+            // Rebuild filters to show real data
+            buildCategoryFilters();
+
+            if (PRODUCTS.length === 0) {
+                grid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--borders); border-radius: 8px;">
+                        <i class="fa-solid fa-store-slash" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 15px;"></i>
+                        <h3 style="margin-bottom: 8px;">No Products Yet</h3>
+                        <p style="color: var(--text-secondary);">Our catalog is being updated. Please check back soon!</p>
+                    </div>
+                `;
+                return;
+            }
 
             let filtered = PRODUCTS.filter(p => {
                 // Category tabs filter
@@ -406,8 +446,8 @@
 
                 // Availability filter
                 if (window.appState.selectedFilters.availability) {
-                    if (window.appState.selectedFilters.availability === 'in-stock' && !p.inStock) return false;
-                    if (window.appState.selectedFilters.availability === 'out-of-stock' && p.inStock) return false;
+                    if (window.appState.selectedFilters.availability === 'in-stock' && (p.inStock === false)) return false;
+                    if (window.appState.selectedFilters.availability === 'out-of-stock' && (p.inStock !== false)) return false;
                 }
 
                 // Search Query filter
@@ -432,6 +472,7 @@
                     <div style="grid-column: 1/-1; text-align: center; padding: 40px; border: 1px dashed var(--borders); border-radius: 8px;">
                         <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px;"></i>
                         <p style="font-weight: 600;">No products matched your filters.</p>
+                        <button onclick="resetFilters()" style="margin-top: 12px; font-size: 0.85rem; color: var(--primary-gold); font-weight: 600;">Clear Filters</button>
                     </div>
                 `;
                 return;
@@ -454,7 +495,7 @@
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star-half-stroke"></i>
-                            <span class="review-count">(${p.reviews})</span>
+                            <span class="review-count">(${p.reviews || 100})</span>
                         </div>
                         <div class="price-row">
                             <span class="price-val">₹${p.price}</span>

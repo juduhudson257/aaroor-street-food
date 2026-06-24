@@ -2,37 +2,11 @@
 
 // Sample Data Structures
 const DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
-const PRODUCTS = [
-    { id: 'p1', name: 'Temple Brass Diya', category: 'diyas', price: 799, rating: 4.8, reviews: 128, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p2', name: 'Pure Kumkum', category: 'kumkum', price: 149, rating: 4.9, reviews: 96, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p3', name: 'Turmeric Powder', category: 'turmeric', price: 129, rating: 4.7, reviews: 78, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p4', name: 'Premium Incense Sticks', category: 'incense', price: 199, rating: 4.8, reviews: 156, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p5', name: 'Brass Bell', category: 'brass', price: 499, rating: 4.7, reviews: 64, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p6', name: 'Camphor', category: 'camphor', price: 89, rating: 4.6, reviews: 38, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p7', name: 'Puja Thali Set', category: 'kits', price: 1299, rating: 4.9, reviews: 52, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p8', name: 'Cotton Wicks', category: 'essentials', price: 69, rating: 4.5, reviews: 45, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p9', name: 'Sandalwood Paste', category: 'essentials', price: 119, rating: 4.8, reviews: 27, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p10', name: 'Panchamrit Box', category: 'kits', price: 299, rating: 4.7, reviews: 33, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p11', name: 'Ghee Diya (Pack of 5)', category: 'diyas', price: 249, rating: 4.7, reviews: 71, image: DEFAULT_PRODUCT_IMAGE, inStock: true },
-    { id: 'p12', name: 'Tulsi Mala', category: 'essentials', price: 199, rating: 4.9, reviews: 44, image: DEFAULT_PRODUCT_IMAGE, inStock: false }
-];
+const PRODUCTS = [];
 
-const HOMAMS = [
-    { id: 'h1', name: 'Ganapathi Homam', description: 'Removes obstacles and brings wisdom, success and prosperity.', price: 2100, image: DEFAULT_PRODUCT_IMAGE },
-    { id: 'h2', name: 'Lakshmi Homam', description: 'Invites wealth, abundance and financial stability.', price: 2500, image: DEFAULT_PRODUCT_IMAGE },
-    { id: 'h3', name: 'Sudharshana Homam', description: 'Protects from negative energies and removes doshas.', price: 2300, image: DEFAULT_PRODUCT_IMAGE },
-    { id: 'h4', name: 'Navagraha Homam', description: 'Balances all planetary influences and brings harmony.', price: 3100, image: DEFAULT_PRODUCT_IMAGE },
-    { id: 'h5', name: 'Ayush Homam', description: 'Promotes health, longevity and general well-being.', price: 2400, image: DEFAULT_PRODUCT_IMAGE }
-];
+const HOMAMS = [];
 
-const PRASADHAMS = [
-    { id: 'pr1', name: 'Boondi Laddu', price: 180, rating: 4.8, reviews: 128, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
-    { id: 'pr2', name: 'Sakkarai Pongal', price: 150, rating: 4.9, reviews: 98, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
-    { id: 'pr3', name: 'Puliyodarai Mix', price: 120, rating: 4.7, reviews: 74, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
-    { id: 'pr4', name: 'Chakkarai Pongal Mix', price: 110, rating: 4.6, reviews: 58, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
-    { id: 'pr5', name: 'Panchamirtham', price: 160, rating: 4.8, reviews: 82, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' },
-    { id: 'pr6', name: 'Vadai (Temple Style)', price: 140, rating: 4.7, reviews: 67, image: DEFAULT_PRODUCT_IMAGE, temple: 'Arulmigu Lakshmi Narayana Perumal Temple' }
-];
+const PRASADHAMS = [];
 
 // App State Manager
 class AppState {

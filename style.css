@@ -1970,3 +1970,92 @@ html {
 .admin-enter-link:active {
   color: #000; 
 }
+
+/* Fix for sticky header anchor jumping */
+[id] {
+    scroll-margin-top: 90px;
+}
+
+
+
+/* --- Achievements Film Slider --- */
+.achievements-slider {
+    width: 100%;
+    overflow: hidden;
+    padding: 60px 0 50px;
+    background-color: #faf8f5;
+    position: relative;
+    border-top: 1px solid #e8e0d0;
+    border-bottom: 1px solid #e8e0d0;
+}
+
+.achievements-slider .section-title {
+    color: #1a1815;
+}
+
+.film-slide-track {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    width: max-content;
+    animation: scroll-film 30s linear infinite;
+    padding: 20px 0;
+}
+
+.film-slide-track:hover {
+    animation-play-state: paused;
+}
+
+.achievement-item {
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    margin: 0 15px;
+    background-color: #000;
+    border: 8px solid #222;
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.achievement-item:hover {
+    transform: translateY(-10px) scale(1.05);
+    z-index: 10;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+.achievement-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.85;
+    transition: opacity 0.3s;
+}
+
+.achievement-item:hover img {
+    opacity: 1;
+}
+
+.achievement-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 20px 10px 10px;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    color: #fff;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 0.3px;
+}
+
+@keyframes scroll-film {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}

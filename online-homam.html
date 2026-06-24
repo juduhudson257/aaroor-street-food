@@ -91,14 +91,14 @@
     </div>
 
     <!-- HERO SECTION WITH SACRED FIRE -->
-    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.5), rgba(26, 24, 21, 0.85)), url('homam banner final_divine.png'); padding: 100px 0 60px;">
-        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto;">
+    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.5), rgba(26, 24, 21, 0.85)), url('homam banner final_divine.png'); padding: 200px 0 80px; margin-top: 0; position: relative; z-index: 10;">
+        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto; position: relative; z-index: 20;">
             <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Rituals. Peaceful Life.</span>
             <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px; line-height: 1.2;">Online Homam</h2>
             <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Book authentic homam services performed by Vedic priests. Participate from anywhere, receive blessings always.</p>
-            <div style="display: flex; gap: 16px;">
-                <a href="#services-grid-anchor" class="primary-btn">Book a Homam</a>
-                <a href="#how-it-works-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white);"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+            <div style="display: flex; gap: 16px; position: relative; z-index: 30;">
+                <a href="#services-grid-anchor" class="primary-btn" onclick="document.getElementById('services-grid-anchor').scrollIntoView({behavior: 'smooth'}); return false;" style="cursor: pointer;">Book a Homam</a>
+                <a href="#how-it-works-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white); cursor: pointer;" onclick="document.getElementById('how-it-works-anchor').scrollIntoView({behavior: 'smooth'}); return false;"><i class="fa-regular fa-circle-question"></i> How It Works</a>
             </div>
         </div>
     </section>
@@ -213,8 +213,8 @@
                     <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">Our spiritual experts are here to assist you.</p>
                     <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem;">
                         <li><a href="#" style="color: #25d366; font-weight: 600;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
-                        <li><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> +91 98765 43210</li>
-                        <li><i class="fa-solid fa-envelope" style="color: var(--primary-gold);"></i> support@thedivinevoice.in</li>
+                        <li><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> 8148147056 / 7395845437</li>
+                        <li><i class="fa-solid fa-envelope" style="color: var(--primary-gold);"></i> voice4bhakthi@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -266,15 +266,15 @@
                 <ul class="contact-info-list">
                     <li>
                         <i class="fa-solid fa-location-dot"></i>
-                        <span>123, Divine Street, Heritage City,<br>Chennai - 600001, Tamil Nadu, India</span>
+                        <span>House of LSR,<br>4/405, Suncity Gardens,<br>Naal Road, Pangkal,<br>Sooramangalam,<br>Thirukkuvalai, Nagapattinam - 610204</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-phone"></i>
-                        <span>+91 98765 43210</span>
+                        <span>8148147056 / 7395845437</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-envelope"></i>
-                        <span>support@thedivinevoice.in</span>
+                        <span>voice4bhakthi@gmail.com</span>
                     </li>
                     <li>
                         <i class="fa-solid fa-clock"></i>
@@ -290,43 +290,6 @@
             <a href="admin-login.html" class="admin-enter-link">Enter</a>
         </div>
     </footer>
-
-    <!-- HOMAM BOOKING MODAL -->
-    <div class="modal-overlay" id="homam-booking-modal">
-        <div class="modal-container">
-            <button class="modal-close-btn" onclick="document.getElementById('homam-booking-modal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
-            <h3 class="modal-title">Book Homam</h3>
-            <h4 id="homam-name-title" style="text-align: center; color: var(--primary-gold); margin-bottom: 20px;"></h4>
-            <form id="homam-booking-form">
-                <input type="hidden" id="homam-price">
-                <div class="form-group">
-                    <label>Devotee Name</label>
-                    <input type="text" id="devotee-name" placeholder="Name of Person performing homam" required>
-                </div>
-                <div class="form-group">
-                    <label>Rashi & Nakshatram (Star)</label>
-                    <input type="text" id="devotee-star" placeholder="e.g. Mesha, Ashwini" required>
-                </div>
-                <div class="form-group">
-                    <label>Gothram</label>
-                    <input type="text" id="devotee-gotra" placeholder="Enter Gothram" required>
-                </div>
-                <div class="form-group">
-                    <label>Preferred Date</label>
-                    <input type="date" id="devotee-date" required>
-                </div>
-                <div class="form-group">
-                    <label>Sankalpam Purpose</label>
-                    <input type="text" id="devotee-purpose" placeholder="e.g. Good Health, Business Growth" required>
-                </div>
-                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
-                    <span>Total Dakshina:</span>
-                    <span id="homam-total-val" style="color: var(--primary-gold);">₹0</span>
-                </div>
-                <button type="submit" class="primary-btn" style="width: 100%;">Proceed to Payment</button>
-            </form>
-        </div>
-    </div>
 
     <!-- CART DRAWER MODAL -->
     <div class="cart-drawer-overlay" id="cart-drawer-overlay">
@@ -426,38 +389,6 @@
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Open Homam Booking Modal
-        function openHomamBooking(name, price) {
-            document.getElementById('homam-name-title').textContent = name;
-            document.getElementById('homam-total-val').textContent = `₹${price}`;
-            document.getElementById('homam-price').value = price;
-            document.getElementById('homam-booking-modal').classList.add('active');
-        }
-
-        // Submit Booking Form
-        document.getElementById('homam-booking-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            const homamName = document.getElementById('homam-name-title').textContent;
-            const price = parseInt(document.getElementById('homam-price').value);
-            const devotee = document.getElementById('devotee-name').value;
-            const star = document.getElementById('devotee-star').value;
-            const gotra = document.getElementById('devotee-gotra').value;
-            const date = document.getElementById('devotee-date').value;
-
-            const mockHomamOrder = {
-                id: 'H-' + Math.floor(100000 + Math.random() * 900000),
-                name: `${homamName} (For: ${devotee}, Gotra: ${gotra})`,
-                price: price,
-                image: 'https://images.unsplash.com/photo-1609137144813-f8db422e6cf8?auto=format&fit=crop&w=500&q=80'
-            };
-
-            // Add directly to cart
-            window.appState.addToCart(mockHomamOrder, 'homam');
-            document.getElementById('homam-booking-modal').classList.remove('active');
-            document.getElementById('homam-booking-form').reset();
-            // Open Cart Drawer
-            document.getElementById('cart-drawer-overlay').classList.add('active');
-        });
     </script>
     <!-- Clerk Init -->
     <script>
