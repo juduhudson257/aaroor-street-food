@@ -2059,3 +2059,490 @@ html {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
+
+/* ==========================================================================
+   MOBILE & TABLET RESPONSIVE REDESIGN (NEAT & MINIMAL)
+   ========================================================================== */
+
+/* Tablet & Mobile Menu Adjustments */
+@media (max-width: 1080px) {
+    .mobile-menu-toggle {
+        display: block !important;
+    }
+    nav {
+        display: none !important;
+    }
+}
+
+/* Mobile (<= 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 16px !important;
+    }
+    
+    .section-padding {
+        padding: 45px 0 !important;
+    }
+    
+    .section-title {
+        font-size: 1.85rem !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .section-title-wrapper {
+        margin-bottom: 30px !important;
+    }
+    
+    /* Header layout redesign - minimize elements to fit nicely */
+    .header-container {
+        padding: 0 12px !important;
+        height: 70px !important;
+    }
+    
+    .header-logo-img {
+        height: 48px !important;
+    }
+    
+    .header-actions {
+        gap: 12px !important;
+    }
+    
+    /* Minimize login button to an elegant icon */
+    .clerk-auth-buttons button, 
+    #clerk-login {
+        font-size: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        padding: 6px !important;
+        box-shadow: none !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        width: 32px !important;
+        height: 32px !important;
+        color: var(--text-dark) !important;
+        margin: 0 !important;
+    }
+    
+    #clerk-login::before {
+        content: "\f007" !important; /* fa-user */
+        font-family: "Font Awesome 6 Free" !important;
+        font-weight: 900 !important;
+        font-size: 1.2rem !important;
+    }
+    
+    /* Style Wishlist and Search buttons uniformly */
+    .header-actions a,
+    .header-actions button {
+        font-size: 1.15rem !important;
+        width: 32px !important;
+        height: 32px !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 !important;
+        background: none !important;
+        border: none !important;
+        color: var(--text-dark) !important;
+    }
+    
+    /* Badges alignment */
+    .cart-count-badge, 
+    .wishlist-count-badge {
+        top: -4px !important;
+        right: -4px !important;
+        width: 14px !important;
+        height: 14px !important;
+        font-size: 0.6rem !important;
+    }
+    
+    /* Search Bar overlay for mobile */
+    .catalog-search-bar {
+        position: absolute !important;
+        top: 70px !important;
+        left: 0 !important;
+        right: 0 !important;
+        background: var(--white) !important;
+        padding: 10px 16px !important;
+        border-bottom: 1px solid var(--borders) !important;
+        box-shadow: var(--shadow-medium) !important;
+        z-index: 998 !important;
+        display: flex !important;
+        width: 100% !important;
+    }
+    
+    .catalog-search-bar input {
+        width: 100% !important;
+        border: 1px solid var(--borders) !important;
+        border-radius: 4px !important;
+        padding: 8px 12px !important;
+        background: var(--background) !important;
+    }
+
+    /* Vertical stack for Hero Section */
+    .hero-sec {
+        padding-top: 110px !important;
+        padding-bottom: 45px !important;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+        text-align: center !important;
+    }
+    
+    .hero-left h2 {
+        font-size: 2.2rem !important;
+        line-height: 1.2 !important;
+    }
+    
+    .hero-left p {
+        font-size: 0.95rem !important;
+        margin: 0 auto 24px auto !important;
+    }
+    
+    .hero-ctas {
+        flex-direction: column !important;
+        gap: 10px !important;
+        max-width: 280px !important;
+        margin: 0 auto !important;
+    }
+    
+    .hero-ctas a, 
+    .hero-ctas button {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px 18px !important;
+        font-size: 0.95rem !important;
+    }
+    
+    .hero-img-composition {
+        max-width: 260px !important;
+    }
+    
+    /* Mobile Navigation Drawer UI */
+    #mobile-nav {
+        position: fixed !important;
+        top: 70px !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        height: calc(100vh - 70px) !important;
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        backdrop-filter: blur(8px) !important;
+        padding: 24px !important;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
+        overflow-y: auto !important;
+        border-bottom: none !important;
+    }
+    
+    #mobile-nav ul {
+        flex-direction: column !important;
+        gap: 12px !important;
+        width: 100% !important;
+        padding: 0 !important;
+    }
+    
+    #mobile-nav ul li a {
+        font-size: 1.1rem !important;
+        font-weight: 500 !important;
+        padding: 12px 0 !important;
+        border-bottom: 1px solid var(--borders) !important;
+        color: var(--text-dark) !important;
+        display: block !important;
+        text-align: center !important;
+        transition: var(--transition) !important;
+    }
+    
+    #mobile-nav ul li a:hover {
+        color: var(--primary-gold) !important;
+        background-color: rgba(200, 138, 45, 0.05) !important;
+    }
+    
+    /* Trust features styling */
+    .trust-features-bar {
+        padding: 24px 0 !important;
+    }
+    
+    .trust-features-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 20px !important;
+    }
+    
+    .trust-item {
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 6px !important;
+    }
+    
+    /* Testimonials adjustments */
+    .testimonial-card {
+        padding: 24px 16px !important;
+        margin: 5px !important;
+    }
+    
+    .testimonial-quote {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+    }
+    
+    .testimonial-quote::before {
+        left: -10px !important;
+    }
+    .testimonial-quote::after {
+        right: -10px !important;
+    }
+}
+
+/* Small Screens (<= 480px) */
+@media (max-width: 480px) {
+    /* Product grid - 2 columns for neatness and fitting */
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    .product-details {
+        padding: 10px !important;
+    }
+    
+    .product-details h4 {
+        font-size: 0.85rem !important;
+        height: 2.6em !important;
+        overflow: hidden !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        margin-bottom: 6px !important;
+        line-height: 1.3 !important;
+    }
+    
+    .rating-container {
+        font-size: 0.75rem !important;
+        margin-bottom: 8px !important;
+        gap: 4px !important;
+    }
+    
+    .price-row {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 8px !important;
+        padding-top: 8px !important;
+    }
+    
+    .price-val {
+        font-size: 1rem !important;
+        text-align: center !important;
+    }
+    
+    .add-cart-btn {
+        width: 100% !important;
+        padding: 6px 4px !important;
+        font-size: 0.75rem !important;
+        text-align: center !important;
+    }
+    
+    /* Categories Showcase - 2 columns grid */
+    .categories-showcase-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .category-icon-card {
+        padding: 12px 6px !important;
+    }
+    
+    .category-icon-card img {
+        height: 36px !important;
+        margin-bottom: 6px !important;
+    }
+    
+    .category-icon-card span {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Features/Why Choose Us - 1 column stack */
+    .features-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .feature-box {
+        padding: 16px !important;
+    }
+    
+    .feature-box-icon {
+        font-size: 1.85rem !important;
+        margin-bottom: 12px !important;
+    }
+    
+    .feature-box h4 {
+        font-size: 1.05rem !important;
+    }
+    
+    /* Achievement slider mobile sizing */
+    .achievement-item {
+        width: 240px !important;
+        height: 150px !important;
+        margin: 0 6px !important;
+        border-width: 4px !important;
+    }
+    
+    .achievement-caption {
+        font-size: 0.75rem !important;
+        padding: 12px 6px 6px !important;
+    }
+}
+
+
+/* ----------------------------------------------------------------
+   ADDITIONAL MOBILE POLISH
+   ---------------------------------------------------------------- */
+
+/* Hide announcement bar on mobile to save precious viewport space */
+@media (max-width: 768px) {
+    /* Announcement bar (inline styled div above header) */
+    body > div:first-child {
+        display: none !important;
+    }
+
+    /* Inner-page hero sections that use inline padding: override to mobile-safe values */
+    .inner-hero-section[style*="padding: 200px"] {
+        padding: 100px 0 60px !important;
+    }
+
+    /* Generic inner-hero with inline padding-top overrides */
+    .inner-hero-section {
+        padding-top: 100px !important;
+        min-height: 220px !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-banner-content {
+        padding-top: 0 !important;
+        padding-bottom: 30px !important;
+    }
+
+    .hero-banner-content h2 {
+        font-size: 1.85rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero-banner-content p {
+        font-size: 0.9rem !important;
+    }
+
+    /* Primary btn hero CTAs — stack on mobile */
+    .inner-hero-section .primary-btn,
+    .inner-hero-section .secondary-btn {
+        display: block !important;
+        width: fit-content !important;
+        min-width: 160px !important;
+    }
+    
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 20px !important;
+    }
+
+    .stat-box h3 {
+        font-size: 2rem !important;
+    }
+
+    /* Contribution cards */
+    .contribution-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+
+    .contribution-card {
+        padding: 16px !important;
+    }
+
+    .contribution-card .amount {
+        font-size: 1.4rem !important;
+    }
+
+    /* Newsletter section */
+    .newsletter-left h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Footer padding */
+    footer {
+        padding: 50px 0 20px !important;
+    }
+    
+    .footer-grid {
+        margin-bottom: 30px !important;
+        gap: 24px !important;
+    }
+
+    /* Horizontal category nav on smaller viewports */
+    .horizontal-categories-nav {
+        gap: 8px !important;
+        padding: 12px 0 !important;
+    }
+
+    .category-tab-btn {
+        padding: 10px 16px !important;
+        font-size: 0.82rem !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Inner hero full-screen friendly */
+    .inner-hero-section {
+        padding-top: 95px !important;
+        min-height: 190px !important;
+    }
+
+    .hero-banner-content h2 {
+        font-size: 1.6rem !important;
+    }
+
+    /* Stats to single column on very small screens */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr !important;
+    }
+    
+    /* Contribution single row on very small */
+    .contribution-grid {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+
+    /* Section title tighter */
+    .section-title {
+        font-size: 1.6rem !important;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem !important;
+    }
+
+    /* Primary/secondary buttons */
+    .primary-btn, .secondary-btn {
+        padding: 11px 18px !important;
+        font-size: 0.9rem !important;
+    }
+
+    /* Breadcrumb hidden for cleanliness */
+    .breadcrumb {
+        font-size: 0.75rem !important;
+    }
+    
+    /* Admin login button */
+    .admin-login-bottom-btn {
+        width: calc(100% - 32px) !important;
+        left: 16px !important;
+        right: 16px !important;
+        transform: none !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+        font-size: 0.9rem !important;
+    }
+}
