@@ -1,0 +1,26 @@
+{
+  "version": 2,
+  "buildCommand": "echo 'Static site - no build needed'",
+  "outputDirectory": ".",
+  "rewrites": [
+    { "source": "/", "destination": "/index.html" },
+    { "source": "/about-us", "destination": "/about-us.html" },
+    { "source": "/online-homam", "destination": "/online-homam.html" },
+    { "source": "/puja-products", "destination": "/puja-products.html" },
+    { "source": "/temple-prasadham", "destination": "/temple-prasadham.html" },
+    { "source": "/donate-for-food", "destination": "/donate-for-food.html" },
+    { "source": "/contact", "destination": "/contact.html" },
+    { "source": "/book-homam", "destination": "/book-homam.html" },
+    { "source": "/admin-dashboard", "destination": "/admin-dashboard.html" },
+    { "source": "/admin-login", "destination": "/admin-login.html" },
+    { "source": "/wishlist", "destination": "/wishlist.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "no-store, must-revalidate" }
+      ]
+    }
+  ]
+}
