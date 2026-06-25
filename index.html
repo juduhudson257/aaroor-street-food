@@ -23,12 +23,7 @@
 
 <body>
 
-    <!-- LOADING SCREEN -->
-    <div id="loading-screen">
-        <video id="loader-video" autoplay muted playsinline disablePictureInPicture>
-            <source src="loading_logo_divinevoice.mp4" type="video/mp4">
-        </video>
-    </div>
+
 
     <!-- STICKY HEADER -->
     <header>
@@ -604,39 +599,6 @@
         })();
     </script>
 
-    <!-- Loading Screen Logic -->
-    <script>
-        (function () {
-            const loader = document.getElementById('loading-screen');
-            const video  = document.getElementById('loader-video');
-            const body   = document.body;
-            const MAX_MS = 3500; // Reduced max load timeout for better UX
-
-            let loaderHidden = false;
-            function hideLoader() {
-                if (loaderHidden) return;
-                loaderHidden = true;
-                loader.classList.add('hidden');
-                body.classList.remove('loading');
-                body.classList.add('loaded');
-            }
-
-            // Hide after video ends naturally
-            if (video) {
-                video.addEventListener('ended', hideLoader);
-                // In case the video stops or doesn't start playing
-                video.addEventListener('suspend', hideLoader);
-                video.addEventListener('stalled', hideLoader);
-                video.addEventListener('error', hideLoader);
-            }
-
-            // Hide as soon as the window completely loads
-            window.addEventListener('load', hideLoader);
-
-            // Safety fallback: hide after MAX_MS regardless
-            setTimeout(hideLoader, MAX_MS);
-        })();
-    </script>
 </body>
 
 </html>
