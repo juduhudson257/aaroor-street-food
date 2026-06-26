@@ -13,7 +13,11 @@
     { "source": "/book-homam", "destination": "/book-homam.html" },
     { "source": "/admin-dashboard", "destination": "/admin-dashboard.html" },
     { "source": "/admin-login", "destination": "/admin-login.html" },
-    { "source": "/wishlist", "destination": "/wishlist.html" }
+    { "source": "/wishlist", "destination": "/wishlist.html" },
+    { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
+    { "source": "/terms-and-conditions", "destination": "/terms-and-conditions.html" },
+    { "source": "/returns-refund", "destination": "/returns-refund.html" },
+    { "source": "/shipping-policy", "destination": "/shipping-policy.html" }
   ],
   "headers": [
     {
