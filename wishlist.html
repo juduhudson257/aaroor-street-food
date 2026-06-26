@@ -10,8 +10,8 @@
     <!-- Style Sheet -->
     <link rel="stylesheet" href="style.css">
     <!-- Clerk SDK -->
-    <script>window.__clerk_publishable_key = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';</script>
-    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
+    <script src="clerk-config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_ZnJlZS10aHJ1c2gtNDYuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
 <body>
 
@@ -70,7 +70,7 @@
             <li><a href="wishlist.html" style="font-weight: 600; color: var(--primary-gold);"><i class="fa-solid fa-heart"></i> My Wishlist</a></li>
         </ul>
         <div class="mobile-menu-actions">
-            <button class="mobile-action-btn primary" onclick="window.Clerk.user ? window.Clerk.signOut() : window.Clerk.redirectToSignIn()">
+            <button class="mobile-action-btn primary" onclick="window.handleClerkAuthClick && window.handleClerkAuthClick()">
                 <i class="fa-solid fa-user"></i>
                 <span id="mobile-auth-label">Login / Sign Up</span>
             </button>
@@ -260,32 +260,6 @@
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
     </script>
-    <!-- Clerk Init -->
-    <script>
-        (async function initClerk() {
-            const publishableKey = 'pk_test_aGVhbHRoeS13YWxydXMtMzIuY2xlcmsuYWNjb3VudHMuZGV2JA';
-            await window.Clerk.load({ publishableKey });
-            const authButtons = document.querySelector('.clerk-auth-buttons');
-            const userMenu = document.querySelector('.clerk-user-menu');
-            const mountEl = document.getElementById('clerk-user-btn-mount');
-            function updateUI() {
-                const label = document.getElementById('mobile-auth-label');
-                if (window.Clerk.user) {
-                    authButtons.style.display = 'none';
-                    userMenu.style.display = 'flex';
-                    if (mountEl && !mountEl.hasChildNodes()) window.Clerk.mountUserButton(mountEl);
-                    if (label) label.textContent = 'Sign Out';
-                } else {
-                    authButtons.style.display = 'flex';
-                    userMenu.style.display = 'none';
-                    if (label) label.textContent = 'Login / Sign Up';
-                }
-            }
-            window.Clerk.addListener(updateUI);
-            updateUI();
-            document.getElementById('clerk-login').addEventListener('click', () => window.Clerk.redirectToSignIn());
-            document.getElementById('clerk-sign-out').addEventListener('click', async () => await window.Clerk.signOut());
-        })();
-    </script>
+    <script src="clerk-init.js"></script>
 </body>
 </html>
