@@ -2500,6 +2500,10 @@ html {
    MINIMALISTIC MOBILE REDESIGN (≤768px & ≤480px)
    ========================================================================== */
 
+/* ==========================================================================
+   MINIMALISTIC MOBILE REDESIGN (≤768px & ≤480px)
+   ========================================================================== */
+
 @media (max-width: 768px) {
     /* Header Polish */
     header {
@@ -2713,6 +2717,180 @@ html {
         max-width: 280px !important;
         height: auto !important;
         aspect-ratio: 16/10 !important;
+    }
+}
+
+/* ==========================================================================
+   MOBILE COMPACT LAYOUT — remove excess whitespace & blank areas
+   ========================================================================== */
+
+@media (max-width: 768px) {
+    /* Tighter global section rhythm */
+    .section-padding {
+        padding: 32px 0 !important;
+    }
+
+    .section-title-wrapper {
+        margin-bottom: 22px !important;
+    }
+
+    /* Home & about hero — fit content, no oversized top gap */
+    .hero-sec {
+        padding-top: 72px !important;
+        padding-bottom: 28px !important;
+    }
+
+    .hero-bg-mandala {
+        width: 100% !important;
+        height: 100% !important;
+        top: 0 !important;
+        left: 0 !important;
+        opacity: 0.08 !important;
+    }
+
+    .hero-left h2 {
+        font-size: 1.95rem !important;
+        margin-bottom: 14px !important;
+    }
+
+    .hero-left p {
+        margin-bottom: 18px !important;
+    }
+
+    .hero-img-composition {
+        max-width: 220px !important;
+        margin: 0 auto !important;
+    }
+
+    /* Inner-page banners — override inline 200px padding on all pages */
+    .inner-hero-section,
+    .inner-hero-section.pooja-products-hero,
+    .inner-hero-section[style*="padding"] {
+        padding: 72px 16px 28px !important;
+        min-height: 0 !important;
+        margin-top: 0 !important;
+    }
+
+    .hero-banner-content {
+        padding: 0 !important;
+    }
+
+    .hero-banner-content h2 {
+        font-size: 1.75rem !important;
+        margin-bottom: 10px !important;
+    }
+
+    .hero-banner-content p {
+        font-size: 0.88rem !important;
+        max-width: 100% !important;
+    }
+
+    .pooja-products-hero {
+        min-height: 0 !important;
+    }
+
+    /* Hide duplicate pre-footer trust strip (keeps the one below hero) */
+    .trust-features-bar:has(+ footer) {
+        display: none !important;
+    }
+
+    .trust-features-bar {
+        padding: 18px 0 !important;
+    }
+
+    .trust-features-grid {
+        gap: 14px !important;
+    }
+
+    .achievements-slider {
+        padding: 32px 0 28px !important;
+    }
+
+    .achievements-slider .container {
+        margin-bottom: 16px !important;
+    }
+
+    .donation-stats-section {
+        padding: 32px 0 !important;
+    }
+
+    footer {
+        padding: 40px 0 16px !important;
+    }
+
+    .footer-grid {
+        margin-bottom: 20px !important;
+        gap: 20px !important;
+    }
+
+    .footer-col {
+        padding-bottom: 14px !important;
+    }
+
+    /* Policy / legal pages */
+    .policy-page {
+        padding-top: 76px !important;
+        padding-bottom: 36px !important;
+    }
+
+    .policy-container h1 {
+        font-size: 1.85rem !important;
+    }
+
+    /* Best sellers row header */
+    .section-padding > .container > div[style*="justify-content: space-between"] {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        margin-bottom: 20px !important;
+    }
+
+    .section-padding > .container > div[style*="justify-content: space-between"] .section-title {
+        text-align: left !important;
+    }
+
+    /* Prevent phantom scroll / blank edge from decorative layers */
+    html,
+    body {
+        min-height: 0 !important;
+        overflow-x: hidden !important;
+    }
+
+    main,
+    section:last-of-type {
+        margin-bottom: 0 !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-padding {
+        padding: 26px 0 !important;
+    }
+
+    .hero-sec {
+        padding-top: 68px !important;
+        padding-bottom: 22px !important;
+    }
+
+    .inner-hero-section,
+    .inner-hero-section.pooja-products-hero {
+        padding: 68px 12px 22px !important;
+    }
+
+    .hero-banner-content h2 {
+        font-size: 1.55rem !important;
+    }
+
+    .newsletter-section.section-padding {
+        padding: 28px 0 !important;
+    }
+
+    .testimonial-card {
+        padding: 18px 14px !important;
+    }
+
+    .modal-container {
+        padding: 24px 18px !important;
     }
 }
 
