@@ -1,7 +1,23 @@
+# Dependencies
 node_modules/
+package-lock.json
+
+# Environment variables
 .env
 .env.*
 !.env.example
-.DS_Store
-*.log
+
+# Next.js
 .next/
+next-env.d.ts
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Vercel
+.vercel
