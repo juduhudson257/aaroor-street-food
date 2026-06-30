@@ -101,7 +101,6 @@ button {
   box-shadow: 0 4px 15px rgba(200, 138, 45, 0.25);
 }
 
-/* Header / Nav fixes */
 nav ul {
   list-style: none;
   display: flex;
@@ -115,7 +114,6 @@ nav ul {
   object-fit: contain;
 }
 
-/* Hero styles */
 .hero-sec {
   padding-top: 120px;
   padding-bottom: 80px;

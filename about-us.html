@@ -7,7 +7,7 @@
     <meta name="description" content="About The Divine Voice - authentic puja products, homam services, prasadam, and service to humanity.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <!-- Clerk SDK -->
+    
     <script src="clerk-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_ZnJlZS10aHJ1c2gtNDYuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
@@ -69,7 +69,7 @@
         </div>
     </div>
 
-    <!-- ABOUT HERO -->
+    
     <section class="hero-sec">
         <div class="hero-bg-mandala"></div>
         <div class="container hero-grid">
@@ -192,16 +192,14 @@
         </div>
     </section>
 
-
-
-    <!-- OUR ACHIEVEMENTS -->
+    
     <section class="achievements-slider" id="our-achievements">
         <div class="container" style="text-align: center; margin-bottom: 30px;">
             <h2 class="section-title">Our Achievements</h2>
             <p class="section-subtitle">Moments of grace and recognition on our journey.</p>
         </div>
         <div id="achievements-track" class="film-slide-track" style="justify-content: center;">
-            <!-- Rendered via JS -->
+            
         </div>
     </section>
 
@@ -363,7 +361,6 @@
             try { achievements = JSON.parse(raw) || []; } catch(e) { achievements = []; }
 
             if (achievements.length === 0) {
-                // Show placeholder — section is always visible
                 track.style.justifyContent = 'center';
                 track.style.animation = 'none';
                 track.innerHTML = '<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:40px 30px;">' +
@@ -373,7 +370,6 @@
                 return;
             }
 
-            // Build image items
             var html = '';
             achievements.forEach(function(ach) {
                 html += '<div class="achievement-item">' +
@@ -383,11 +379,9 @@
             });
 
             if (achievements.length >= 4) {
-                // Duplicate the set once so the CSS animation can loop seamlessly
                 track.innerHTML = html + html;
                 track.style.animation = 'scroll-film 30s linear infinite';
             } else {
-                // Just show them centered, no scrolling
                 track.innerHTML = html;
                 track.style.justifyContent = 'center';
                 track.style.animation = 'none';

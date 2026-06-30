@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Puja Products | The Divine Voice</title>
     <meta name="description" content="Explore our wide range of authentic puja products, made with devotion and delivered to your home. Sourced from the finest places.">
-    <!-- Font Awesome Icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Style Sheet -->
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Clerk SDK -->
+    
     <script src="clerk-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_ZnJlZS10aHJ1c2gtNDYuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
 <body>
 
-    <!-- STICKY HEADER -->
+    
     <header>
         <div class="container header-container">
             <a href="index.html" class="brand-wrapper">
@@ -57,7 +57,7 @@
         </div>
     </header>
 
-    <!-- MOBILE NAVIGATION SIDEBAR -->
+    
     <div id="mobile-nav" style="display: none;">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -77,7 +77,7 @@
         </div>
     </div>
 
-    <!-- HERO BANNER -->
+    
     <section class="inner-hero-section pooja-products-hero" style="margin-top: 0; position: relative; z-index: 10;">
         <div class="container hero-banner-content" style="position: relative; z-index: 20;">
             <h2>Puja Products</h2>
@@ -85,11 +85,11 @@
         </div>
     </section>
 
-    <!-- CATALOG LAYOUT -->
+    
     <section class="container section-padding" style="padding-top: 0;">
         <div class="catalog-layout">
             
-            <!-- SIDEBAR FILTERS -->
+            
             <aside class="sidebar-filters">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--borders); padding-bottom: 15px;">
                     <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);"><i class="fa-solid fa-sliders"></i> Filters</h3>
@@ -124,9 +124,9 @@
                 <button class="primary-btn" onclick="applyFilters()" style="width: 100%; text-align: center; margin-top: 10px;">Apply Filters</button>
             </aside>
 
-            <!-- PRODUCTS WRAPPER -->
+            
             <div>
-                <!-- CATALOG TOP BAR -->
+                
                 <div class="catalog-top-bar">
                     <div class="catalog-search-bar">
                         <input type="text" id="product-search" placeholder="Search for products..." oninput="handleSearch(this.value)">
@@ -144,9 +144,9 @@
                     </div>
                 </div>
 
-                <!-- DYNAMIC PRODUCTS GRID -->
+                
                 <div class="products-grid" id="catalog-grid">
-                    <!-- Products will be loaded dynamically via JavaScript -->
+                    
                 </div>
 
             </div>
@@ -154,7 +154,7 @@
         </div>
     </section>
 
-    <!-- NEWSLETTER -->
+    
     <section class="section-padding newsletter-section">
         <div class="container newsletter-grid">
             <div class="newsletter-left">
@@ -170,7 +170,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    
     <footer>
         <div class="container footer-grid">
             <div class="footer-col">
@@ -240,7 +240,7 @@
         </div>
     </footer>
 
-    <!-- CART DRAWER MODAL -->
+    
     <div class="cart-drawer-overlay" id="cart-drawer-overlay">
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
@@ -258,7 +258,7 @@
         </div>
     </div>
 
-    <!-- AUTHENTICATION MODAL -->
+    
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -299,7 +299,7 @@
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
+    
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -330,7 +330,7 @@
         </div>
     </div>
 
-    <!-- Script File -->
+    
     <script src="app.js"></script>
     <script src="catalog-sync.js"></script>
     <script async src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
@@ -342,7 +342,6 @@
     </script>
     <script src="clerk-init.js"></script>
     <script>
-        // Populate category filter sidebar dynamically from real PRODUCTS data
         function buildCategoryFilters() {
             const container = document.getElementById('category-filter-list');
             if (!container) return;
@@ -352,14 +351,12 @@
                 return;
             }
 
-            // Count products per category
             const categoryCount = {};
             PRODUCTS.forEach(p => {
                 const cat = p.category || 'other';
                 categoryCount[cat] = (categoryCount[cat] || 0) + 1;
             });
 
-            // Preserve any already-checked state
             const alreadyChecked = new Set(window.appState.selectedFilters.categories);
 
             container.innerHTML = Object.entries(categoryCount)
@@ -371,7 +368,6 @@
                 })
                 .join('');
 
-            // Update availability counts
             const inStockCount = PRODUCTS.filter(p => p.inStock !== false).length;
             const outOfStockCount = PRODUCTS.length - inStockCount;
             const availContainer = document.getElementById('availability-filter-list');
@@ -385,12 +381,10 @@
             }
         }
 
-        // Render Dynamic Catalog Products
         function renderCatalog() {
             const grid = document.getElementById('catalog-grid');
             if (!grid) return;
 
-            // Rebuild filters to show real data
             buildCategoryFilters();
 
             if (PRODUCTS.length === 0) {
@@ -405,17 +399,14 @@
             }
 
             let filtered = PRODUCTS.filter(p => {
-                // Category tabs filter
                 if (window.appState.currentCategoryTab !== 'all' && p.category !== window.appState.currentCategoryTab) {
                     return false;
                 }
 
-                // Sidebar checkboxes filter
                 if (window.appState.selectedFilters.categories.length > 0 && !window.appState.selectedFilters.categories.includes(p.category)) {
                     return false;
                 }
 
-                // Price range filter
                 if (window.appState.selectedFilters.priceRange) {
                     if (window.appState.selectedFilters.priceRange === 'under-500' && p.price >= 500) return false;
                     if (window.appState.selectedFilters.priceRange === '500-1000' && (p.price < 500 || p.price > 1000)) return false;
@@ -423,13 +414,11 @@
                     if (window.appState.selectedFilters.priceRange === 'above-2000' && p.price <= 2000) return false;
                 }
 
-                // Availability filter
                 if (window.appState.selectedFilters.availability) {
                     if (window.appState.selectedFilters.availability === 'in-stock' && (p.inStock === false)) return false;
                     if (window.appState.selectedFilters.availability === 'out-of-stock' && (p.inStock !== false)) return false;
                 }
 
-                // Search Query filter
                 if (window.appState.searchQuery && !p.name.toLowerCase().includes(window.appState.searchQuery.toLowerCase())) {
                     return false;
                 }
@@ -437,7 +426,6 @@
                 return true;
             });
 
-            // Sorting
             if (window.appState.sortOption === 'low-to-high') {
                 filtered.sort((a, b) => a.price - b.price);
             } else if (window.appState.sortOption === 'high-to-low') {
@@ -485,19 +473,16 @@
             `).join('');
         }
 
-        // Handle Search Input
         function handleSearch(val) {
             window.appState.searchQuery = val.trim();
             renderCatalog();
         }
 
-        // Handle Sorting
         function handleSort(val) {
             window.appState.sortOption = val;
             renderCatalog();
         }
 
-        // Sidebar filters apply
         function applyFilters() {
             const categories = [];
             document.querySelectorAll('input[name="cat"]:checked').forEach(cb => {
@@ -518,7 +503,6 @@
             renderCatalog();
         }
 
-        // Reset Filters
         function resetFilters() {
             document.querySelectorAll('input[name="cat"]').forEach(cb => cb.checked = false);
             const priceEl = document.querySelector('input[name="price"]:checked');

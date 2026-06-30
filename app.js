@@ -1,6 +1,4 @@
-// The Divine Voice - Global Application State & UI Interactions
 
-// Sample Data Structures
 const DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
 const PRODUCTS = [];
 
@@ -8,7 +6,6 @@ const HOMAMS = [];
 
 const PRASADHAMS = [];
 
-// App State Manager
 class AppState {
     constructor() {
         this.cart = JSON.parse(localStorage.getItem('divine_cart')) || [];
@@ -25,7 +22,6 @@ class AppState {
         this.currentCategoryTab = 'all';
     }
 
-    // Cart Operations
     addToCart(item, type = 'product') {
         const cartItem = this.cart.find(i => i.id === item.id && i.type === type);
         if (cartItem) {
@@ -82,7 +78,6 @@ class AppState {
         });
     }
 
-    // Wishlist Operations
     toggleWishlist(id) {
         const index = this.wishlist.indexOf(id);
         if (index > -1) {
@@ -161,7 +156,6 @@ class AppState {
         `).join('');
     }
 
-    // Auth Operations
     registerUser(name, email, password) {
         const users = JSON.parse(localStorage.getItem('divine_users_list')) || [];
         if (users.find(u => u.email === email)) {
@@ -208,7 +202,6 @@ class AppState {
         }
     }
 
-    // Order Tracking & Checkout
     placeOrder(customerInfo) {
         const orderId = 'DV-' + Math.floor(100000 + Math.random() * 900000);
         const newOrder = {
@@ -225,7 +218,6 @@ class AppState {
         return orderId;
     }
 
-    // Helper functions
     showToast(message, type = 'success') {
         const container = document.getElementById('toast-container') || this.createToastContainer();
         const iconClass = type === 'success'
@@ -322,18 +314,14 @@ class AppState {
     }
 }
 
-// Instantiate Global State
 window.appState = new AppState();
 
-// DOM Content Loaded Handler
 document.addEventListener('DOMContentLoaded', () => {
-    // Initial UI Syncs
     window.appState.updateCartBadge();
     window.appState.updateUserUI();
     window.appState.updateWishlistUI();
     window.appState.renderWishlistItems();
 
-    // Sticky Header Scroll Effect
     const header = document.querySelector('header');
     if (header) {
         window.addEventListener('scroll', () => {
@@ -345,15 +333,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Modal Toggles (Cart & Auth)
     setupModals();
 
-    // Setup Testimonial Sliders
     setupTestimonialCarousels();
 });
 
 function setupModals() {
-    // Cart Drawer Toggle
     const cartBtn = document.getElementById('cart-btn');
     const closeCartBtn = document.getElementById('close-cart-btn');
     const cartDrawerOverlay = document.getElementById('cart-drawer-overlay');
@@ -370,7 +355,6 @@ function setupModals() {
             cartDrawerOverlay.classList.remove('active');
         });
     }
-    // Click outside cart drawer to close
     if (cartDrawerOverlay) {
         cartDrawerOverlay.addEventListener('click', (e) => {
             if (e.target === cartDrawerOverlay) {
@@ -379,24 +363,14 @@ function setupModals() {
         });
     }
 
-    // Clerk Login Button handling moved to index.html to avoid duplicate listener conflicts
-    // (clerkLoginBtn handler removed from app.js)
-
-    // Auth Modal Toggle
     const userBtn = document.getElementById('user-menu-btn');
     const authModal = document.getElementById('auth-modal');
     const closeAuthBtn = document.getElementById('close-auth-btn');
 
     if (userBtn && authModal) {
-        // Custom auth modal handling removed; Clerk sign-in handles authentication.
-// The following block is no longer needed:
-// userBtn.addEventListener('click', (e) => {
-//   e.preventDefault();
-        // Removed legacy auth modal handling – now using Clerk for sign‑in
         userBtn.addEventListener('click', (e) => {
             e.preventDefault();
             if (window.appState.currentUser) {
-                // Show dynamic user portal modal or profile settings (or log out choice)
                 if (confirm(`Logged in as ${window.appState.currentUser.name}. Would you like to Logout?`)) {
                     window.appState.logoutUser();
                 }
@@ -410,7 +384,6 @@ function setupModals() {
             authModal.classList.remove('active');
         });
     }
-    // Click outside auth modal to close
     if (authModal) {
         authModal.addEventListener('click', (e) => {
             if (e.target === authModal) {
@@ -419,7 +392,6 @@ function setupModals() {
         });
     }
 
-    // Login/Register Form Toggle
     const showRegister = document.getElementById('show-register');
     const showLogin = document.getElementById('show-login');
     const loginForm = document.getElementById('login-form-wrapper');
@@ -438,7 +410,6 @@ function setupModals() {
         });
     }
 
-    // Login & Register Form Submits
     const loginFormEl = document.getElementById('login-form');
     const registerFormEl = document.getElementById('register-form');
 
@@ -461,12 +432,10 @@ function setupModals() {
         });
     }
 
-    // Order Tracking Modal setup
     setupCheckoutAndOrderTracking();
 }
 
 function setupCheckoutAndOrderTracking() {
-    // Checkout Modal Elements
     const checkoutModal = document.getElementById('checkout-modal');
     const checkoutBtn = document.getElementById('checkout-btn');
     const closeCheckoutBtn = document.getElementById('close-checkout-btn');
@@ -480,7 +449,6 @@ function setupCheckoutAndOrderTracking() {
             }
             document.getElementById('cart-drawer-overlay').classList.remove('active');
             checkoutModal.classList.add('active');
-            // Populate total
             document.getElementById('checkout-total-val').textContent = `₹${window.appState.getCartTotal()}`;
         });
     }
@@ -490,7 +458,6 @@ function setupCheckoutAndOrderTracking() {
             checkoutModal.classList.remove('active');
         });
     }
-    // Click outside checkout modal to close
     if (checkoutModal) {
         checkoutModal.addEventListener('click', (e) => {
             if (e.target === checkoutModal) {
@@ -514,14 +481,12 @@ function setupCheckoutAndOrderTracking() {
         });
     }
 
-    // Search bar / tracking bar setup
     const searchForm = document.getElementById('header-search-form');
     if (searchForm) {
         searchForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const q = searchForm.querySelector('input').value.trim();
             if (q.startsWith('DV-')) {
-                // Track Order
                 const order = window.appState.orders.find(o => o.orderId === q);
                 if (order) {
                     window.appState.showToast(`Order Found! ID: ${order.orderId} | Status: ${order.status}`, 'success');
@@ -558,7 +523,6 @@ function setupTestimonialCarousels() {
             dot.addEventListener('click', () => showSlide(idx));
         });
 
-        // Auto slide every 5 seconds
         setInterval(() => {
             let next = (activeIdx + 1) % slides.length;
             showSlide(next);

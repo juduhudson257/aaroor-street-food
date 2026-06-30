@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate For Food | The Divine Voice</title>
     <meta name="description" content="Sponsor a meal and earn blessings. 100% of your donation is used for feeding the needy, homeless, and children.">
-    <!-- Font Awesome Icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Style Sheet -->
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Clerk SDK -->
+    
     <script src="clerk-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_ZnJlZS10aHJ1c2gtNDYuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
 <body>
 
-    <!-- TOP ANNOUNCEMENT BAR -->
+    
     <div style="background-color: var(--white); border-bottom: 1px solid var(--borders); padding: 8px 0; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
             <div style="display: flex; gap: 20px;">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- STICKY HEADER -->
+    
     <header>
         <div class="container header-container">
             <a href="index.html" class="brand-wrapper">
@@ -71,7 +71,7 @@
         </div>
     </header>
 
-    <!-- MOBILE NAVIGATION SIDEBAR -->
+    
     <div id="mobile-nav" style="display: none;">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION -->
+    
     <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.4), rgba(26, 24, 21, 0.8)), url('food donation banner final _divine.jpeg'); margin-top: 0; position: relative; z-index: 10;">
         <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto; position: relative; z-index: 20;">
             <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Feed Bodies. Nourish Souls.</span>
@@ -104,7 +104,7 @@
         </div>
     </section>
 
-    <!-- TRUST HIGHLIGHTS BAR -->
+    
     <section class="trust-features-bar">
         <div class="container trust-features-grid" style="justify-content: space-around;">
             <div class="trust-item">
@@ -134,7 +134,7 @@
         </div>
     </section>
 
-    <!-- DONATION STATISTICS COUNTER -->
+    
     <section class="donation-stats-section">
         <div class="container">
             <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; margin-bottom: 12px;">Your Donation. Their Smile.</h3>
@@ -161,7 +161,7 @@
         </div>
     </section>
 
-    <!-- HOW YOUR DONATION HELPS -->
+    
     <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div class="section-title-wrapper">
@@ -193,7 +193,7 @@
         </div>
     </section>
 
-    <!-- CHOOSE YOUR CONTRIBUTION -->
+    
     <section class="section-padding" id="contribution-anchor">
         <div class="container">
             <div class="section-title-wrapper">
@@ -202,7 +202,7 @@
             </div>
 
             <div class="contribution-grid">
-                <!-- Card 1 -->
+                
                 <div class="contribution-card popular" data-donation-key="don-1">
                     <h4>Feed 1 Person</h4>
                     <span class="amount">₹50</span>
@@ -210,7 +210,7 @@
                     <button class="primary-btn" onclick="openDonationModal('Feed 1 Person', 50)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
                 </div>
 
-                <!-- Card 2 -->
+                
                 <div class="contribution-card">
                     <h4>Feed 5 People</h4>
                     <span class="amount">₹250</span>
@@ -218,7 +218,7 @@
                     <button class="primary-btn" onclick="openDonationModal('Feed 5 People', 250)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
                 </div>
 
-                <!-- Card 3 -->
+                
                 <div class="contribution-card" data-donation-key="don-10">
                     <h4>Feed 10 People</h4>
                     <span class="amount">₹500</span>
@@ -226,7 +226,7 @@
                     <button class="primary-btn" onclick="openDonationModal('Feed 10 People', 500)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
                 </div>
 
-                <!-- Card 4 -->
+                
                 <div class="contribution-card">
                     <h4>Feed 25 People</h4>
                     <span class="amount">₹1,250</span>
@@ -234,7 +234,7 @@
                     <button class="primary-btn" onclick="openDonationModal('Feed 25 People', 1250)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
                 </div>
 
-                <!-- Card 5 -->
+                
                 <div class="contribution-card" data-donation-key="don-50">
                     <h4>Feed 50 People</h4>
                     <span class="amount">₹2,500</span>
@@ -242,7 +242,7 @@
                     <button class="primary-btn" onclick="openDonationModal('Feed 50 People', 2500)" style="width: 100%; padding: 10px 0; font-size: 0.9rem;">Donate Now</button>
                 </div>
 
-                <!-- Card 6 (Custom) -->
+                
                 <div class="contribution-card">
                     <h4>Custom Amount</h4>
                     <span class="amount" style="font-size: 1.4rem; margin-top: 10px; margin-bottom: 22px;">₹ Enter Value</span>
@@ -253,7 +253,7 @@
         </div>
     </section>
 
-    <!-- ANNADANAM QUOTE & INFO ROW -->
+    
     <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 50px; align-items: center;">
@@ -275,7 +275,7 @@
         </div>
     </section>
 
-    <!-- HOW IT WORKS SECTION -->
+    
     <section class="section-padding" id="how-it-works-anchor">
         <div class="container">
             <div class="section-title-wrapper">
@@ -312,7 +312,7 @@
         </div>
     </section>
 
-    <!-- DONOR TESTIMONIALS CAROUSEL -->
+    
     <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div class="section-title-wrapper">
@@ -320,7 +320,7 @@
             </div>
 
             <div class="testimonials-slider-container">
-                <!-- Donor Testimonial 1 -->
+                
                 <div class="testimonial-card">
                     <p class="testimonial-quote">Donating for food through The Divine Voice gives us great satisfaction. We know every rupee is used to serve nutritious meals.</p>
                     <div class="testimonial-user">
@@ -335,7 +335,7 @@
                     </div>
                 </div>
 
-                <!-- Donor Testimonial 2 -->
+                
                 <div class="testimonial-card" style="display: none;">
                     <p class="testimonial-quote">A truly pure initiative. The team provides transparent distribution videos. May God bless all the coordinators.</p>
                     <div class="testimonial-user">
@@ -358,7 +358,7 @@
         </div>
     </section>
 
-    <!-- CALL TO ACTION FOR SPONSORSHIP -->
+    
     <section class="section-padding" style="text-align: center;">
         <div class="container" style="max-width: 600px; margin: 0 auto;">
             <h3 style="font-family: var(--font-heading); font-size: 2rem; font-weight: 700; margin-bottom: 15px;">Be a Part of This Divine Cause</h3>
@@ -367,7 +367,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    
     <footer>
         <div class="container footer-grid">
             <div class="footer-col">
@@ -437,7 +437,7 @@
         </div>
     </footer>
 
-    <!-- DONATION MODAL -->
+    
     <div class="modal-overlay" id="donation-modal">
         <div class="modal-container">
             <button class="modal-close-btn" onclick="document.getElementById('donation-modal').classList.remove('active')"><i class="fa-solid fa-xmark"></i></button>
@@ -470,7 +470,7 @@
         </div>
     </div>
 
-    <!-- CART DRAWER MODAL -->
+    
     <div class="cart-drawer-overlay" id="cart-drawer-overlay">
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
@@ -488,7 +488,7 @@
         </div>
     </div>
 
-    <!-- AUTHENTICATION MODAL -->
+    
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -529,7 +529,7 @@
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
+    
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -568,7 +568,6 @@
             menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
         }
 
-        // Open Donation Modal
         function openDonationModal(title, amount) {
             document.getElementById('donation-package-title').textContent = title;
             document.getElementById('donation-pack-base-price').value = amount;
@@ -600,7 +599,6 @@
 
         document.getElementById('donation-custom-val').addEventListener('input', updateDonationTotalValue);
 
-        // Handle Donation Form Submit
         document.getElementById('donation-package-form').addEventListener('submit', (e) => {
             e.preventDefault();
             const title = document.getElementById('donation-package-title').textContent;
@@ -616,12 +614,10 @@
                 image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=500&q=80'
             };
 
-            // Add directly to cart
             window.appState.addToCart(mockDonationOrder, 'donation');
             document.getElementById('donation-modal').classList.remove('active');
             document.getElementById('donation-package-form').reset();
             document.getElementById('donation-total-val').textContent = '₹0';
-            // Open Cart Drawer
             document.getElementById('cart-drawer-overlay').classList.add('active');
         });
     </script>

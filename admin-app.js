@@ -1,8 +1,4 @@
-// ============================================================
-// ADMIN APP - DIVINE VOICE
-// ============================================================
 
-// Defaults
 const DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
 
 let adminData = {
@@ -14,7 +10,6 @@ let adminData = {
     donations:   JSON.parse(localStorage.getItem('divine_admin_donations'))   || { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 }
 };
 
-// ── Utility ──────────────────────────────────────────────────
 function escHtml(str) {
     return String(str)
         .replace(/&/g, '&amp;')
@@ -23,7 +18,6 @@ function escHtml(str) {
         .replace(/"/g, '&quot;');
 }
 
-// ── Toast ────────────────────────────────────────────────────
 function showToast(message, type) {
     type = type || 'info';
     var bg = { success: '#28a745', error: '#dc3545', info: '#17a2b8' };
@@ -51,9 +45,7 @@ function showToast(message, type) {
     ].join(';');
     t.textContent = message;
     cont.appendChild(t);
-    // Animate in
     setTimeout(function() { t.style.opacity = '1'; t.style.transform = 'translateY(0)'; }, 10);
-    // Animate out
     setTimeout(function() {
         t.style.opacity = '0';
         t.style.transform = 'translateY(-10px)';
@@ -61,7 +53,6 @@ function showToast(message, type) {
     }, 3000);
 }
 
-// ── Custom Confirm ────────────────────────────────────────────
 function showConfirm(message, onYes) {
     var overlay = document.createElement('div');
     overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.55);z-index:99998;display:flex;align-items:center;justify-content:center;';
@@ -79,9 +70,7 @@ function showConfirm(message, onYes) {
     overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
 }
 
-// ── Render Tables ─────────────────────────────────────────────
 function renderTables() {
-    // --- Products ---
     var prodTbody = document.getElementById('table-products');
     if (prodTbody) {
         if (adminData.products.length === 0) {
@@ -104,7 +93,6 @@ function renderTables() {
         }
     }
 
-    // --- Homams ---
     var homamTbody = document.getElementById('table-homams');
     if (homamTbody) {
         if (adminData.homams.length === 0) {
@@ -121,7 +109,6 @@ function renderTables() {
         }
     }
 
-    // --- Prasadhams ---
     var prasTbody = document.getElementById('table-prasadhams');
     if (prasTbody) {
         if (adminData.prasadhams.length === 0) {
@@ -138,7 +125,6 @@ function renderTables() {
         }
     }
 
-    // --- Achievements ---
     var achTbody = document.getElementById('table-achievements');
     if (achTbody) {
         if (adminData.achievements.length === 0) {
@@ -166,7 +152,6 @@ function deleteBtnStyle() {
     return 'cursor:pointer;padding:7px 12px;border-radius:5px;font-size:0.8rem;font-weight:600;font-family:Inter,sans-serif;border:1px solid #f5c6cb;background:#fff5f5;color:#e53935;';
 }
 
-// ── Action Functions (GLOBAL) ─────────────────────────────────
 function toggleStock(id) {
     var product = null;
     for (var i = 0; i < adminData.products.length; i++) {
@@ -295,7 +280,6 @@ function logoutAdmin() {
     window.location.href = 'admin-login.html';
 }
 
-// ── Banners ───────────────────────────────────────────────────
 function renderBanners() {
     ['home', 'puja', 'homam', 'prasadham', 'donate', 'about-hero', 'about-story'].forEach(function(key) {
         if (adminData.banners[key]) {
@@ -323,7 +307,6 @@ async function uploadBanner(event, type) {
     }
 }
 
-// ── Donations ─────────────────────────────────────────────────
 function renderDonations() {
     ['don-1', 'don-10', 'don-50', 'don-100'].forEach(function(id) {
         var el = document.getElementById(id);
@@ -343,9 +326,7 @@ function saveDonationPrices(e) {
     showToast('Donation pricing saved!', 'success');
 }
 
-// ── Init ──────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function() {
-    // Sidebar menu routing
     document.querySelectorAll('.admin-menu li[data-target]').forEach(function(li) {
         li.addEventListener('click', function() {
             document.querySelectorAll('.admin-menu li').forEach(function(el) { el.classList.remove('active'); });
@@ -359,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Image upload via Supabase
     ['prod', 'homam', 'pras', 'ach'].forEach(function(prefix) {
         var fileInput = document.getElementById(prefix + '-image-file');
         if (!fileInput) return;

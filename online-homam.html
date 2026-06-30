@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Homam booking | The Divine Voice</title>
     <meta name="description" content="Participate in sacred fire rituals from anywhere in the world. Book authentic homam services performed by Vedic priests.">
-    <!-- Font Awesome Icons -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Style Sheet -->
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Clerk SDK -->
+    
     <script src="clerk-config.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js" data-clerk-publishable-key="pk_test_ZnJlZS10aHJ1c2gtNDYuY2xlcmsuYWNjb3VudHMuZGV2JA"></script>
 </head>
 <body>
 
-    <!-- TOP ANNOUNCEMENT BAR -->
+    
     <div style="background-color: var(--white); border-bottom: 1px solid var(--borders); padding: 8px 0; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
             <div style="display: flex; gap: 20px;">
@@ -29,7 +29,7 @@
         </div>
     </div>
 
-    <!-- STICKY HEADER -->
+    
     <header>
         <div class="container header-container">
             <a href="index.html" class="brand-wrapper">
@@ -71,7 +71,7 @@
         </div>
     </header>
 
-    <!-- MOBILE NAVIGATION SIDEBAR -->
+    
     <div id="mobile-nav" style="display: none;">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -91,7 +91,7 @@
         </div>
     </div>
 
-    <!-- HERO SECTION WITH SACRED FIRE -->
+    
     <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.5), rgba(26, 24, 21, 0.85)), url('homam banner final_divine.png'); margin-top: 0; position: relative; z-index: 10;">
         <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto; position: relative; z-index: 20;">
             <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Rituals. Peaceful Life.</span>
@@ -104,7 +104,7 @@
         </div>
     </section>
 
-    <!-- SERVICE HIGHLIGHTS BAR -->
+    
     <section class="trust-features-bar" style="background-color: var(--white);">
         <div class="container trust-features-grid" style="justify-content: space-around;">
             <div class="trust-item">
@@ -140,7 +140,7 @@
         </div>
     </section>
 
-    <!-- HOMAM SERVICES SECTION -->
+    
     <section class="section-padding" id="services-grid-anchor">
         <div class="container">
             <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
@@ -151,12 +151,12 @@
             </div>
 
             <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));" id="homam-grid">
-                <!-- Loaded from admin catalog via catalog-sync.js -->
+                
             </div>
         </div>
     </section>
 
-    <!-- PROCESS TIMELINE SECTION -->
+    
     <section class="section-padding" id="how-it-works-anchor" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
         <div class="container">
             <div class="section-title-wrapper">
@@ -199,7 +199,7 @@
         </div>
     </section>
 
-    <!-- CUSTOM HOMAM BOOKING / NEED HELP INFO -->
+    
     <section class="section-padding">
         <div class="container">
             <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
@@ -222,7 +222,7 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
+    
     <footer>
         <div class="container footer-grid">
             <div class="footer-col">
@@ -292,7 +292,7 @@
         </div>
     </footer>
 
-    <!-- CART DRAWER MODAL -->
+    
     <div class="cart-drawer-overlay" id="cart-drawer-overlay">
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
@@ -310,7 +310,7 @@
         </div>
     </div>
 
-    <!-- AUTHENTICATION MODAL -->
+    
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
@@ -351,7 +351,7 @@
         </div>
     </div>
 
-    <!-- CHECKOUT MODAL -->
+    
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
             <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>

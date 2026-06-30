@@ -1,6 +1,4 @@
-/* ==========================================================================
-   THE DIVINE VOICE - CORE DESIGN SYSTEM & STYLESHEET
-   ========================================================================== */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
 
@@ -58,7 +56,6 @@ button {
     cursor: pointer;
 }
 
-/* Common Layout Components */
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -75,7 +72,6 @@ button {
     }
 }
 
-/* Premium Headings & Ornaments */
 .section-title-wrapper {
     text-align: center;
     margin-bottom: 50px;
@@ -107,7 +103,6 @@ button {
     margin: 0 auto;
 }
 
-/* Buttons */
 .primary-btn {
     display: inline-block;
     background-color: var(--primary-gold);
@@ -166,7 +161,6 @@ button {
     color: var(--primary-gold);
 }
 
-/* Header & Navigation */
 header {
     background-color: rgba(250, 248, 245, 0.95);
     backdrop-filter: blur(10px);
@@ -203,7 +197,6 @@ header.sticky {
     object-fit: contain;
 }
 
-/* Real Logo Image */
 .header-logo-img {
     height: 60px;
     width: auto;
@@ -287,7 +280,6 @@ nav ul li.active a::after {
     justify-content: center;
 }
 
-/* User Avatar */
 .user-avatar {
     width: 32px;
     height: 32px;
@@ -302,7 +294,6 @@ nav ul li.active a::after {
     box-shadow: 0 2px 10px rgba(200, 138, 45, 0.2);
 }
 
-/* Mobile Menu Toggle */
 .mobile-menu-toggle {
     display: none;
     font-size: 1.4rem;
@@ -325,7 +316,7 @@ nav ul li.active a::after {
         display: block;
     }
     nav {
-        display: none; /* Hide standard nav list on mobile/tablet */
+        display: none; 
     }
 }
 
@@ -359,7 +350,6 @@ nav ul li.active a::after {
     }
 }
 
-/* Hero Sections */
 .hero-sec {
     padding-top: 160px;
     padding-bottom: 80px;
@@ -467,7 +457,6 @@ nav ul li.active a::after {
     }
 }
 
-/* Trust Features Bar */
 .trust-features-bar {
     background-color: var(--white);
     border-top: 1px solid var(--borders);
@@ -512,7 +501,6 @@ nav ul li.active a::after {
     }
 }
 
-/* Product Cards Grid */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -539,7 +527,7 @@ nav ul li.active a::after {
 .product-img-wrapper {
     position: relative;
     background-color: #FAF8F5;
-    padding-bottom: 100%; /* Square Aspect Ratio */
+    padding-bottom: 100%; 
     overflow: hidden;
 }
 
@@ -638,7 +626,6 @@ nav ul li.active a::after {
     color: var(--white);
 }
 
-/* Category grid section */
 .categories-showcase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -674,7 +661,6 @@ nav ul li.active a::after {
     color: var(--text-dark);
 }
 
-/* Why Choose Us & Grid */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -712,7 +698,6 @@ nav ul li.active a::after {
     color: var(--text-secondary);
 }
 
-/* Testimonials Carousel Section */
 .testimonials-slider-container {
     max-width: 800px;
     margin: 0 auto;
@@ -804,7 +789,6 @@ nav ul li.active a::after {
     border-radius: 10px;
 }
 
-/* Newsletter Bar */
 .newsletter-section {
     background-color: #FAF8F5;
     border-top: 1px solid var(--borders);
@@ -859,7 +843,6 @@ nav ul li.active a::after {
     }
 }
 
-/* Footer Section */
 footer {
     background-color: #1A1815;
     color: #A39E98;
@@ -1001,7 +984,6 @@ footer {
     }
 }
 
-/* Modals (Auth, Checkout, Cart Drawer) */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -1064,7 +1046,6 @@ footer {
     text-align: center;
 }
 
-/* Cart Drawer Styling */
 .cart-drawer-overlay {
     position: fixed;
     top: 0;
@@ -1218,7 +1199,6 @@ footer {
     color: var(--primary-gold);
 }
 
-/* Toast System */
 #toast-container {
     position: fixed;
     bottom: 30px;
@@ -1321,7 +1301,6 @@ footer {
     color: #f59e0b;
 }
 
-/* Forms Styling */
 .form-group {
     margin-bottom: 20px;
 }
@@ -1346,7 +1325,6 @@ footer {
     border-color: var(--primary-gold);
 }
 
-/* Pages Layouts (Products sidebar, homams grid, timeline, accordions) */
 .inner-hero-section {
     background-image: linear-gradient(rgba(26, 24, 21, 0.4), rgba(26, 24, 21, 0.8)), url('https://images.unsplash.com/photo-1609137144813-f8db422e6cf8?auto=format&fit=crop&w=1200&q=80');
     background-size: cover;
@@ -1386,7 +1364,6 @@ footer {
     margin: 0 auto;
 }
 
-/* Products Layout with Sidebar */
 .catalog-layout {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -1446,7 +1423,6 @@ footer {
     cursor: pointer;
 }
 
-/* Horizontal Filters & Sort Options */
 .catalog-top-bar {
     display: flex;
     justify-content: space-between;
@@ -1499,18 +1475,17 @@ footer {
     }
 }
 
-/* Horizontal Category Navigation Menu (Puja Products page) */
 .horizontal-categories-nav {
     display: flex;
     gap: 12px;
     overflow-x: auto;
     padding: 20px 0;
     margin-bottom: 30px;
-    scrollbar-width: none; /* Hide scrollbar Firefox */
+    scrollbar-width: none; 
 }
 
 .horizontal-categories-nav::-webkit-scrollbar {
-    display: none; /* Hide scrollbar Chrome/Safari */
+    display: none; 
 }
 
 .category-tab-btn {
@@ -1533,7 +1508,6 @@ footer {
     border-color: var(--primary-gold);
 }
 
-/* Online Homam Info */
 .homam-details-card {
     background-color: var(--white);
     border: 1px solid var(--borders);
@@ -1564,7 +1538,6 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Step Timeline Layout (Works for Homam & Donate process) */
 .timeline-flow {
     display: flex;
     justify-content: space-between;
@@ -1633,7 +1606,6 @@ footer {
     }
 }
 
-/* Accordion FAQ Styling */
 .faq-accordion {
     max-width: 800px;
     margin: 0 auto;
@@ -1685,7 +1657,6 @@ footer {
     max-height: 300px;
 }
 
-/* Donate Statistics */
 .donation-stats-section {
     background-color: var(--white);
     border-top: 1px solid var(--borders);
@@ -1713,7 +1684,6 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Contribution cards */
 .contribution-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -1769,7 +1739,6 @@ footer {
     margin-bottom: 20px;
 }
 
-/* Prasadham Category tabs & Time / Date controls */
 .date-time-selectors-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1783,7 +1752,6 @@ footer {
     }
 }
 
-/* Empty Cart State */
 .empty-cart-state {
     display: flex;
     flex-direction: column;
@@ -1805,7 +1773,6 @@ footer {
     color: var(--text-secondary);
 }
 
-/* Smooth Page Load Animation */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -1821,7 +1788,6 @@ footer {
     animation: fadeInUp 0.6s ease-out;
 }
 
-/* Responsive Inner-Page Grids */
 @media (max-width: 768px) {
     .inner-hero-section {
         padding: 100px 20px 60px !important;
@@ -1829,11 +1795,11 @@ footer {
     .inner-hero-section h2 {
         font-size: 2.2rem !important;
     }
-    /* Today's Special grid */
+    
     .section-padding > .container > div[style*="grid-template-columns: 0.9fr"] {
         grid-template-columns: 1fr !important;
     }
-    /* Custom Homam / Need Help grid */
+    
     .section-padding > .container > div[style*="grid-template-columns: 1.2fr 0.8fr"] {
         grid-template-columns: 1fr !important;
     }
@@ -1843,11 +1809,11 @@ footer {
         border-top: 1px solid var(--borders);
         padding-top: 30px;
     }
-    /* Annadanam quote grid */
+    
     .section-padding > .container > div[style*="grid-template-columns: 0.9fr 1.1fr"] {
         grid-template-columns: 1fr !important;
     }
-    /* Delivery selection grid */
+    
     .section-padding > .container > div[style*="grid-template-columns: 1.1fr 0.9fr"] {
         grid-template-columns: 1fr !important;
     }
@@ -1859,7 +1825,6 @@ footer {
     }
 }
 
-/* Breadcrumb */
 .breadcrumb {
     font-size: 0.85rem;
     color: rgba(255, 255, 255, 0.7);
@@ -1874,16 +1839,12 @@ footer {
     color: var(--white);
 }
 
-/* Smooth scroll behavior */
 html {
     scroll-behavior: smooth;
 }
 
-/* ============================================================
-   INNER PAGE HERO / BANNER SECTION
-   ============================================================ */
 .inner-hero-section {
-    margin-top: 80px; /* offset for fixed header */
+    margin-top: 80px; 
     width: 100%;
     min-height: 340px;
     background-size: cover;
@@ -1941,19 +1902,17 @@ html {
     }
 }
 
-/* Puja Products page banner */
 .pooja-products-hero {
     background-image: url('pooja banner_divine.png');
 }
 
-/* Admin Link Footer Styles */
 .footer-container {
   text-align: center;
   padding: 20px;
 }
 
 .copyright-text {
-  margin: 0 0 8px 0; /* Keeps a small gap above the link */
+  margin: 0 0 8px 0; 
   font-size: 14px;
 }
 
@@ -1961,24 +1920,19 @@ html {
   display: inline-block;
   font-size: 12px;
   text-decoration: none;
-  color: #777; /* Soft color to keep it subtle */
+  color: #777; 
   transition: color 0.2s ease;
 }
 
-/* Enhances the touch/hover feedback for mobile and desktop */
 .admin-enter-link:hover, 
 .admin-enter-link:active {
   color: #000; 
 }
 
-/* Fix for sticky header anchor jumping */
 [id] {
     scroll-margin-top: 90px;
 }
 
-
-
-/* --- Achievements Film Slider --- */
 .achievements-slider {
     width: 100%;
     overflow: hidden;
@@ -2060,11 +2014,6 @@ html {
     100% { transform: translateX(-50%); }
 }
 
-/* ==========================================================================
-   MOBILE & TABLET RESPONSIVE REDESIGN (NEAT & MINIMAL)
-   ========================================================================== */
-
-/* Tablet & Mobile Menu Adjustments */
 @media (max-width: 1080px) {
     .mobile-menu-toggle {
         display: block !important;
@@ -2074,7 +2023,6 @@ html {
     }
 }
 
-/* Mobile (<= 768px) */
 @media (max-width: 768px) {
     .container {
         padding: 0 16px !important;
@@ -2093,7 +2041,7 @@ html {
         margin-bottom: 30px !important;
     }
     
-    /* Header layout redesign - minimize elements to fit nicely */
+    
     .header-container {
         padding: 0 12px !important;
         height: 70px !important;
@@ -2107,7 +2055,7 @@ html {
         gap: 12px !important;
     }
     
-    /* Minimize login button to an elegant icon */
+    
     .clerk-auth-buttons button, 
     #clerk-login {
         font-size: 0 !important;
@@ -2125,13 +2073,13 @@ html {
     }
     
     #clerk-login::before {
-        content: "\f007" !important; /* fa-user */
+        content: "\f007" !important; 
         font-family: "Font Awesome 6 Free" !important;
         font-weight: 900 !important;
         font-size: 1.2rem !important;
     }
     
-    /* Style Wishlist and Search buttons uniformly */
+    
     .header-actions a,
     .header-actions button {
         font-size: 1.15rem !important;
@@ -2146,7 +2094,7 @@ html {
         color: var(--text-dark) !important;
     }
     
-    /* Badges alignment */
+    
     .cart-count-badge, 
     .wishlist-count-badge {
         top: -4px !important;
@@ -2156,7 +2104,7 @@ html {
         font-size: 0.6rem !important;
     }
     
-    /* Search Bar overlay for mobile */
+    
     .catalog-search-bar {
         position: absolute !important;
         top: 70px !important;
@@ -2179,7 +2127,7 @@ html {
         background: var(--background) !important;
     }
 
-    /* Vertical stack for Hero Section */
+    
     .hero-sec {
         padding-top: 110px !important;
         padding-bottom: 45px !important;
@@ -2220,7 +2168,7 @@ html {
         max-width: 260px !important;
     }
     
-    /* Mobile Navigation Drawer UI */
+    
     #mobile-nav {
         position: fixed !important;
         top: 70px !important;
@@ -2259,7 +2207,7 @@ html {
         background-color: rgba(200, 138, 45, 0.05) !important;
     }
     
-    /* Trust features styling */
+    
     .trust-features-bar {
         padding: 24px 0 !important;
     }
@@ -2277,7 +2225,7 @@ html {
         gap: 6px !important;
     }
     
-    /* Testimonials adjustments */
+    
     .testimonial-card {
         padding: 24px 16px !important;
         margin: 5px !important;
@@ -2296,9 +2244,8 @@ html {
     }
 }
 
-/* Small Screens (<= 480px) */
 @media (max-width: 480px) {
-    /* Product grid - 2 columns for neatness and fitting */
+    
     .products-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
@@ -2345,7 +2292,7 @@ html {
         text-align: center !important;
     }
     
-    /* Categories Showcase - 2 columns grid */
+    
     .categories-showcase-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 10px !important;
@@ -2364,7 +2311,7 @@ html {
         font-size: 0.75rem !important;
     }
     
-    /* Features/Why Choose Us - 1 column stack */
+    
     .features-grid {
         grid-template-columns: 1fr !important;
         gap: 12px !important;
@@ -2383,7 +2330,7 @@ html {
         font-size: 1.05rem !important;
     }
     
-    /* Achievement slider mobile sizing */
+    
     .achievement-item {
         width: 240px !important;
         height: 150px !important;
@@ -2397,24 +2344,18 @@ html {
     }
 }
 
-
-/* ----------------------------------------------------------------
-   ADDITIONAL MOBILE POLISH
-   ---------------------------------------------------------------- */
-
-/* Hide announcement bar on mobile to save precious viewport space */
 @media (max-width: 768px) {
-    /* Announcement bar (inline styled div above header) */
+    
     body > div:first-child {
         display: none !important;
     }
 
-    /* Inner-page hero sections that use inline padding: override to mobile-safe values */
+    
     .inner-hero-section[style*="padding: 200px"] {
         padding: 100px 0 60px !important;
     }
 
-    /* Generic inner-hero with inline padding-top overrides */
+    
     .inner-hero-section {
         padding-top: 100px !important;
         min-height: 220px !important;
@@ -2435,7 +2376,7 @@ html {
         font-size: 0.9rem !important;
     }
 
-    /* Primary btn hero CTAs — stack on mobile */
+    
     .inner-hero-section .primary-btn,
     .inner-hero-section .secondary-btn {
         display: block !important;
@@ -2443,7 +2384,7 @@ html {
         min-width: 160px !important;
     }
     
-    /* Stats grid */
+    
     .stats-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 20px !important;
@@ -2453,7 +2394,7 @@ html {
         font-size: 2rem !important;
     }
 
-    /* Contribution cards */
+    
     .contribution-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 12px !important;
@@ -2467,12 +2408,12 @@ html {
         font-size: 1.4rem !important;
     }
 
-    /* Newsletter section */
+    
     .newsletter-left h3 {
         font-size: 1.5rem !important;
     }
     
-    /* Footer padding */
+    
     footer {
         padding: 50px 0 20px !important;
     }
@@ -2482,7 +2423,7 @@ html {
         gap: 24px !important;
     }
 
-    /* Horizontal category nav on smaller viewports */
+    
     .horizontal-categories-nav {
         gap: 8px !important;
         padding: 12px 0 !important;
@@ -2494,18 +2435,8 @@ html {
     }
 }
 
-
-
-/* ==========================================================================
-   MINIMALISTIC MOBILE REDESIGN (≤768px & ≤480px)
-   ========================================================================== */
-
-/* ==========================================================================
-   MINIMALISTIC MOBILE REDESIGN (≤768px & ≤480px)
-   ========================================================================== */
-
 @media (max-width: 768px) {
-    /* Header Polish */
+    
     header {
         height: 60px !important;
         background-color: rgba(250, 248, 245, 0.98) !important;
@@ -2522,7 +2453,7 @@ html {
         width: auto !important;
     }
 
-    /* Hide desktop items */
+    
     nav,
     #header-search-form,
     .header-actions button[title="Search & Track Order"],
@@ -2544,7 +2475,7 @@ html {
         color: var(--text-dark) !important;
     }
 
-    /* Mobile Drawer */
+    
     #mobile-nav {
         position: fixed !important;
         top: 60px !important;
@@ -2556,7 +2487,7 @@ html {
         z-index: 2000 !important;
         padding: 30px 24px !important;
         box-shadow: 0 15px 30px rgba(0,0,0,0.05) !important;
-        display: none; /* Controlled by display: block/none via JS */
+        display: none; 
         overflow-y: auto !important;
     }
 
@@ -2588,7 +2519,7 @@ html {
         padding-left: 5px !important;
     }
 
-    /* Mobile Menu Auth/Wishlist buttons */
+    
     .mobile-menu-actions {
         display: flex !important;
         flex-direction: column !important;
@@ -2624,7 +2555,7 @@ html {
         border: 1px solid var(--borders) !important;
     }
 
-    /* Hero Section Polish */
+    
     .hero-sec {
         padding-top: 95px !important;
         padding-bottom: 40px !important;
@@ -2640,7 +2571,7 @@ html {
         margin-bottom: 24px !important;
     }
 
-    /* Trust Features Bar Stacked */
+    
     .trust-features-bar {
         padding: 20px 0 !important;
     }
@@ -2655,7 +2586,7 @@ html {
         gap: 8px !important;
     }
 
-    /* Footer Cleanup */
+    
     .footer-grid {
         display: flex !important;
         flex-direction: column !important;
@@ -2673,7 +2604,7 @@ html {
 }
 
 @media (max-width: 480px) {
-    /* Tighten typography & sections */
+    
     .section-title {
         font-size: 1.6rem !important;
     }
@@ -2696,12 +2627,12 @@ html {
         justify-content: center !important;
     }
 
-    /* Product card image size adjustment */
+    
     .product-details {
         padding: 12px 8px !important;
     }
 
-    /* Category list item size adjustments */
+    
     .categories-showcase-grid {
         grid-template-columns: repeat(2, 1fr) !important;
         gap: 8px !important;
@@ -2711,7 +2642,7 @@ html {
         padding: 12px 6px !important;
     }
 
-    /* Achievements list */
+    
     .achievement-item {
         width: 100% !important;
         max-width: 280px !important;
@@ -2720,12 +2651,8 @@ html {
     }
 }
 
-/* ==========================================================================
-   MOBILE COMPACT LAYOUT — remove excess whitespace & blank areas
-   ========================================================================== */
-
 @media (max-width: 768px) {
-    /* Tighter global section rhythm */
+    
     .section-padding {
         padding: 32px 0 !important;
     }
@@ -2734,7 +2661,7 @@ html {
         margin-bottom: 22px !important;
     }
 
-    /* Home & about hero — fit content, no oversized top gap */
+    
     .hero-sec {
         padding-top: 72px !important;
         padding-bottom: 28px !important;
@@ -2762,7 +2689,7 @@ html {
         margin: 0 auto !important;
     }
 
-    /* Inner-page banners — override inline 200px padding on all pages */
+    
     .inner-hero-section,
     .inner-hero-section.pooja-products-hero,
     .inner-hero-section[style*="padding"] {
@@ -2789,7 +2716,7 @@ html {
         min-height: 0 !important;
     }
 
-    /* Hide duplicate pre-footer trust strip (keeps the one below hero) */
+    
     .trust-features-bar:has(+ footer) {
         display: none !important;
     }
@@ -2827,7 +2754,7 @@ html {
         padding-bottom: 14px !important;
     }
 
-    /* Policy / legal pages */
+    
     .policy-page {
         padding-top: 76px !important;
         padding-bottom: 36px !important;
@@ -2837,7 +2764,7 @@ html {
         font-size: 1.85rem !important;
     }
 
-    /* Best sellers row header */
+    
     .section-padding > .container > div[style*="justify-content: space-between"] {
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -2849,7 +2776,7 @@ html {
         text-align: left !important;
     }
 
-    /* Prevent phantom scroll / blank edge from decorative layers */
+    
     html,
     body {
         min-height: 0 !important;

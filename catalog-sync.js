@@ -1,4 +1,3 @@
-// Syncs admin dashboard data (localStorage) to the public storefront pages.
 
 const BANNER_DEFAULTS = {
     home: 'hero-pooja.jpg',
