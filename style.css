@@ -2115,7 +2115,7 @@ html {
         border-bottom: 1px solid var(--borders) !important;
         box-shadow: var(--shadow-medium) !important;
         z-index: 998 !important;
-        display: flex !important;
+        display: none !important;
         width: 100% !important;
     }
     

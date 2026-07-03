@@ -197,14 +197,29 @@
                 <div>
                     <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 25px;">Choose Delivery details</h3>
                     
+                    <div class="form-group">
+                        <label><i class="fa-regular fa-user" style="color: var(--primary-gold);"></i> Full Name</label>
+                        <input type="text" placeholder="Enter your full name" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> Phone Number</label>
+                        <input type="tel" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                    </div>
+
+                    <div class="form-group">
+                        <label><i class="fa-solid fa-location-dot" style="color: var(--primary-gold);"></i> Delivery Location / Address</label>
+                        <textarea placeholder="Enter complete delivery address" rows="3" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                    </div>
+
                     <div class="date-time-selectors-grid">
                         <div class="form-group">
                             <label><i class="fa-regular fa-calendar-days" style="color: var(--primary-gold);"></i> Select Date</label>
-                            <input type="date" required>
+                            <input type="date" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
                         </div>
                         <div class="form-group">
                             <label><i class="fa-regular fa-clock" style="color: var(--primary-gold);"></i> Delivery Time Slot (Optional)</label>
-                            <select>
+                            <select style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; background: white;">
                                 <option>Anytime</option>
                                 <option>Morning (8:00 AM - 12:00 PM)</option>
                                 <option>Afternoon (12:00 PM - 4:00 PM)</option>
