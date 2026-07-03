@@ -119,7 +119,12 @@ function renderTables() {
                     '<td><img src="' + escHtml(pr.image) + '" style="width:50px;height:50px;object-fit:cover;border-radius:4px;"></td>' +
                     '<td>' + escHtml(pr.name) + '</td>' +
                     '<td>&#8377;' + escHtml(String(pr.price)) + '</td>' +
-                    '<td><button onclick="deleteItem(\'' + escHtml(pr.id) + '\',\'prasadhams\')" style="' + deleteBtnStyle() + '">&#128465; Delete</button></td>' +
+                    '<td style="white-space:nowrap;">' +
+                        '<button onclick="setSpecial(\'' + escHtml(pr.id) + '\')" style="' + specialBtnStyle(pr.isSpecial) + '">' +
+                            (pr.isSpecial ? '⭐ Special' : '☆ Set Special') +
+                        '</button>' +
+                        ' <button onclick="deleteItem(\'' + escHtml(pr.id) + '\',\'prasadhams\')" style="' + deleteBtnStyle() + '">&#128465; Delete</button>' +
+                    '</td>' +
                 '</tr>';
             }).join('');
         }
@@ -148,8 +153,28 @@ function stockBtnStyle(inStock) {
         : base + 'background:#d4edda;color:#155724;border:1px solid #28a745;';
 }
 
+function specialBtnStyle(isSpecial) {
+    var base = 'cursor:pointer;padding:7px 12px;border-radius:5px;font-size:0.8rem;font-weight:600;font-family:Inter,sans-serif;border:none;margin-right:4px;';
+    return isSpecial
+        ? base + 'background:#fff3cd;color:#856404;border:1px solid #ffc107;'
+        : base + 'background:#e2e3e5;color:#383d41;border:1px solid #d6d8db;';
+}
+
 function deleteBtnStyle() {
     return 'cursor:pointer;padding:7px 12px;border-radius:5px;font-size:0.8rem;font-weight:600;font-family:Inter,sans-serif;border:1px solid #f5c6cb;background:#fff5f5;color:#e53935;';
+}
+
+function setSpecial(id) {
+    adminData.prasadhams.forEach(function(p) {
+        if (p.id === id) {
+            p.isSpecial = !p.isSpecial;
+        } else {
+            p.isSpecial = false;
+        }
+    });
+    localStorage.setItem('divine_admin_prasadhams', JSON.stringify(adminData.prasadhams));
+    showToast("Today's Special Prasadham updated!", 'success');
+    renderTables();
 }
 
 function toggleStock(id) {
@@ -195,6 +220,7 @@ function editItem(id, type) {
         document.getElementById('pras-id').value = item.id;
         document.getElementById('pras-name').value = item.name;
         document.getElementById('pras-temple').value = item.temple;
+        document.getElementById('pras-desc').value = item.description || '';
         document.getElementById('pras-price').value = item.price;
         document.getElementById('pras-image-base64').value = '';
     }
@@ -224,12 +250,16 @@ function saveItem(e, type) {
         };
     } else if (type === 'prasadhams') {
         var id = document.getElementById('pras-id').value || ('pr' + Date.now());
+        var existing = adminData.prasadhams.find(function(p) { return p.id === id; });
+        var isSpecial = existing ? existing.isSpecial : false;
         newItem = {
             id: id,
             name: document.getElementById('pras-name').value,
             temple: document.getElementById('pras-temple').value,
+            description: document.getElementById('pras-desc').value,
             price: parseFloat(document.getElementById('pras-price').value),
-            image: document.getElementById('pras-image-base64').value || DEFAULT_PRODUCT_IMAGE
+            image: document.getElementById('pras-image-base64').value || DEFAULT_PRODUCT_IMAGE,
+            isSpecial: isSpecial
         };
     } else if (type === 'achievements') {
         var id = document.getElementById('ach-id').value || ('ach' + Date.now());

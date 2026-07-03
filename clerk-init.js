@@ -56,6 +56,56 @@
         await window.Clerk.signOut();
       });
     }
+
+    // Intercept clicks to external sites or purchase actions
+    document.addEventListener('click', function(e) {
+      var target = e.target.closest('a') || e.target.closest('button');
+      if (!target) return;
+
+      var isExternal = false;
+      var isPurchase = false;
+
+      // Check for external links
+      if (target.tagName === 'A' && target.href) {
+        try {
+          var url = new URL(target.href);
+          if (url.hostname && url.hostname !== window.location.hostname && !target.href.startsWith('javascript:')) {
+            isExternal = true;
+          }
+        } catch(err) {}
+      }
+
+      // Check for purchase/book keywords in text or id/class
+      var text = (target.textContent || '').toLowerCase();
+      var id = (target.id || '').toLowerCase();
+      var className = (target.className || '').toLowerCase();
+      
+      var purchaseKeywords = ['purchase', 'buy', 'checkout', 'book homam', 'book now', 'add to cart'];
+      var isMatch = purchaseKeywords.some(function(keyword) {
+         return text.includes(keyword) || id.includes('checkout') || className.includes('checkout');
+      });
+
+      if (isMatch) {
+        isPurchase = true;
+      }
+
+      // Check for specific onclick attributes that act as external/purchase
+      var onclickAttr = target.getAttribute('onclick') || '';
+      if (onclickAttr.includes('window.open') || onclickAttr.includes('whatsappUrl')) {
+          isExternal = true;
+      }
+
+      if (isExternal || isPurchase) {
+        if (!window.Clerk || !window.Clerk.user) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (window.appState && window.appState.showToast) {
+              window.appState.showToast('Please login to continue.', 'info');
+          }
+          window.Clerk.redirectToSignIn({ redirectUrl: window.location.href });
+        }
+      }
+    }, true); // use capture phase to intercept before inline handlers
   }
 
   initClerk();

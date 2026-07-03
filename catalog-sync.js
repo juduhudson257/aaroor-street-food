@@ -213,12 +213,55 @@ function applyDonationPrices() {
     });
 }
 
+function renderTodaysSpecial() {
+    const container = document.getElementById('todays-special-container');
+    const section = document.getElementById('todays-special-section');
+    if (!container || !section || typeof PRASADHAMS === 'undefined') return;
+
+    const specialItem = PRASADHAMS.find(p => p.isSpecial === true);
+    if (specialItem) {
+        section.style.display = 'block';
+        container.innerHTML = `
+            <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;">
+                <div>
+                    <img src="${escapeHtml(specialItem.image)}" alt="${escapeHtml(specialItem.name)} Special" style="border-radius: 8px; box-shadow: var(--shadow-light); width: 100%;">
+                </div>
+                <div>
+                    <span style="background-color: var(--primary-gold); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">TODAY'S SPECIAL</span>
+                    <h3 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; margin-top: 15px; margin-bottom: 12px;">${escapeHtml(specialItem.name)}</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">${escapeHtml(specialItem.description || 'Prepared with utmost devotion and offered to the deities today.')}</p>
+                    
+                    <div style="background-color: var(--background); padding: 15px 25px; border-radius: 6px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <span style="font-size: 0.85rem; color: var(--text-secondary); display: block;">Price per pack</span>
+                            <span style="font-size: 1.6rem; font-weight: 700; color: var(--primary-gold);">₹${specialItem.price} <span style="font-size: 0.95rem; font-weight: 500; color: var(--text-secondary);">/ Pack</span></span>
+                        </div>
+                        <button class="primary-btn" onclick="window.appState.addToCart({id: '${specialItem.id}', name: '${escapeHtml(specialItem.name)}', price: ${specialItem.price}, image: '${escapeHtml(specialItem.image)}'}, 'prasadham')">Order Now</button>
+                    </div>
+
+                    <div style="border-top: 1px solid var(--borders); padding-top: 20px; display: flex; align-items: center; gap: 12px;">
+                        <i class="fa-solid fa-gopuram" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
+                        <div>
+                            <span style="font-size: 0.8rem; color: var(--text-secondary); display: block;">Offered at:</span>
+                            <strong style="font-size: 0.95rem; color: var(--text-dark);">${escapeHtml(specialItem.temple || '')}</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        section.style.display = 'none';
+        container.innerHTML = '';
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     syncCatalogFromAdmin();
     applySiteBanners();
     renderBestSellers();
     renderHomamGrid();
     renderPrasadhamGrid();
+    renderTodaysSpecial();
     applyDonationPrices();
 
     if (typeof renderCatalog === 'function') {

@@ -127,36 +127,10 @@
     </section>
 
     
-    <section class="section-padding">
+    <section class="section-padding" id="todays-special-section" style="display: none;">
         <div class="container">
             <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Today's Special Prasadham</h2>
-            
-            <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;">
-                <div>
-                    <img src="product-image.jpg" alt="Sakkarai Pongal Special" style="border-radius: 8px; box-shadow: var(--shadow-light);">
-                </div>
-                <div>
-                    <span style="background-color: var(--primary-gold); color: var(--white); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 12px; text-transform: uppercase;">TODAY'S SPECIAL</span>
-                    <h3 style="font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700; margin-top: 15px; margin-bottom: 12px;">Sakkarai Pongal</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 20px; line-height: 1.6;">Sweet pongal made with rice, jaggery, ghee and cashews. Prepared with utmost devotion and offered to the deities today.</p>
-                    
-                    <div style="background-color: var(--background); padding: 15px 25px; border-radius: 6px; margin-bottom: 25px; display: flex; justify-content: space-between; align-items: center;">
-                        <div>
-                            <span style="font-size: 0.85rem; color: var(--text-secondary); display: block;">Price per pack</span>
-                            <span style="font-size: 1.6rem; font-weight: 700; color: var(--primary-gold);">₹150 <span style="font-size: 0.95rem; font-weight: 500; color: var(--text-secondary);">/ Pack</span></span>
-                        </div>
-                        <button class="primary-btn" onclick="window.appState.addToCart({id: 'pr2', name: 'Sakkarai Pongal', price: 150, image: 'product-image.jpg'}, 'prasadham')">Order Now</button>
-                    </div>
-
-                    <div style="border-top: 1px solid var(--borders); padding-top: 20px; display: flex; align-items: center; gap: 12px;">
-                        <i class="fa-solid fa-gopuram" style="color: var(--primary-gold); font-size: 1.5rem;"></i>
-                        <div>
-                            <span style="font-size: 0.8rem; color: var(--text-secondary); display: block;">Offered at:</span>
-                            <strong style="font-size: 0.95rem; color: var(--text-dark);">Arulmigu Lakshmi Narayana Perumal Temple</strong>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="todays-special-container"></div>
         </div>
     </section>
 
@@ -199,27 +173,27 @@
                     
                     <div class="form-group">
                         <label><i class="fa-regular fa-user" style="color: var(--primary-gold);"></i> Full Name</label>
-                        <input type="text" placeholder="Enter your full name" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                        <input type="text" id="del-name" placeholder="Enter your full name" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
                     </div>
 
                     <div class="form-group">
                         <label><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> Phone Number</label>
-                        <input type="tel" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                        <input type="tel" id="del-phone" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
                     </div>
 
                     <div class="form-group">
                         <label><i class="fa-solid fa-location-dot" style="color: var(--primary-gold);"></i> Delivery Location / Address</label>
-                        <textarea placeholder="Enter complete delivery address" rows="3" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                        <textarea id="del-address" placeholder="Enter complete delivery address" rows="3" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
                     </div>
 
                     <div class="date-time-selectors-grid">
                         <div class="form-group">
                             <label><i class="fa-regular fa-calendar-days" style="color: var(--primary-gold);"></i> Select Date</label>
-                            <input type="date" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                            <input type="date" id="del-date" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
                         </div>
                         <div class="form-group">
                             <label><i class="fa-regular fa-clock" style="color: var(--primary-gold);"></i> Delivery Time Slot (Optional)</label>
-                            <select style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; background: white;">
+                            <select id="del-time" style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; background: white;">
                                 <option>Anytime</option>
                                 <option>Morning (8:00 AM - 12:00 PM)</option>
                                 <option>Afternoon (12:00 PM - 4:00 PM)</option>
@@ -232,11 +206,11 @@
                         <label>Delivery Method</label>
                         <div style="display: flex; gap: 30px; margin-top: 10px;">
                             <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                                <input type="radio" name="del-method" checked>
+                                <input type="radio" name="del-method" value="Home Delivery" checked>
                                 <span><strong>Home Delivery</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Delivered directly to your doorstep</span></span>
                             </label>
                             <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
-                                <input type="radio" name="del-method">
+                                <input type="radio" name="del-method" value="Temple Pickup">
                                 <span><strong>Temple Pickup</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Collect from temple counter</span></span>
                             </label>
                         </div>
@@ -247,7 +221,47 @@
                 <div style="border-left: 1px solid var(--borders); padding-left: 50px; display: flex; flex-direction: column; justify-content: center;">
                     <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 15px;">Bulk Orders / Special Requests</h3>
                     <p style="color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6;">For bulk orders, temple events, wedding functions or corporate orders, get in touch with us.</p>
-                    <a href="#" class="secondary-btn" style="align-self: flex-start; border-color: #25d366; color: #25d366;" onclick="window.appState.showToast('WhatsApp support will launch to coordinate bulk orders.', 'info'); return false;"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
+                    <a href="#" class="secondary-btn" style="align-self: flex-start; border-color: #25d366; color: #25d366;" onclick="handleBulkOrderWhatsApp(event)"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
+                    
+                    <script>
+                        function handleBulkOrderWhatsApp(e) {
+                            e.preventDefault();
+                            const name = document.getElementById('del-name') ? document.getElementById('del-name').value.trim() : '';
+                            const phone = document.getElementById('del-phone') ? document.getElementById('del-phone').value.trim() : '';
+                            const address = document.getElementById('del-address') ? document.getElementById('del-address').value.trim() : '';
+                            const date = document.getElementById('del-date') ? document.getElementById('del-date').value : '';
+                            const time = document.getElementById('del-time') ? document.getElementById('del-time').value : '';
+                            
+                            if (!name || !phone || !address || !date) {
+                                if (window.appState && window.appState.showToast) {
+                                    window.appState.showToast('Please fill in all delivery details before contacting us on WhatsApp.', 'error');
+                                } else {
+                                    alert('Please fill in all delivery details before contacting us on WhatsApp.');
+                                }
+                                return;
+                            }
+                            
+                            let method = 'Home Delivery';
+                            const methodRadios = document.getElementsByName('del-method');
+                            for (let radio of methodRadios) {
+                                if (radio.checked) {
+                                    method = radio.value || (radio.nextElementSibling ? radio.nextElementSibling.querySelector('strong').innerText : 'Home Delivery');
+                                    break;
+                                }
+                            }
+
+                            let message = "Hi, I would like to make a bulk order/special request.\n\n";
+                            if (name) message += "Name: " + name + "\n";
+                            if (phone) message += "Phone: " + phone + "\n";
+                            if (address) message += "Address: " + address + "\n";
+                            if (date) message += "Date: " + date + "\n";
+                            if (time && time !== 'Anytime') message += "Time Slot: " + time + "\n";
+                            message += "Delivery Method: " + method;
+                            
+                            const whatsappUrl = "https://wa.me/918148147056?text=" + encodeURIComponent(message);
+                            window.open(whatsappUrl, '_blank');
+                        }
+                    </script>
                 </div>
             </div>
         </div>
@@ -365,12 +379,12 @@
             <div class="footer-col">
                 <h4>Customer Service</h4>
                 <ul>
-                    <li><a href="#user-portal">My Account</a></li>
-                    <li><a href="#track-order">Order Tracking</a></li>
-                    <li><a href="#shipping">Shipping Policy</a></li>
-                    <li><a href="#returns">Return & Refund</a></li>
-                    <li><a href="#terms">Terms & Conditions</a></li>
-                    <li><a href="#privacy">Privacy Policy</a></li>
+                    <li><a href="javascript:void(0)" onclick="window.handleClerkAuthClick && window.handleClerkAuthClick()">My Account</a></li>
+                    <li><a href="javascript:void(0)" onclick="window.appState && window.appState.showToast && window.appState.showToast('To track your order, use the Search & Track Order feature in the header.', 'info')">Order Tracking</a></li>
+                    <li><a href="shipping-policy.html">Shipping Policy</a></li>
+                    <li><a href="returns-refund.html">Return & Refund</a></li>
+                    <li><a href="terms-and-conditions.html">Terms & Conditions</a></li>
+                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
                 </ul>
             </div>
 
