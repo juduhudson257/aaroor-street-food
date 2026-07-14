@@ -476,8 +476,19 @@ function setupCheckoutAndOrderTracking() {
                 address: checkoutForm.querySelector('#cust-address').value
             };
             const orderId = window.appState.placeOrder(customerInfo);
+            const orderTotal = window.appState.orders.find(o => o.orderId === orderId).total;
             checkoutModal.classList.remove('active');
-            window.appState.showToast(`Order Placed Successfully! Your Order ID is ${orderId}.`, 'success');
+            window.appState.showToast(`Order Placed Successfully! Your Order ID is ${orderId}. Redirecting to payment...`, 'success');
+            
+            setTimeout(() => {
+                const upiId = localStorage.getItem('divine_admin_upi');
+                if (upiId) {
+                    const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=The%20Divine%20Voice&tr=${encodeURIComponent(orderId)}&am=${encodeURIComponent(orderTotal)}&cu=INR`;
+                    window.location.href = upiLink;
+                } else {
+                    window.appState.showToast('UPI payment is not currently configured. Our team will contact you for payment.', 'info');
+                }
+            }, 1500);
         });
     }
 

@@ -7,7 +7,8 @@ let adminData = {
     prasadhams:  JSON.parse(localStorage.getItem('divine_admin_prasadhams')) || [],
     achievements: JSON.parse(localStorage.getItem('divine_admin_achievements')) || [],
     banners:     JSON.parse(localStorage.getItem('divine_admin_banners'))     || {},
-    donations:   JSON.parse(localStorage.getItem('divine_admin_donations'))   || { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 }
+    donations:   JSON.parse(localStorage.getItem('divine_admin_donations'))   || { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 },
+    upi:         localStorage.getItem('divine_admin_upi')                     || ''
 };
 
 function escHtml(str) {
@@ -356,6 +357,21 @@ function saveDonationPrices(e) {
     showToast('Donation pricing saved!', 'success');
 }
 
+function renderUpi() {
+    const upiInput = document.getElementById('admin-upi-id');
+    if (upiInput && adminData.upi) {
+        upiInput.value = adminData.upi;
+    }
+}
+
+function saveUpiId(e) {
+    e.preventDefault();
+    const upiId = document.getElementById('admin-upi-id').value;
+    adminData.upi = upiId;
+    localStorage.setItem('divine_admin_upi', upiId);
+    showToast('UPI ID saved successfully!', 'success');
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.admin-menu li[data-target]').forEach(function(li) {
         li.addEventListener('click', function() {
@@ -393,4 +409,5 @@ document.addEventListener('DOMContentLoaded', function() {
     renderTables();
     renderBanners();
     renderDonations();
+    renderUpi();
 });
