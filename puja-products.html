@@ -333,6 +333,7 @@
     
     <script src="app.js"></script>
     <script src="catalog-sync.js"></script>
+    <script src="buy-modal.js"></script>
     <script async src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"></script>
     <script>
         function toggleMobileMenu() {
@@ -464,9 +465,12 @@
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <span class="review-count">(${p.reviews || 100})</span>
                         </div>
-                        <div class="price-row">
+                        <div class="price-row" style="flex-wrap: wrap; gap: 8px;">
                             <span class="price-val">₹${p.price}</span>
-                            <button class="add-cart-btn" ${!p.inStock ? 'disabled style="border-color: var(--borders); color: var(--text-secondary); cursor: not-allowed;"' : ''} onclick="window.appState.addToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, image: '${p.image}'})">${p.inStock ? 'Add To Cart' : 'Sold Out'}</button>
+                            <div style="display: flex; gap: 6px;">
+                                <button class="add-cart-btn" ${!p.inStock ? 'disabled style="border-color: var(--borders); color: var(--text-secondary); cursor: not-allowed;"' : ''} onclick="window.appState.addToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, image: '${p.image}'})" title="Add to Cart">${p.inStock ? '<i class="fa-solid fa-cart-shopping"></i>' : 'Sold Out'}</button>
+                                ${p.inStock ? `<button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${p.name}', price: ${p.price}, image: '${p.image}'})">Buy Now</button>` : ''}
+                            </div>
                         </div>
                     </div>
                 </div>

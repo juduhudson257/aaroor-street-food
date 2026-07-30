@@ -333,8 +333,14 @@ async function uploadBanner(event, type) {
         if (preview) preview.src = publicUrl;
         showToast('Banner updated!', 'success');
     } else {
-        if (preview) preview.src = oldSrc;
-        showToast('Banner upload failed.', 'error');
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+            adminData.banners[type] = evt.target.result;
+            localStorage.setItem('divine_admin_banners', JSON.stringify(adminData.banners));
+            if (preview) preview.src = evt.target.result;
+            showToast('Banner saved locally (Supabase offline/paused).', 'warning');
+        };
+        reader.readAsDataURL(file);
     }
 }
 
@@ -357,19 +363,36 @@ function saveDonationPrices(e) {
     showToast('Donation pricing saved!', 'success');
 }
 
-function renderUpi() {
+async function renderUpi() {
     const upiInput = document.getElementById('admin-upi-id');
-    if (upiInput && adminData.upi) {
+    if (!upiInput) return;
+    if (adminData.upi) {
         upiInput.value = adminData.upi;
+    }
+    try {
+        const dbUpi = await window.getSettingFromSupabase('divine_admin_upi');
+        if (dbUpi) {
+            adminData.upi = dbUpi;
+            localStorage.setItem('divine_admin_upi', dbUpi);
+            upiInput.value = dbUpi;
+        }
+    } catch (err) {
+        console.warn('Could not sync UPI ID from Supabase database, using local storage.');
     }
 }
 
-function saveUpiId(e) {
+async function saveUpiId(e) {
     e.preventDefault();
     const upiId = document.getElementById('admin-upi-id').value;
     adminData.upi = upiId;
     localStorage.setItem('divine_admin_upi', upiId);
-    showToast('UPI ID saved successfully!', 'success');
+    
+    const savedToDb = await window.saveSettingToSupabase('divine_admin_upi', upiId);
+    if (savedToDb) {
+        showToast('UPI ID saved to database and locally!', 'success');
+    } else {
+        showToast('Saved locally (failed to sync to database).', 'warning');
+    }
 }
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -400,7 +423,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 document.getElementById(prefix + '-image-base64').value = publicUrl;
                 showToast('Image uploaded!', 'success');
             } else {
-                showToast('Upload failed. Check Supabase credentials.', 'error');
+                const reader = new FileReader();
+                reader.onload = function(evt) {
+                    document.getElementById(prefix + '-image-base64').value = evt.target.result;
+                    showToast('Saved image locally (Supabase is offline/paused).', 'warning');
+                };
+                reader.readAsDataURL(file);
             }
             if (btn) { btn.disabled = false; btn.innerText = 'Save Item'; }
         });

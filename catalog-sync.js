@@ -131,9 +131,12 @@ function renderBestSellers() {
                     <i class="fa-solid fa-star-half-stroke"></i>
                     <span class="review-count">(${p.reviews || 100})</span>
                 </div>
-                <div class="price-row">
+                <div class="price-row" style="flex-wrap: wrap; gap: 8px;">
                     <span class="price-val">₹${p.price}</span>
-                    <button class="add-cart-btn" onclick="window.appState.addToCart({id: '${p.id}', name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'})">Add To Cart</button>
+                    <div style="display: flex; gap: 6px;">
+                        <button class="add-cart-btn" onclick="window.appState.addToCart({id: '${p.id}', name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'})" title="Add to Cart"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'})">Buy Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -182,9 +185,12 @@ function renderPrasadhamGrid() {
                     <i class="fa-solid fa-star-half-stroke"></i>
                     <span class="review-count">(${p.reviews || 100})</span>
                 </div>
-                <div class="price-row">
+                <div class="price-row" style="flex-wrap: wrap; gap: 8px;">
                     <span class="price-val">₹${p.price}</span>
-                    <button class="add-cart-btn" onclick="window.appState.addToCart({id: '${p.id}', name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'}, 'prasadham')">Add To Cart</button>
+                    <div style="display: flex; gap: 6px;">
+                        <button class="add-cart-btn" onclick="window.appState.addToCart({id: '${p.id}', name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'}, 'prasadham')" title="Add to Cart"><i class="fa-solid fa-cart-shopping"></i></button>
+                        <button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${escapeHtml(p.name)}', price: ${p.price}, image: '${escapeHtml(p.image)}'})">Buy Now</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -236,7 +242,10 @@ function renderTodaysSpecial() {
                             <span style="font-size: 0.85rem; color: var(--text-secondary); display: block;">Price per pack</span>
                             <span style="font-size: 1.6rem; font-weight: 700; color: var(--primary-gold);">₹${specialItem.price} <span style="font-size: 0.95rem; font-weight: 500; color: var(--text-secondary);">/ Pack</span></span>
                         </div>
-                        <button class="primary-btn" onclick="window.appState.addToCart({id: '${specialItem.id}', name: '${escapeHtml(specialItem.name)}', price: ${specialItem.price}, image: '${escapeHtml(specialItem.image)}'}, 'prasadham')">Order Now</button>
+                        <div style="display: flex; gap: 8px;">
+                            <button class="secondary-btn" onclick="window.appState.addToCart({id: '${specialItem.id}', name: '${escapeHtml(specialItem.name)}', price: ${specialItem.price}, image: '${escapeHtml(specialItem.image)}'}, 'prasadham')">Add to Cart</button>
+                            <button class="buy-modal-submit" onclick="window.openBuyModal({name: '${escapeHtml(specialItem.name)}', price: ${specialItem.price}, image: '${escapeHtml(specialItem.image)}'})" style="margin: 0; padding: 10px 20px; font-size: 0.9rem;">Buy Now</button>
+                        </div>
                     </div>
 
                     <div style="border-top: 1px solid var(--borders); padding-top: 20px; display: flex; align-items: center; gap: 12px;">

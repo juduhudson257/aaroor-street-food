@@ -27,7 +27,6 @@ async function uploadToSupabase(file, bucketName = SUPABASE_BUCKET) {
 
         if (error) {
             console.error('Error uploading image to Supabase:', error);
-            alert(`Failed to upload image: ${error.message}`);
             return null;
         }
 
@@ -38,9 +37,46 @@ async function uploadToSupabase(file, bucketName = SUPABASE_BUCKET) {
         return publicUrlData.publicUrl;
     } catch (err) {
         console.error('Unexpected error during upload:', err);
-        alert(err.message || 'Unexpected error during upload.');
+        return null;
+    }
+}
+
+async function saveSettingToSupabase(key, value) {
+    try {
+        const supabase = getSupabaseClient();
+        const { error } = await supabase
+            .from('settings')
+            .upsert({ key: key, value: value });
+        if (error) {
+            console.error('Error saving setting to Supabase:', error);
+            return false;
+        }
+        return true;
+    } catch (err) {
+        console.error('Unexpected error saving setting:', err);
+        return false;
+    }
+}
+
+async function getSettingFromSupabase(key) {
+    try {
+        const supabase = getSupabaseClient();
+        const { data, error } = await supabase
+            .from('settings')
+            .select('value')
+            .eq('key', key)
+            .maybeSingle();
+        if (error) {
+            console.error('Error getting setting from Supabase:', error);
+            return null;
+        }
+        return data ? data.value : null;
+    } catch (err) {
+        console.error('Unexpected error getting setting:', err);
         return null;
     }
 }
 
 window.uploadToSupabase = uploadToSupabase;
+window.saveSettingToSupabase = saveSettingToSupabase;
+window.getSettingFromSupabase = getSettingFromSupabase;

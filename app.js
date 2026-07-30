@@ -149,7 +149,7 @@ class AppState {
                     </div>
                     <div class="product-bottom">
                         <span class="product-price">₹${product.price}</span>
-                        ${product.id.startsWith('h') ? `<button class="primary-btn" onclick="window.location.href='online-homam.html'">Book Now</button>` : `<button class="primary-btn" onclick="window.appState.addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})">Add to Cart</button>`}
+                        ${product.id.startsWith('h') ? `<button class="primary-btn" onclick="window.location.href='online-homam.html'">Book Now</button>` : `<div style="display: flex; gap: 6px;"><button class="add-cart-btn" onclick="window.appState.addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})" title="Add to Cart"><i class="fa-solid fa-cart-shopping"></i></button><button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${product.name.replace(/'/g, "\\'")}', price: ${product.price}, image: '${product.image.replace(/'/g, "\\'")}'})">Buy Now</button></div>`}
                     </div>
                 </div>
             </div>
@@ -469,28 +469,55 @@ function setupCheckoutAndOrderTracking() {
     if (checkoutForm && checkoutModal) {
         checkoutForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            const customerInfo = {
-                name: checkoutForm.querySelector('#cust-name').value,
-                email: checkoutForm.querySelector('#cust-email').value,
-                phone: checkoutForm.querySelector('#cust-phone').value,
-                address: checkoutForm.querySelector('#cust-address').value
-            };
-            const orderId = window.appState.placeOrder(customerInfo);
-            const orderTotal = window.appState.orders.find(o => o.orderId === orderId).total;
+
+            const name    = checkoutForm.querySelector('#cust-name').value.trim();
+            const email   = checkoutForm.querySelector('#cust-email').value.trim();
+            const phone   = checkoutForm.querySelector('#cust-phone').value.trim();
+            const address = checkoutForm.querySelector('#cust-address').value.trim();
+            const coupon  = (checkoutForm.querySelector('#cust-coupon')?.value || '').trim();
+
+            const customerInfo = { name, email, phone, address };
+            const orderId      = window.appState.placeOrder(customerInfo);
+            const orderTotal   = window.appState.orders.find(o => o.orderId === orderId)?.total || 0;
+            const cartItems    = window.appState.orders.find(o => o.orderId === orderId)?.items || [];
+
+            // Build the item list for WhatsApp
+            const itemLines = cartItems.map(
+                item => `  • ${item.name} x${item.quantity} — ₹${item.price * item.quantity}`
+            ).join('\n');
+
+            // Compose the full WhatsApp message
+            const message =
+`🛕 *New Order from The Divine Voice* 🛕
+
+🆔 *Order ID:* ${orderId}
+
+👤 *Customer Details:*
+  • Name    : ${name}
+  • Phone   : ${phone}
+  • Email   : ${email}
+  • Address : ${address}${coupon ? `\n  • Coupon  : ${coupon}` : ''}
+
+🛒 *Items Ordered:*
+${itemLines}
+
+💰 *Total Amount: ₹${orderTotal}*
+
+_Please confirm this order and arrange delivery._`;
+
             checkoutModal.classList.remove('active');
-            window.appState.showToast(`Order Placed Successfully! Your Order ID is ${orderId}. Redirecting to payment...`, 'success');
-            
+            window.appState.showToast(`Order placed! Redirecting to WhatsApp for confirmation...`, 'success');
+
+            // Admin WhatsApp number (international format, no + or spaces)
+            const adminWhatsApp = '918148147056';
+
             setTimeout(() => {
-                const upiId = localStorage.getItem('divine_admin_upi');
-                if (upiId) {
-                    const upiLink = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=The%20Divine%20Voice&tr=${encodeURIComponent(orderId)}&am=${encodeURIComponent(orderTotal)}&cu=INR`;
-                    window.location.href = upiLink;
-                } else {
-                    window.appState.showToast('UPI payment is not currently configured. Our team will contact you for payment.', 'info');
-                }
-            }, 1500);
+                const waUrl = `https://wa.me/${adminWhatsApp}?text=${encodeURIComponent(message)}`;
+                window.open(waUrl, '_blank');
+            }, 1200);
         });
     }
+
 
     const searchForm = document.getElementById('header-search-form');
     if (searchForm) {

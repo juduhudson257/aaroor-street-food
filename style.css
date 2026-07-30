@@ -163,6 +163,7 @@ button {
 
 header {
     background-color: rgba(250, 248, 245, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--borders);
     position: fixed;
@@ -991,6 +992,7 @@ footer {
     right: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
     z-index: 2000;
     display: flex;
@@ -2177,6 +2179,7 @@ html {
         bottom: 0 !important;
         height: calc(100vh - 70px) !important;
         background-color: rgba(255, 255, 255, 0.98) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
         backdrop-filter: blur(8px) !important;
         padding: 24px !important;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08) !important;
@@ -2440,6 +2443,7 @@ html {
     header {
         height: 60px !important;
         background-color: rgba(250, 248, 245, 0.98) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
         backdrop-filter: blur(10px) !important;
     }
     
@@ -2820,4 +2824,382 @@ html {
         padding: 24px 18px !important;
     }
 }
+
+/* Helper and Layout Styles to eliminate inline CSS */
+.clerk-user-menu {
+    display: none;
+    align-items: center;
+}
+
+#clerk-sign-out {
+    margin-left: 8px;
+}
+
+.wishlist-count-badge {
+    display: none;
+}
+
+#mobile-nav {
+    display: none;
+}
+
+.mobile-nav-home-link {
+    font-weight: 600;
+    color: var(--primary-gold);
+}
+
+.best-sellers-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+}
+
+.best-sellers-title {
+    margin-bottom: 0;
+    text-align: left;
+}
+
+.view-all-products-link {
+    color: var(--primary-gold);
+    font-weight: 600;
+}
+
+.section-bordered {
+    background-color: var(--white);
+    border-top: 1px solid var(--borders);
+    border-bottom: 1px solid var(--borders);
+}
+
+.text-center-wrapper {
+    text-align: center;
+}
+
+.rating-stars {
+    color: #FFB800;
+    font-size: 0.8rem;
+    margin-top: 4px;
+}
+
+.testimonial-card-hidden {
+    display: none;
+}
+
+.newsletter-subscribe-btn {
+    background-color: var(--primary-gold);
+}
+
+.trust-features-light-bg {
+    background-color: #FAF8F5;
+}
+
+.footer-about-text {
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.footer-bottom-container {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+#close-cart-btn {
+    font-size: 1.5rem;
+}
+
+#checkout-btn {
+    width: 100%;
+    text-align: center;
+}
+
+.checkout-summary-row {
+    background-color: var(--background);
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+}
+
+.checkout-total-val {
+    color: var(--primary-gold);
+}
+
+.checkout-submit-btn {
+    width: 100%;
+}
+
+/* Buy Now WhatsApp Modal Styles */
+.buy-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    z-index: 2500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    padding: 20px;
+}
+
+.buy-modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.buy-modal-container {
+    background-color: var(--white);
+    border: 1px solid var(--borders);
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    position: relative;
+    box-shadow: var(--shadow-premium);
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.buy-modal-overlay.active .buy-modal-container {
+    transform: scale(1);
+}
+
+.buy-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.buy-modal-close:hover {
+    color: var(--primary-gold);
+}
+
+.buy-modal-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.buy-modal-icon {
+    font-size: 2.5rem;
+    color: #25D366; /* WhatsApp Green */
+    margin-bottom: 10px;
+}
+
+.buy-modal-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.buy-modal-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.buy-modal-product-strip {
+    display: flex;
+    align-items: center;
+    background-color: var(--background);
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border: 1px solid var(--borders);
+}
+
+.buy-modal-product-img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-right: 12px;
+}
+
+.buy-modal-product-info {
+    flex-grow: 1;
+}
+
+.buy-modal-product-name {
+    display: block;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+}
+
+.buy-modal-product-price {
+    font-size: 0.9rem;
+    color: var(--primary-gold);
+    font-weight: 700;
+}
+
+.buy-modal-qty-wrap {
+    display: flex;
+    align-items: center;
+    background: var(--white);
+    border: 1px solid var(--borders);
+    border-radius: 20px;
+    padding: 4px;
+}
+
+.buy-modal-qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.buy-modal-qty-btn:hover {
+    background-color: var(--background);
+    color: var(--primary-gold);
+}
+
+.buy-modal-qty-val {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.buy-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.buy-modal-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.buy-modal-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.buy-modal-field label .req {
+    color: #e24e4e;
+}
+
+.buy-modal-field input,
+.buy-modal-field textarea {
+    padding: 10px 14px;
+    border: 1px solid var(--borders);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background-color: var(--white);
+    transition: var(--transition);
+    width: 100%;
+}
+
+.buy-modal-field input:focus,
+.buy-modal-field textarea:focus {
+    border-color: var(--primary-gold);
+    box-shadow: 0 0 0 2px rgba(200, 138, 45, 0.1);
+}
+
+.buy-modal-field-error {
+    border-color: #e24e4e !important;
+    background-color: rgba(226, 78, 78, 0.02) !important;
+}
+
+.buy-modal-total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--background);
+    padding: 12px 16px;
+    border-radius: 6px;
+    font-weight: 700;
+    margin-top: 10px;
+    border: 1px solid var(--borders);
+}
+
+.buy-modal-total-row strong {
+    color: var(--primary-gold);
+    font-size: 1.2rem;
+}
+
+.buy-modal-submit {
+    background-color: #25D366; /* WhatsApp Green */
+    color: var(--white);
+    padding: 14px;
+    font-weight: 600;
+    border-radius: 6px;
+    border: 1px solid #25D366;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: var(--transition);
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.buy-modal-submit:hover {
+    background-color: #1ebd57;
+    border-color: #1ebd57;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.25);
+}
+
+/* Buy Now direct button styled nicely next to Add to Cart */
+.buy-now-direct-btn {
+    display: inline-block;
+    background-color: #25D366; /* WhatsApp Green */
+    color: var(--white);
+    padding: 8px 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    border: 1px solid #25D366;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.buy-now-direct-btn:hover {
+    background-color: #1ebd57;
+    border-color: #1ebd57;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+    .buy-modal-container {
+        padding: 20px 15px;
+    }
+    .buy-modal-title {
+        font-size: 1.5rem;
+    }
+}
+
+
 
