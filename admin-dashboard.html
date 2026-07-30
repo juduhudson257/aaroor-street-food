@@ -421,7 +421,7 @@
                 <li data-target="panel-prasadhams"><i class="fa-solid fa-apple-whole"></i> Prasadhams</li>
                 <li data-target="panel-achievements"><i class="fa-solid fa-trophy"></i> Achievements</li>
                 <li data-target="panel-donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</li>
-                <li data-target="panel-upi"><i class="fa-brands fa-google-pay"></i> UPI Settings</li>
+
                 <li onclick="logoutAdmin()" style="margin-top: 20px; color: #000000; border-top: 1px solid #f0f0f0; padding-top: 20px;"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
             </ul>
         </div>
@@ -615,18 +615,7 @@
                 </form>
             </div>
 
-            <!-- UPI Panel -->
-            <div id="panel-upi" class="admin-panel">
-                <h2>UPI Payment Settings</h2>
-                <form id="form-upi" onsubmit="saveUpiId(event)">
-                    <div class="form-group">
-                        <label>Merchant UPI ID</label>
-                        <input type="text" id="admin-upi-id" placeholder="e.g. merchant@upi" required>
-                        <small style="color: #666; font-size: 0.8rem; display: block; margin-top: 5px;">This UPI ID will be used to collect payments from customers via deep linking.</small>
-                    </div>
-                    <button type="submit" class="btn-primary">Save UPI ID</button>
-                </form>
-            </div>
+
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
