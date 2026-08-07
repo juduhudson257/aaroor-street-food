@@ -7,19 +7,6 @@
     <meta name="description" content="Terms and Conditions for The Divine Voice website.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <style>
-        .policy-page { padding-top: 120px; padding-bottom: 80px; }
-        .policy-container { max-width: 800px; margin: 0 auto; padding: 0 20px; }
-        .policy-container h1 { font-family: var(--font-heading); font-size: 2.5rem; color: var(--text-dark); margin-bottom: 10px; }
-        .policy-container h1::after { content: ''; display: block; width: 60px; height: 2px; background-color: var(--primary-gold); margin: 15px 0 0; }
-        .policy-container h2 { font-size: 1.4rem; font-weight: 700; color: var(--text-dark); margin-top: 35px; margin-bottom: 12px; }
-        .policy-container p { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 16px; }
-        .policy-container ul { margin: 12px 0 20px 20px; }
-        .policy-container ul li { font-size: 1rem; color: var(--text-secondary); line-height: 1.8; margin-bottom: 10px; }
-        .policy-container ul li strong { color: var(--text-dark); }
-        .policy-back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--primary-gold); font-weight: 600; margin-bottom: 30px; }
-        .policy-back-link:hover { opacity: 0.8; }
-    </style>
 </head>
 <body>
     <header>
@@ -28,7 +15,7 @@
                 <img src="divine logo.png" alt="The Divine Voice" class="header-logo-img">
             </a>
             <div class="header-actions">
-                <button class="mobile-menu-toggle" onclick="history.back()">
+                <button class="mobile-menu-toggle" onclick="history.back()" title="Go Back" aria-label="Go Back">
                     <i class="fa-solid fa-arrow-left"></i>
                 </button>
             </div>
@@ -37,7 +24,7 @@
 
     <section class="policy-page">
         <div class="policy-container">
-            <a href="index.html" class="policy-back-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+            <a href="index.html" class="policy-back-link" title="Back to Home"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
             <h1>Terms &amp; Conditions</h1>
             <p>Welcome to The Divine Voice ("the Site"). This website is owned and operated by The Divine Voice team. By accessing or using this website and any of its pages, you are deemed to have read, understood, and agreed to be bound by the terms and conditions outlined below.</p>
 
@@ -82,7 +69,7 @@
             <p>If you send creative ideas, suggestions, community forum posts, testimonials, or other materials, you agree that we may, at any time, without restriction, edit, copy, publish, distribute, and otherwise use those comments in any medium.</p>
 
             <h2>Section 10: Personal Information</h2>
-            <p>Your submission of personal information through the platform is securely governed by our <a href="privacy-policy.html" style="color: var(--primary-gold); font-weight: 600;">Privacy Policy</a>.</p>
+            <p>Your submission of personal information through the platform is securely governed by our <a href="privacy-policy.html" class="text-gold-bold" title="Privacy Policy">Privacy Policy</a>.</p>
 
             <h2>Section 11: Errors, Inaccuracies, and Omissions</h2>
             <p>Occasionally there may be information on our site that contains typographical errors, inaccuracies, or omissions. We reserve the right to correct any errors and to change or update information or cancel orders if any information on the platform is inaccurate at any time without prior notice.</p>
@@ -112,12 +99,12 @@
             <p>We reserve the right, at our sole discretion, to update, change, or replace any part of these Terms by posting updates to our website. It is your responsibility to check our website periodically for changes.</p>
 
             <h2>Section 20: Contact Information</h2>
-            <p>Questions about these Terms of Service should be sent to our support team through the official contact channels provided on the platform's <a href="index.html#contact-us" style="color: var(--primary-gold); font-weight: 600;">contact page</a>.</p>
+            <p>Questions about these Terms of Service should be sent to our support team through the official contact channels provided on the platform's <a href="index.html#contact-us" class="text-gold-bold" title="Contact Us">contact page</a>.</p>
         </div>
     </section>
 
     <footer>
-        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="container footer-container footer-bottom-container">
             <p>&copy; 2026 The Divine Voice. All Rights Reserved.</p>
         </div>
     </footer>

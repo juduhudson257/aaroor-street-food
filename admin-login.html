@@ -194,11 +194,11 @@
                     <input type="password" id="admin-pass" required>
                 </div>
                 <button type="submit" class="admin-login-btn">Login</button>
-                <div id="login-error" style="color: #ff0000; margin-top: 15px; display: none;">Invalid credentials.
+                <div id="login-error" class="login-error-msg">Invalid credentials.
                     Please try again.</div>
             </form>
 
-            <a href="index.html" class="btn-link-sec" style="color: #666666; border-color: #e0e0e0;">Exit</a>
+            <a href="index.html" class="btn-link-sec admin-exit-link">Exit</a>
         </div>
     </div>
 
@@ -208,7 +208,7 @@
             const user = document.getElementById('admin-user').value.trim();
             const pass = document.getElementById('admin-pass').value;
 
-            if (user === 'admin' && pass === '12345') {
+            if (user === 'test' && pass === '12345') {
                 const token = 'divine_admin_token_' + Date.now();
                 sessionStorage.setItem('divine_admin_token', token);
                 sessionStorage.setItem('divine_admin_auth', 'true');

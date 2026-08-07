@@ -16,15 +16,15 @@
 <body>
 
     
-    <div style="background-color: var(--white); border-bottom: 1px solid var(--borders); padding: 8px 0; font-size: 0.8rem; font-weight: 500; color: var(--text-secondary);">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-            <div style="display: flex; gap: 20px;">
-                <span><i class="fa-solid fa-square-check" style="color: var(--primary-gold);"></i> 100% Authentic Rituals</span>
-                <span><i class="fa-solid fa-user-tie" style="color: var(--primary-gold);"></i> Performed by Experienced Priests</span>
-                <span><i class="fa-solid fa-video" style="color: var(--primary-gold);"></i> Live & Transparent Process</span>
+    <div class="topbar-strip">
+        <div class="container topbar-inner">
+            <div class="topbar-left-items">
+                <span><i class="fa-solid fa-square-check topbar-icon"></i> 100% Authentic Rituals</span>
+                <span><i class="fa-solid fa-user-tie topbar-icon"></i> Performed by Experienced Priests</span>
+                <span><i class="fa-solid fa-video topbar-icon"></i> Live & Transparent Process</span>
             </div>
             <div>
-                <span><i class="fa-solid fa-headset" style="color: var(--primary-gold);"></i> Need Help? <a href="https://wa.me/918148147056" target="_blank" style="color: var(--primary-gold); font-weight: 700;">Chat on WhatsApp</a></span>
+                <span><i class="fa-solid fa-headset topbar-icon"></i> Need Help? <a href="https://wa.me/918148147056" target="_blank" rel="noopener noreferrer" class="topbar-link">Chat on WhatsApp</a></span>
             </div>
         </div>
     </div>
@@ -52,19 +52,19 @@
                 <div class="clerk-auth-buttons">
                     <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
                 </div>
-                <div class="clerk-user-menu" style="display:none; align-items:center;">
+                <div class="clerk-user-menu clerk-user-menu-flex">
                     <div id="clerk-user-btn-mount"></div>
-                    <button id="clerk-sign-out" class="btn-primary" style="margin-left:8px;">Sign Out</button>
+                    <button id="clerk-sign-out" class="btn-primary clerk-sign-out-btn">Sign Out</button>
                 </div>
                 <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
                     <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count-badge" style="display: none;">0</span>
+                    <span class="wishlist-count-badge wishlist-badge-hidden">0</span>
                 </button>
                 <button id="cart-btn" title="Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count-badge">0</span>
                 </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Toggle Menu" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -72,11 +72,11 @@
     </header>
 
     
-    <div id="mobile-nav" style="display: none;">
+    <div id="mobile-nav" class="mobile-nav-hidden">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
             <li><a href="puja-products.html"><i class="fa-solid fa-om"></i> Puja Products</a></li>
-            <li><a href="online-homam.html" style="font-weight: 600; color: var(--primary-gold);"><i class="fa-solid fa-fire"></i> Online Homam</a></li>
+            <li><a href="online-homam.html" class="mobile-nav-active-link"><i class="fa-solid fa-fire"></i> Online Homam</a></li>
             <li><a href="temple-prasadham.html"><i class="fa-solid fa-gopuram"></i> Temple Prasadham</a></li>
             <li><a href="donate-for-food.html"><i class="fa-solid fa-hand-holding-heart"></i> Donate For Food</a></li>
             <li><a href="about-us.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
@@ -92,21 +92,21 @@
     </div>
 
     
-    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.5), rgba(26, 24, 21, 0.85)), url('homam banner final_divine.png'); margin-top: 0; position: relative; z-index: 10;">
-        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto; position: relative; z-index: 20;">
-            <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Rituals. Peaceful Life.</span>
-            <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px; line-height: 1.2;">Online Homam</h2>
-            <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Book authentic homam services performed by Vedic priests. Participate from anywhere, receive blessings always.</p>
-            <div style="display: flex; gap: 16px; position: relative; z-index: 30;">
-                <a href="#services-grid-anchor" class="primary-btn" onclick="document.getElementById('services-grid-anchor').scrollIntoView({behavior: 'smooth'}); return false;" style="cursor: pointer;">Book a Homam</a>
-                <a href="#how-it-works-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white); cursor: pointer;" onclick="document.getElementById('how-it-works-anchor').scrollIntoView({behavior: 'smooth'}); return false;"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+    <section class="inner-hero-section homam-hero-section">
+        <div class="container hero-inner-content">
+            <span class="hero-eyebrow">Divine Rituals. Peaceful Life.</span>
+            <h2 class="prasadham-hero-title homam-hero-h2">Online Homam</h2>
+            <p class="prasadham-hero-desc">Book authentic homam services performed by Vedic priests. Participate from anywhere, receive blessings always.</p>
+            <div class="hero-cta-row">
+                <a href="#services-grid-anchor" class="primary-btn" onclick="document.getElementById('services-grid-anchor').scrollIntoView({behavior: 'smooth'}); return false;">Book a Homam</a>
+                <a href="#how-it-works-anchor" class="secondary-btn prasadham-hero-secondary-btn" onclick="document.getElementById('how-it-works-anchor').scrollIntoView({behavior: 'smooth'}); return false;"><i class="fa-regular fa-circle-question"></i> How It Works</a>
             </div>
         </div>
     </section>
 
     
-    <section class="trust-features-bar" style="background-color: var(--white);">
-        <div class="container trust-features-grid" style="justify-content: space-around;">
+    <section class="trust-features-bar trust-bar-white">
+        <div class="container trust-features-grid trust-features-space-around">
             <div class="trust-item">
                 <div class="trust-icon"><i class="fa-solid fa-user-tie"></i></div>
                 <div class="trust-info">
@@ -143,21 +143,21 @@
     
     <section class="section-padding" id="services-grid-anchor">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
+            <div class="prasadham-grid-header align-end">
                 <div>
-                    <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Our Homam Services</h2>
+                    <h2 class="section-title section-title-left-no-margin">Our Homam Services</h2>
                 </div>
-                <a href="#" onclick="window.appState.showToast('Viewing all 15 Homams.', 'info'); return false;" style="color: var(--primary-gold); font-weight: 600;">View All Homam Services <i class="fa-solid fa-arrow-right"></i></a>
+                <a href="#" onclick="window.appState.showToast('Viewing all 15 Homams.', 'info'); return false;" class="view-all-link">View All Homam Services <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
-            <div class="products-grid" style="grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));" id="homam-grid">
+            <div class="products-grid homam-products-grid" id="homam-grid">
                 
             </div>
         </div>
     </section>
 
     
-    <section class="section-padding" id="how-it-works-anchor" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+    <section class="section-padding prasadham-delivery-section" id="how-it-works-anchor">
         <div class="container">
             <div class="section-title-wrapper">
                 <h2 class="section-title">How Online Homam Works</h2>
@@ -202,20 +202,20 @@
     
     <section class="section-padding">
         <div class="container">
-            <div style="background-color: var(--white); border: 1px solid var(--borders); border-radius: 8px; padding: 40px; box-shadow: var(--shadow-medium); display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center;">
+            <div class="custom-homam-card">
                 <div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.8rem; font-weight: 700; margin-bottom: 12px;">Can't find the homam you're looking for?</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 25px;">We also offer customized homams as per your needs. Our team will guide you.</p>
+                    <h3 class="custom-homam-title">Can't find the homam you're looking for?</h3>
+                    <p class="custom-homam-desc">We also offer customized homams as per your needs. Our team will guide you.</p>
                     <button class="primary-btn" onclick="window.location.href='book-homam.html?homam=Custom%20Homam'">Request Custom Homam</button>
                 </div>
                 
-                <div style="border-left: 1px solid var(--borders); padding-left: 40px;">
-                    <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Need Help?</h4>
-                    <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 20px;">Our spiritual experts are here to assist you.</p>
-                    <ul style="list-style: none; display: flex; flex-direction: column; gap: 12px; font-size: 0.95rem;">
-                        <li><a href="https://wa.me/918148147056" target="_blank" style="color: #25d366; font-weight: 600;"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
-                        <li><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> 8148147056 / 7395845437</li>
-                        <li><i class="fa-solid fa-envelope" style="color: var(--primary-gold);"></i> voice4bhakthi@gmail.com</li>
+                <div class="custom-homam-help-panel">
+                    <h4 class="custom-homam-help-title">Need Help?</h4>
+                    <p class="custom-homam-help-desc">Our spiritual experts are here to assist you.</p>
+                    <ul class="help-contact-list">
+                        <li><a href="https://wa.me/918148147056" target="_blank" rel="noopener noreferrer" class="whatsapp-link"><i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp</a></li>
+                        <li><i class="fa-solid fa-phone topbar-icon"></i> 8148147056 / 7395845437</li>
+                        <li><i class="fa-solid fa-envelope topbar-icon"></i> voice4bhakthi@gmail.com</li>
                     </ul>
                 </div>
             </div>
@@ -229,12 +229,12 @@
                 <div class="footer-about-logo">
                     <img src="divine logo.png" alt="The Divine Voice Logo" class="footer-logo-img">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <p class="footer-about-text">Serving devotion, spreading love and feeding the needy.</p>
                 <div class="footer-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -285,7 +285,7 @@
             </div>
         </div>
 
-        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="container footer-container footer-bottom-container">
             <p><strong>POWERED BY HELIX</strong></p>
             <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
             <a href="admin-login.html" class="admin-enter-link">Enter</a>
@@ -297,7 +297,7 @@
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
                 <h3>Your Shopping Cart</h3>
-                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+                <button class="remove-item-btn" id="close-cart-btn" title="Close Cart" aria-label="Close Cart"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="cart-items-list"></div>
             <div class="cart-drawer-footer">
@@ -305,7 +305,7 @@
                     <span>Subtotal:</span>
                     <span class="cart-subtotal-val">₹0</span>
                 </div>
-                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+                <button class="primary-btn checkout-full-width-btn" id="checkout-btn">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -313,7 +313,7 @@
     
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-auth-btn" title="Close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
             <div id="login-form-wrapper">
                 <h3 class="modal-title">Sign In</h3>
                 <form id="login-form">
@@ -325,11 +325,11 @@
                         <label>Password</label>
                         <input type="password" placeholder="Enter password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin">Login</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+                <p class="modal-switch-text">Don't have an account? <a href="#" id="show-register" class="modal-switch-link">Sign Up</a></p>
             </div>
-            <div id="register-form-wrapper" style="display: none;">
+            <div id="register-form-wrapper" class="form-wrapper-hidden">
                 <h3 class="modal-title">Create Account</h3>
                 <form id="register-form">
                     <div class="form-group">
@@ -344,9 +344,9 @@
                         <label>Password</label>
                         <input type="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin">Register</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+                <p class="modal-switch-text">Already have an account? <a href="#" id="show-login" class="modal-switch-link">Log In</a></p>
             </div>
         </div>
     </div>
@@ -354,7 +354,7 @@
     
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-checkout-btn" title="Close Checkout" aria-label="Close Checkout"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="modal-title">Checkout</h3>
             <form id="checkout-form">
                 <div class="form-group">
@@ -373,11 +373,11 @@
                     <label>Delivery Address</label>
                     <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
                 </div>
-                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                <div class="checkout-total-wrapper">
                     <span>Total Amount Payable:</span>
-                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                    <span id="checkout-total-val" class="checkout-total-val">₹0</span>
                 </div>
-                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+                <button type="submit" class="primary-btn checkout-full-width-btn">Place Order & Pay</button>
             </form>
         </div>
     </div>

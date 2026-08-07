@@ -38,19 +38,19 @@
                 <div class="clerk-auth-buttons">
                     <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
                 </div>
-                <div class="clerk-user-menu" style="display:none; align-items:center;">
+                <div class="clerk-user-menu clerk-user-menu-flex">
                     <div id="clerk-user-btn-mount"></div>
-                    <button id="clerk-sign-out" class="btn-primary" style="margin-left:8px;">Sign Out</button>
+                    <button id="clerk-sign-out" class="btn-primary clerk-sign-out-btn">Sign Out</button>
                 </div>
                 <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
                     <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count-badge" style="display: none;">0</span>
+                    <span class="wishlist-count-badge wishlist-badge-hidden">0</span>
                 </button>
                 <button id="cart-btn" title="Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count-badge">0</span>
                 </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Toggle Menu" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -58,12 +58,12 @@
     </header>
 
     
-    <div id="mobile-nav" style="display: none;">
+    <div id="mobile-nav" class="mobile-nav-hidden">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
             <li><a href="puja-products.html"><i class="fa-solid fa-om"></i> Puja Products</a></li>
             <li><a href="online-homam.html"><i class="fa-solid fa-fire"></i> Online Homam</a></li>
-            <li><a href="temple-prasadham.html" style="font-weight: 600; color: var(--primary-gold);"><i class="fa-solid fa-gopuram"></i> Temple Prasadham</a></li>
+            <li><a href="temple-prasadham.html" class="mobile-nav-active-link"><i class="fa-solid fa-gopuram"></i> Temple Prasadham</a></li>
             <li><a href="donate-for-food.html"><i class="fa-solid fa-hand-holding-heart"></i> Donate For Food</a></li>
             <li><a href="about-us.html"><i class="fa-solid fa-circle-info"></i> About Us</a></li>
             <li><a href="#contact-us" onclick="var m=document.getElementById('mobile-nav'); if(m){m.style.display='none';} setTimeout(function(){var el=document.getElementById('contact-us'); if(el){el.scrollIntoView({behavior:'smooth'});}},150); return false;"><i class="fa-solid fa-envelope"></i> Contact Us</a></li>
@@ -78,21 +78,21 @@
     </div>
 
     
-    <section class="inner-hero-section" style="background-image: linear-gradient(rgba(26, 24, 21, 0.4), rgba(26, 24, 21, 0.8)), url('prasadham banner final_divine.png'); margin-top: 0; position: relative; z-index: 10;">
-        <div class="container" style="text-align: left; max-width: 1000px; margin: 0 auto; position: relative; z-index: 20;">
-            <span style="color: var(--light-gold); font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Divine Taste. Blessed Life.</span>
-            <h2 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px;">Temple Prasadham</h2>
-            <p style="margin: 0 0 30px; font-size: 1.15rem; max-width: 600px; line-height: 1.6;">Receive the blessings of the deities with our pure, authentic and hygienically prepared temple prasadham.</p>
-            <div style="display: flex; gap: 16px; position: relative; z-index: 30;">
-                <a href="#all-prasadham-anchor" class="primary-btn" style="cursor: pointer;" onclick="document.getElementById('all-prasadham-anchor').scrollIntoView({behavior: 'smooth'}); return false;">Order Now</a>
-                <a href="#faq-anchor" class="secondary-btn" style="border-color: var(--white); color: var(--white); cursor: pointer;" onclick="document.getElementById('faq-anchor').scrollIntoView({behavior: 'smooth'}); return false;"><i class="fa-regular fa-circle-question"></i> How It Works</a>
+    <section class="inner-hero-section prasadham-hero-bg">
+        <div class="container prasadham-hero-content">
+            <span class="prasadham-hero-subtitle">Divine Taste. Blessed Life.</span>
+            <h2 class="prasadham-hero-title">Temple Prasadham</h2>
+            <p class="prasadham-hero-desc">Receive the blessings of the deities with our pure, authentic and hygienically prepared temple prasadham.</p>
+            <div class="prasadham-hero-btns">
+                <a href="#all-prasadham-anchor" class="primary-btn prasadham-cursor-pointer" onclick="document.getElementById('all-prasadham-anchor').scrollIntoView({behavior: 'smooth'}); return false;" title="Order Now">Order Now</a>
+                <a href="#faq-anchor" class="secondary-btn prasadham-secondary-btn" onclick="document.getElementById('faq-anchor').scrollIntoView({behavior: 'smooth'}); return false;" title="How It Works"><i class="fa-regular fa-circle-question"></i> How It Works</a>
             </div>
         </div>
     </section>
 
     
     <section class="trust-features-bar">
-        <div class="container trust-features-grid" style="justify-content: space-around;">
+        <div class="container trust-features-grid trust-grid-around">
             <div class="trust-item">
                 <div class="trust-icon"><i class="fa-solid fa-hotel"></i></div>
                 <div class="trust-info">
@@ -127,17 +127,17 @@
     </section>
 
     
-    <section class="section-padding" id="todays-special-section" style="display: none;">
+    <section class="section-padding mobile-nav-hidden" id="todays-special-section">
         <div class="container">
-            <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">Today's Special Prasadham</h2>
+            <h2 class="section-title section-title-left">Today's Special Prasadham</h2>
             <div id="todays-special-container"></div>
         </div>
     </section>
 
     
     <section class="container">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Prasadham Categories</h3>
-        <div class="horizontal-categories-nav" style="margin-bottom: 45px;">
+        <h3 class="cat-header-title">Prasadham Categories</h3>
+        <div class="horizontal-categories-nav cat-nav-margin">
             <button class="category-tab-btn active"><i class="fa-solid fa-cookie"></i> Laddus</button>
             <button class="category-tab-btn"><i class="fa-solid fa-mug-hot"></i> Pongal</button>
             <button class="category-tab-btn"><i class="fa-solid fa-circle"></i> Chakkarai</button>
@@ -150,11 +150,11 @@
     </section>
 
     
-    <section class="section-padding" id="all-prasadham-anchor" style="padding-top: 0;">
+    <section class="section-padding container-no-padding-top" id="all-prasadham-anchor">
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 40px;">
-                <h2 class="section-title" style="margin-bottom: 0; text-align: left;">Available Prasadham</h2>
-                <a href="#" style="color: var(--primary-gold); font-weight: 600;">View All Prasadham <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="prasadham-header-flex">
+                <h2 class="section-title prasadham-header-title">Available Prasadham</h2>
+                <a href="#" class="prasadham-view-all" title="View All Prasadham">View All Prasadham <i class="fa-solid fa-arrow-right"></i></a>
             </div>
 
             <div class="products-grid" id="prasadham-grid">
@@ -164,36 +164,36 @@
     </section>
 
     
-    <section class="section-padding" style="background-color: var(--white); border-top: 1px solid var(--borders); border-bottom: 1px solid var(--borders);">
+    <section class="section-padding section-bordered">
         <div class="container">
-            <div style="display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 50px;">
+            <div class="delivery-grid">
                 
                 <div>
-                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 25px;">Choose Delivery details</h3>
+                    <h3 class="form-section-title">Choose Delivery details</h3>
                     
                     <div class="form-group">
-                        <label><i class="fa-regular fa-user" style="color: var(--primary-gold);"></i> Full Name</label>
-                        <input type="text" id="del-name" placeholder="Enter your full name" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                        <label><i class="fa-regular fa-user form-icon-gold"></i> Full Name</label>
+                        <input type="text" id="del-name" placeholder="Enter your full name" required class="form-input-full">
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-phone" style="color: var(--primary-gold);"></i> Phone Number</label>
-                        <input type="tel" id="del-phone" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                        <label><i class="fa-solid fa-phone form-icon-gold"></i> Phone Number</label>
+                        <input type="tel" id="del-phone" placeholder="Enter 10-digit phone number" pattern="[0-9]{10}" required class="form-input-full">
                     </div>
 
                     <div class="form-group">
-                        <label><i class="fa-solid fa-location-dot" style="color: var(--primary-gold);"></i> Delivery Location / Address</label>
-                        <textarea id="del-address" placeholder="Enter complete delivery address" rows="3" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; font-family: inherit; resize: vertical;"></textarea>
+                        <label><i class="fa-solid fa-location-dot form-icon-gold"></i> Delivery Location / Address</label>
+                        <textarea id="del-address" placeholder="Enter complete delivery address" rows="3" required class="form-textarea-full"></textarea>
                     </div>
 
                     <div class="date-time-selectors-grid">
                         <div class="form-group">
-                            <label><i class="fa-regular fa-calendar-days" style="color: var(--primary-gold);"></i> Select Date</label>
-                            <input type="date" id="del-date" required style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px;">
+                            <label><i class="fa-regular fa-calendar-days form-icon-gold"></i> Select Date</label>
+                            <input type="date" id="del-date" required class="form-input-full" title="Select Delivery Date">
                         </div>
                         <div class="form-group">
-                            <label><i class="fa-regular fa-clock" style="color: var(--primary-gold);"></i> Delivery Time Slot (Optional)</label>
-                            <select id="del-time" style="width: 100%; padding: 10px; border: 1px solid var(--borders); border-radius: 4px; background: white;">
+                            <label><i class="fa-regular fa-clock form-icon-gold"></i> Delivery Time Slot (Optional)</label>
+                            <select id="del-time" class="form-select-full" title="Delivery Time Slot">
                                 <option>Anytime</option>
                                 <option>Morning (8:00 AM - 12:00 PM)</option>
                                 <option>Afternoon (12:00 PM - 4:00 PM)</option>
@@ -204,24 +204,24 @@
 
                     <div class="form-group">
                         <label>Delivery Method</label>
-                        <div style="display: flex; gap: 30px; margin-top: 10px;">
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                        <div class="del-method-wrapper">
+                            <label class="del-method-label">
                                 <input type="radio" name="del-method" value="Home Delivery" checked>
-                                <span><strong>Home Delivery</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Delivered directly to your doorstep</span></span>
+                                <span><strong>Home Delivery</strong><br><span class="del-method-desc">Delivered directly to your doorstep</span></span>
                             </label>
-                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                            <label class="del-method-label">
                                 <input type="radio" name="del-method" value="Temple Pickup">
-                                <span><strong>Temple Pickup</strong><br><span style="font-size: 0.8rem; color: var(--text-secondary);">Collect from temple counter</span></span>
+                                <span><strong>Temple Pickup</strong><br><span class="del-method-desc">Collect from temple counter</span></span>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 
-                <div style="border-left: 1px solid var(--borders); padding-left: 50px; display: flex; flex-direction: column; justify-content: center;">
-                    <h3 style="font-family: var(--font-heading); font-size: 1.6rem; font-weight: 700; margin-bottom: 15px;">Bulk Orders / Special Requests</h3>
-                    <p style="color: var(--text-secondary); margin-bottom: 25px; line-height: 1.6;">For bulk orders, temple events, wedding functions or corporate orders, get in touch with us.</p>
-                    <a href="#" class="secondary-btn" style="align-self: flex-start; border-color: #25d366; color: #25d366;" onclick="handleBulkOrderWhatsApp(event)"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
+                <div class="bulk-order-panel">
+                    <h3 class="bulk-order-title">Bulk Orders / Special Requests</h3>
+                    <p class="bulk-order-desc">For bulk orders, temple events, wedding functions or corporate orders, get in touch with us.</p>
+                    <a href="#" class="secondary-btn whatsapp-btn" onclick="handleBulkOrderWhatsApp(event)" title="Contact on WhatsApp"><i class="fa-brands fa-whatsapp"></i> Contact Us on WhatsApp</a>
                     
                     <script>
                         function handleBulkOrderWhatsApp(e) {
@@ -282,7 +282,7 @@
                         <i class="fa-solid fa-plus"></i>
                     </div>
                     <div class="accordion-content">
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Yes, all prasadhams are prepared inside the temple kitchen by authorized priests following traditional rituals and hygiene standards.</p>
+                        <p class="faq-desc">Yes, all prasadhams are prepared inside the temple kitchen by authorized priests following traditional rituals and hygiene standards.</p>
                     </div>
                 </div>
 
@@ -293,7 +293,7 @@
                         <i class="fa-solid fa-plus"></i>
                     </div>
                     <div class="accordion-content">
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Packed in vacuum-sealed, food-grade containers and delivered through fast courier networks to maintain freshness.</p>
+                        <p class="faq-desc">Packed in vacuum-sealed, food-grade containers and delivered through fast courier networks to maintain freshness.</p>
                     </div>
                 </div>
 
@@ -304,7 +304,7 @@
                         <i class="fa-solid fa-plus"></i>
                     </div>
                     <div class="accordion-content">
-                        <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">Yes, we accept bulk orders for marriages, temple festivals, and corporate functions. Please contact us on WhatsApp at least 3 days in advance.</p>
+                        <p class="faq-desc">Yes, we accept bulk orders for marriages, temple festivals, and corporate functions. Please contact us on WhatsApp at least 3 days in advance.</p>
                     </div>
                 </div>
             </div>
@@ -312,7 +312,7 @@
     </section>
 
     
-    <section class="trust-features-bar" style="background-color: #FAF8F5;">
+    <section class="trust-features-bar trust-bar-light">
         <div class="container trust-features-grid">
             <div class="trust-item">
                 <div class="trust-icon"><i class="fa-solid fa-gopuram"></i></div>
@@ -355,12 +355,12 @@
                 <div class="footer-about-logo">
                     <img src="divine logo.png" alt="The Divine Voice Logo" class="footer-logo-img">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <p class="footer-about-text">Serving devotion, spreading love and feeding the needy.</p>
                 <div class="footer-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -411,7 +411,7 @@
             </div>
         </div>
 
-        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="container footer-container footer-bottom-container">
             <p><strong>POWERED BY HELIX</strong></p>
             <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
             <a href="admin-login.html" class="admin-enter-link">Enter</a>
@@ -423,7 +423,7 @@
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
                 <h3>Your Shopping Cart</h3>
-                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+                <button class="remove-item-btn" id="close-cart-btn" title="Close Cart" aria-label="Close Cart"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="cart-items-list"></div>
             <div class="cart-drawer-footer">
@@ -431,7 +431,7 @@
                     <span>Subtotal:</span>
                     <span class="cart-subtotal-val">₹0</span>
                 </div>
-                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+                <button class="primary-btn checkout-full-width-btn" id="checkout-btn" title="Proceed to Checkout">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -439,7 +439,7 @@
     
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-auth-btn" title="Close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
             <div id="login-form-wrapper">
                 <h3 class="modal-title">Sign In</h3>
                 <form id="login-form">
@@ -451,11 +451,11 @@
                         <label>Password</label>
                         <input type="password" placeholder="Enter password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin" title="Login">Login</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+                <p class="auth-switch-text">Don't have an account? <a href="#" id="show-register" class="text-gold-bold" title="Sign Up">Sign Up</a></p>
             </div>
-            <div id="register-form-wrapper" style="display: none;">
+            <div id="register-form-wrapper" class="register-form-hidden">
                 <h3 class="modal-title">Create Account</h3>
                 <form id="register-form">
                     <div class="form-group">
@@ -470,9 +470,9 @@
                         <label>Password</label>
                         <input type="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin" title="Register">Register</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+                <p class="auth-switch-text">Already have an account? <a href="#" id="show-login" class="text-gold-bold" title="Log In">Log In</a></p>
             </div>
         </div>
     </div>
@@ -480,7 +480,7 @@
     
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-checkout-btn" title="Close Checkout" aria-label="Close Checkout"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="modal-title">Checkout</h3>
             <form id="checkout-form">
                 <div class="form-group">
@@ -499,11 +499,11 @@
                     <label>Delivery Address</label>
                     <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
                 </div>
-                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                <div class="checkout-total-wrapper">
                     <span>Total Amount Payable:</span>
-                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                    <span id="checkout-total-val" class="checkout-total-val">₹0</span>
                 </div>
-                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+                <button type="submit" class="primary-btn checkout-full-width-btn" title="Place Order">Place Order & Pay</button>
             </form>
         </div>
     </div>

@@ -264,6 +264,51 @@ function renderTodaysSpecial() {
     }
 }
 
+const CLOUD_CATALOG_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdd4de6750c25';
+
+async function syncCatalogFromCloud() {
+    try {
+        const response = await fetch(CLOUD_CATALOG_URL);
+        if (!response.ok) return;
+        const resJson = await response.json();
+        if (resJson && resJson.data) {
+            const cloudData = resJson.data;
+            if (Array.isArray(cloudData.products)) {
+                localStorage.setItem('divine_admin_products', JSON.stringify(cloudData.products));
+            }
+            if (Array.isArray(cloudData.homams)) {
+                localStorage.setItem('divine_admin_homams', JSON.stringify(cloudData.homams));
+            }
+            if (Array.isArray(cloudData.prasadhams)) {
+                localStorage.setItem('divine_admin_prasadhams', JSON.stringify(cloudData.prasadhams));
+            }
+            if (cloudData.banners && typeof cloudData.banners === 'object') {
+                localStorage.setItem('divine_admin_banners', JSON.stringify(cloudData.banners));
+            }
+            if (cloudData.donations && typeof cloudData.donations === 'object') {
+                localStorage.setItem('divine_admin_donations', JSON.stringify(cloudData.donations));
+            }
+            if (Array.isArray(cloudData.achievements)) {
+                localStorage.setItem('divine_admin_achievements', JSON.stringify(cloudData.achievements));
+            }
+
+            syncCatalogFromAdmin();
+            applySiteBanners();
+            renderBestSellers();
+            renderHomamGrid();
+            renderPrasadhamGrid();
+            renderTodaysSpecial();
+            applyDonationPrices();
+
+            if (typeof renderCatalog === 'function') {
+                renderCatalog();
+            }
+        }
+    } catch (e) {
+        console.warn('Cloud catalog sync fallback to local storage:', e);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     syncCatalogFromAdmin();
     applySiteBanners();
@@ -276,4 +321,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof renderCatalog === 'function') {
         renderCatalog();
     }
+
+    syncCatalogFromCloud();
 });

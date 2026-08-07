@@ -38,19 +38,19 @@
                 <div class="clerk-auth-buttons">
                     <button id="clerk-login" class="btn-primary">Login / Sign Up</button>
                 </div>
-                <div class="clerk-user-menu" style="display:none; align-items:center;">
+                <div class="clerk-user-menu clerk-user-menu-flex">
                     <div id="clerk-user-btn-mount"></div>
-                    <button id="clerk-sign-out" class="btn-primary" style="margin-left:8px;">Sign Out</button>
+                    <button id="clerk-sign-out" class="btn-primary clerk-sign-out-btn">Sign Out</button>
                 </div>
                 <button onclick="window.location.href='wishlist.html'" title="My Wishlist">
                     <i class="fa-regular fa-heart"></i>
-                    <span class="wishlist-count-badge" style="display: none;">0</span>
+                    <span class="wishlist-count-badge wishlist-badge-hidden">0</span>
                 </button>
                 <button id="cart-btn" title="Shopping Cart">
                     <i class="fa-solid fa-bag-shopping"></i>
                     <span class="cart-count-badge">0</span>
                 </button>
-                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" title="Toggle Menu" aria-label="Toggle Menu">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -58,10 +58,10 @@
     </header>
 
     
-    <div id="mobile-nav" style="display: none;">
+    <div id="mobile-nav" class="mobile-nav-hidden">
         <ul>
             <li><a href="index.html"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li><a href="puja-products.html" style="font-weight: 600; color: var(--primary-gold);"><i class="fa-solid fa-om"></i> Puja Products</a></li>
+            <li><a href="puja-products.html" class="mobile-nav-active-link"><i class="fa-solid fa-om"></i> Puja Products</a></li>
             <li><a href="online-homam.html"><i class="fa-solid fa-fire"></i> Online Homam</a></li>
             <li><a href="temple-prasadham.html"><i class="fa-solid fa-gopuram"></i> Temple Prasadham</a></li>
             <li><a href="donate-for-food.html"><i class="fa-solid fa-hand-holding-heart"></i> Donate For Food</a></li>
@@ -78,28 +78,28 @@
     </div>
 
     
-    <section class="inner-hero-section pooja-products-hero" style="margin-top: 0; position: relative; z-index: 10;">
-        <div class="container hero-banner-content" style="position: relative; z-index: 20;">
+    <section class="inner-hero-section pooja-products-hero pooja-hero-no-margin">
+        <div class="container hero-banner-content pooja-hero-content">
             <h2>Puja Products</h2>
             <p>Explore our wide range of authentic puja products, made with devotion and delivered to your home.</p>
         </div>
     </section>
 
     
-    <section class="container section-padding" style="padding-top: 0;">
+    <section class="container section-padding container-no-padding-top">
         <div class="catalog-layout">
             
             
             <aside class="sidebar-filters">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; border-bottom: 2px solid var(--borders); padding-bottom: 15px;">
-                    <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);"><i class="fa-solid fa-sliders"></i> Filters</h3>
-                    <button onclick="resetFilters()" style="font-size: 0.85rem; color: var(--primary-gold); font-weight: 600;">Reset All</button>
+                <div class="filter-header-flex">
+                    <h3 class="filter-header-title"><i class="fa-solid fa-sliders"></i> Filters</h3>
+                    <button onclick="resetFilters()" class="filter-reset-btn" title="Reset Filters" aria-label="Reset Filters">Reset All</button>
                 </div>
 
                 <div class="filter-section">
                     <h4>Categories</h4>
                     <div class="filter-options-list" id="category-filter-list">
-                        <p style="color: var(--text-secondary); font-size: 0.85rem;">No products added yet.</p>
+                        <p class="no-products-text">No products added yet.</p>
                     </div>
                 </div>
 
@@ -121,7 +121,7 @@
                     </div>
                 </div>
 
-                <button class="primary-btn" onclick="applyFilters()" style="width: 100%; text-align: center; margin-top: 10px;">Apply Filters</button>
+                <button class="primary-btn checkout-full-width-btn checkout-top-margin" onclick="applyFilters()" title="Apply Filters" aria-label="Apply Filters">Apply Filters</button>
             </aside>
 
             
@@ -135,7 +135,7 @@
 
                     <div class="catalog-sort-select">
                         <span>Sort By:</span>
-                        <select id="sort-select" onchange="handleSort(this.value)">
+                        <select id="sort-select" onchange="handleSort(this.value)" title="Sort Products" aria-label="Sort Products">
                             <option value="popularity">Popularity</option>
                             <option value="low-to-high">Price: Low to High</option>
                             <option value="high-to-low">Price: High to Low</option>
@@ -177,12 +177,12 @@
                 <div class="footer-about-logo">
                     <img src="divine logo.png" alt="The Divine Voice Logo" class="footer-logo-img">
                 </div>
-                <p style="margin-bottom: 20px; line-height: 1.6;">Serving devotion, spreading love and feeding the needy.</p>
+                <p class="footer-about-text">Serving devotion, spreading love and feeding the needy.</p>
                 <div class="footer-socials">
-                    <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="#"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" title="Facebook" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" title="YouTube" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" title="WhatsApp" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
                 </div>
             </div>
 
@@ -233,7 +233,7 @@
             </div>
         </div>
 
-        <div class="container footer-container" style="border-top: 1px solid rgba(255, 255, 255, 0.05);">
+        <div class="container footer-container footer-bottom-container">
             <p><strong>POWERED BY HELIX</strong></p>
             <p class="copyright-text">&copy; 2026 The Divine Voice. All Rights Reserved.</p>
             <a href="admin-login.html" class="admin-enter-link">Enter</a>
@@ -245,7 +245,7 @@
         <div class="cart-drawer" id="cart-drawer">
             <div class="cart-drawer-header">
                 <h3>Your Shopping Cart</h3>
-                <button class="remove-item-btn" id="close-cart-btn" style="font-size: 1.5rem;"><i class="fa-solid fa-xmark"></i></button>
+                <button class="remove-item-btn" id="close-cart-btn" title="Close Cart" aria-label="Close Cart"><i class="fa-solid fa-xmark"></i></button>
             </div>
             <div class="cart-items-list"></div>
             <div class="cart-drawer-footer">
@@ -253,7 +253,7 @@
                     <span>Subtotal:</span>
                     <span class="cart-subtotal-val">₹0</span>
                 </div>
-                <button class="primary-btn" id="checkout-btn" style="width: 100%; text-align: center;">Proceed to Checkout</button>
+                <button class="primary-btn checkout-full-width-btn" id="checkout-btn" title="Proceed to Checkout">Proceed to Checkout</button>
             </div>
         </div>
     </div>
@@ -261,7 +261,7 @@
     
     <div class="modal-overlay" id="auth-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-auth-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-auth-btn" title="Close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
             <div id="login-form-wrapper">
                 <h3 class="modal-title">Sign In</h3>
                 <form id="login-form">
@@ -273,11 +273,11 @@
                         <label>Password</label>
                         <input type="password" placeholder="Enter password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Login</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin" title="Login">Login</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Don't have an account? <a href="#" id="show-register" style="color: var(--primary-gold); font-weight: 600;">Sign Up</a></p>
+                <p class="modal-switch-text">Don't have an account? <a href="#" id="show-register" class="modal-switch-link">Sign Up</a></p>
             </div>
-            <div id="register-form-wrapper" style="display: none;">
+            <div id="register-form-wrapper" class="form-wrapper-hidden">
                 <h3 class="modal-title">Create Account</h3>
                 <form id="register-form">
                     <div class="form-group">
@@ -292,9 +292,9 @@
                         <label>Password</label>
                         <input type="password" placeholder="Password" required>
                     </div>
-                    <button type="submit" class="primary-btn" style="width: 100%; margin-top: 10px;">Register</button>
+                    <button type="submit" class="primary-btn checkout-full-width-btn checkout-top-margin" title="Register">Register</button>
                 </form>
-                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">Already have an account? <a href="#" id="show-login" style="color: var(--primary-gold); font-weight: 600;">Log In</a></p>
+                <p class="modal-switch-text">Already have an account? <a href="#" id="show-login" class="modal-switch-link">Log In</a></p>
             </div>
         </div>
     </div>
@@ -302,7 +302,7 @@
     
     <div class="modal-overlay" id="checkout-modal">
         <div class="modal-container">
-            <button class="modal-close-btn" id="close-checkout-btn"><i class="fa-solid fa-xmark"></i></button>
+            <button class="modal-close-btn" id="close-checkout-btn" title="Close Checkout" aria-label="Close Checkout"><i class="fa-solid fa-xmark"></i></button>
             <h3 class="modal-title">Checkout</h3>
             <form id="checkout-form">
                 <div class="form-group">
@@ -321,11 +321,11 @@
                     <label>Delivery Address</label>
                     <textarea id="cust-address" placeholder="Complete Shipping Address" rows="3" required></textarea>
                 </div>
-                <div style="background-color: var(--background); padding: 15px; border-radius: 4px; margin-bottom: 20px; display: flex; justify-content: space-between; font-weight: 700;">
+                <div class="checkout-total-wrapper">
                     <span>Total Amount Payable:</span>
-                    <span id="checkout-total-val" style="color: var(--primary-gold);">₹0</span>
+                    <span id="checkout-total-val" class="checkout-total-val">₹0</span>
                 </div>
-                <button type="submit" class="primary-btn" style="width: 100%;">Place Order & Pay</button>
+                <button type="submit" class="primary-btn checkout-full-width-btn" title="Place Order">Place Order & Pay</button>
             </form>
         </div>
     </div>
@@ -348,7 +348,7 @@
             if (!container) return;
 
             if (PRODUCTS.length === 0) {
-                container.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem;">No products added yet.</p>';
+                container.innerHTML = '<p class="no-products-text">No products added yet.</p>';
                 return;
             }
 
@@ -390,10 +390,10 @@
 
             if (PRODUCTS.length === 0) {
                 grid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; border: 1px dashed var(--borders); border-radius: 8px;">
-                        <i class="fa-solid fa-store-slash" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 15px;"></i>
-                        <h3 style="margin-bottom: 8px;">No Products Yet</h3>
-                        <p style="color: var(--text-secondary);">Our catalog is being updated. Please check back soon!</p>
+                    <div class="empty-state-wrapper">
+                        <i class="fa-solid fa-store-slash empty-state-icon"></i>
+                        <h3 class="empty-state-title">No Products Yet</h3>
+                        <p class="empty-state-desc">Our catalog is being updated. Please check back soon!</p>
                     </div>
                 `;
                 return;
@@ -437,10 +437,10 @@
 
             if (filtered.length === 0) {
                 grid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 40px; border: 1px dashed var(--borders); border-radius: 8px;">
-                        <i class="fa-solid fa-magnifying-glass" style="font-size: 2rem; color: var(--primary-gold); margin-bottom: 10px;"></i>
-                        <p style="font-weight: 600;">No products matched your filters.</p>
-                        <button onclick="resetFilters()" style="margin-top: 12px; font-size: 0.85rem; color: var(--primary-gold); font-weight: 600;">Clear Filters</button>
+                    <div class="no-filters-wrapper">
+                        <i class="fa-solid fa-magnifying-glass no-filters-icon"></i>
+                        <p class="no-filters-desc">No products matched your filters.</p>
+                        <button onclick="resetFilters()" class="no-filters-reset-btn" title="Clear Filters" aria-label="Clear Filters">Clear Filters</button>
                     </div>
                 `;
                 return;
@@ -453,7 +453,7 @@
                     </button>
                     <div class="product-img-wrapper">
                         <img src="${p.image}" alt="${p.name}">
-                        ${!p.inStock ? '<div style="position: absolute; top: 12px; left: 12px; background-color: #e24e4e; color: white; font-size: 0.7rem; font-weight: 700; padding: 4px 8px; border-radius: 4px;">OUT OF STOCK</div>' : ''}
+                        ${!p.inStock ? '<div class="out-of-stock-badge">OUT OF STOCK</div>' : ''}
                     </div>
                     <div class="product-details">
                         <h4>${p.name}</h4>
@@ -465,11 +465,11 @@
                             <i class="fa-solid fa-star-half-stroke"></i>
                             <span class="review-count">(${p.reviews || 100})</span>
                         </div>
-                        <div class="price-row" style="flex-wrap: wrap; gap: 8px;">
+                        <div class="price-row price-row-flex-wrap">
                             <span class="price-val">₹${p.price}</span>
-                            <div style="display: flex; gap: 6px;">
-                                <button class="add-cart-btn" ${!p.inStock ? 'disabled style="border-color: var(--borders); color: var(--text-secondary); cursor: not-allowed;"' : ''} onclick="window.appState.addToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, image: '${p.image}'})" title="Add to Cart">${p.inStock ? '<i class="fa-solid fa-cart-shopping"></i>' : 'Sold Out'}</button>
-                                ${p.inStock ? `<button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${p.name}', price: ${p.price}, image: '${p.image}'})">Buy Now</button>` : ''}
+                            <div class="buy-btns-flex">
+                                <button class="add-cart-btn" ${!p.inStock ? 'disabled class="btn-disabled-style"' : ''} onclick="window.appState.addToCart({id: '${p.id}', name: '${p.name}', price: ${p.price}, image: '${p.image}'})" title="Add to Cart">${p.inStock ? '<i class="fa-solid fa-cart-shopping"></i>' : 'Sold Out'}</button>
+                                ${p.inStock ? `<button class="buy-now-direct-btn" title="Buy Now" aria-label="Buy Now" onclick="window.openBuyModal({name: '${p.name}', price: ${p.price}, image: '${p.image}'})">Buy Now</button>` : ''}
                             </div>
                         </div>
                     </div>

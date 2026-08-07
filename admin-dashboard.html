@@ -351,7 +351,6 @@
                 white-space: nowrap !important;
                 padding: 0 10px !important;
                 gap: 5px !important;
-                scrollbar-width: none !important;
             }
             .admin-menu::-webkit-scrollbar {
                 display: none !important;
@@ -422,7 +421,7 @@
                 <li data-target="panel-achievements"><i class="fa-solid fa-trophy"></i> Achievements</li>
                 <li data-target="panel-donations"><i class="fa-solid fa-hand-holding-heart"></i> Donations</li>
 
-                <li onclick="logoutAdmin()" style="margin-top: 20px; color: #000000; border-top: 1px solid #f0f0f0; padding-top: 20px;"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
+                <li onclick="logoutAdmin()" class="admin-logout-item"><i class="fa-solid fa-right-from-bracket"></i> Logout</li>
             </ul>
         </div>
         <div class="admin-content">
@@ -436,38 +435,38 @@
                 <h2>Website Banners</h2>
                 <div class="form-group">
                     <label>Home Page Banner</label>
-                    <input type="file" id="banner-home" accept="image/*" onchange="uploadBanner(event, 'home')">
-                    <img id="preview-home" class="banner-preview" src="home banner_divine.jpeg">
+                    <input type="file" id="banner-home" accept="image/*" title="Upload Home Page Banner" onchange="uploadBanner(event, 'home')">
+                    <img id="preview-home" class="banner-preview" src="home banner_divine.jpeg" alt="Home Page Banner Preview">
                 </div>
                 <div class="form-group">
                     <label>Puja Products Banner</label>
-                    <input type="file" id="banner-puja" accept="image/*" onchange="uploadBanner(event, 'puja')">
-                    <img id="preview-puja" class="banner-preview" src="pooja banner_divine.png">
+                    <input type="file" id="banner-puja" accept="image/*" title="Upload Puja Products Banner" onchange="uploadBanner(event, 'puja')">
+                    <img id="preview-puja" class="banner-preview" src="pooja banner_divine.png" alt="Puja Products Banner Preview">
                 </div>
                 <div class="form-group">
                     <label>Online Homam Banner</label>
-                    <input type="file" id="banner-homam" accept="image/*" onchange="uploadBanner(event, 'homam')">
-                    <img id="preview-homam" class="banner-preview" src="homam banner final_divine.png">
+                    <input type="file" id="banner-homam" accept="image/*" title="Upload Online Homam Banner" onchange="uploadBanner(event, 'homam')">
+                    <img id="preview-homam" class="banner-preview" src="homam banner final_divine.png" alt="Online Homam Banner Preview">
                 </div>
                 <div class="form-group">
                     <label>Temple Prasadham Banner</label>
-                    <input type="file" id="banner-prasadham" accept="image/*" onchange="uploadBanner(event, 'prasadham')">
-                    <img id="preview-prasadham" class="banner-preview" src="prasadham banner final_divine.png">
+                    <input type="file" id="banner-prasadham" accept="image/*" title="Upload Temple Prasadham Banner" onchange="uploadBanner(event, 'prasadham')">
+                    <img id="preview-prasadham" class="banner-preview" src="prasadham banner final_divine.png" alt="Temple Prasadham Banner Preview">
                 </div>
                 <div class="form-group">
                     <label>Donate For Food Banner</label>
-                    <input type="file" id="banner-donate" accept="image/*" onchange="uploadBanner(event, 'donate')">
-                    <img id="preview-donate" class="banner-preview" src="food donation banner final _divine.jpeg">
+                    <input type="file" id="banner-donate" accept="image/*" title="Upload Donate For Food Banner" onchange="uploadBanner(event, 'donate')">
+                    <img id="preview-donate" class="banner-preview" src="food donation banner final _divine.jpeg" alt="Donate For Food Banner Preview">
                 </div>
                 <div class="form-group">
                     <label>About Us Hero Image</label>
-                    <input type="file" id="banner-about-hero" accept="image/*" onchange="uploadBanner(event, 'about-hero')">
-                    <img id="preview-about-hero" class="banner-preview" src="hero-pooja.jpg">
+                    <input type="file" id="banner-about-hero" accept="image/*" title="Upload About Us Hero Image" onchange="uploadBanner(event, 'about-hero')">
+                    <img id="preview-about-hero" class="banner-preview" src="hero-pooja.jpg" alt="About Us Hero Image Preview">
                 </div>
                 <div class="form-group">
                     <label>About Us Story Image</label>
-                    <input type="file" id="banner-about-story" accept="image/*" onchange="uploadBanner(event, 'about-story')">
-                    <img id="preview-about-story" class="banner-preview" src="hero-pooja.jpg">
+                    <input type="file" id="banner-about-story" accept="image/*" title="Upload About Us Story Image" onchange="uploadBanner(event, 'about-story')">
+                    <img id="preview-about-story" class="banner-preview" src="hero-pooja.jpg" alt="About Us Story Image Preview">
                 </div>
             </div>
 

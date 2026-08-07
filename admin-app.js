@@ -10,6 +10,63 @@ let adminData = {
     donations:   JSON.parse(localStorage.getItem('divine_admin_donations'))   || { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 }
 };
 
+const CLOUD_CATALOG_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdd4de6750c25';
+
+async function saveAdminDataToCloud() {
+    try {
+        await fetch(CLOUD_CATALOG_URL, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                name: 'divine_admin_catalog',
+                data: adminData
+            })
+        });
+    } catch (e) {
+        console.warn('Failed to sync admin data to cloud:', e);
+    }
+}
+
+async function loadAdminDataFromCloud() {
+    try {
+        const response = await fetch(CLOUD_CATALOG_URL);
+        if (!response.ok) return;
+        const resJson = await response.json();
+        if (resJson && resJson.data) {
+            const cloudData = resJson.data;
+            if (Array.isArray(cloudData.products)) {
+                adminData.products = cloudData.products;
+                localStorage.setItem('divine_admin_products', JSON.stringify(cloudData.products));
+            }
+            if (Array.isArray(cloudData.homams)) {
+                adminData.homams = cloudData.homams;
+                localStorage.setItem('divine_admin_homams', JSON.stringify(cloudData.homams));
+            }
+            if (Array.isArray(cloudData.prasadhams)) {
+                adminData.prasadhams = cloudData.prasadhams;
+                localStorage.setItem('divine_admin_prasadhams', JSON.stringify(cloudData.prasadhams));
+            }
+            if (cloudData.banners && typeof cloudData.banners === 'object') {
+                adminData.banners = cloudData.banners;
+                localStorage.setItem('divine_admin_banners', JSON.stringify(cloudData.banners));
+            }
+            if (cloudData.donations && typeof cloudData.donations === 'object') {
+                adminData.donations = cloudData.donations;
+                localStorage.setItem('divine_admin_donations', JSON.stringify(cloudData.donations));
+            }
+            if (Array.isArray(cloudData.achievements)) {
+                adminData.achievements = cloudData.achievements;
+                localStorage.setItem('divine_admin_achievements', JSON.stringify(cloudData.achievements));
+            }
+            renderTables();
+            renderBanners();
+            renderDonations();
+        }
+    } catch (e) {
+        console.warn('Cloud data load error:', e);
+    }
+}
+
 function escHtml(str) {
     return String(str)
         .replace(/&/g, '&amp;')
@@ -173,6 +230,7 @@ function setSpecial(id) {
         }
     });
     localStorage.setItem('divine_admin_prasadhams', JSON.stringify(adminData.prasadhams));
+    saveAdminDataToCloud();
     showToast("Today's Special Prasadham updated!", 'success');
     renderTables();
 }
@@ -185,6 +243,7 @@ function toggleStock(id) {
     if (!product) { showToast('Product not found!', 'error'); return; }
     product.inStock = (product.inStock === false) ? true : false;
     localStorage.setItem('divine_admin_products', JSON.stringify(adminData.products));
+    saveAdminDataToCloud();
     showToast(product.inStock ? 'Marked as In Stock.' : 'Marked as Out of Stock.', 'info');
     renderTables();
 }
@@ -193,6 +252,7 @@ function deleteItem(id, type) {
     showConfirm('Are you sure you want to delete this item?', function() {
         adminData[type] = adminData[type].filter(function(i) { return i.id !== id; });
         localStorage.setItem('divine_admin_' + type, JSON.stringify(adminData[type]));
+        saveAdminDataToCloud();
         renderTables();
         showToast('Item deleted successfully.', 'success');
     });
@@ -290,6 +350,7 @@ function saveItem(e, type) {
     }
 
     localStorage.setItem('divine_admin_' + type, JSON.stringify(adminData[type]));
+    saveAdminDataToCloud();
     showToast('Saved successfully!', 'success');
     var formSuffix = type === 'products' ? 'product' : type === 'homams' ? 'homam' : type === 'prasadhams' ? 'prasadham' : 'achievement';
     resetForm('form-' + formSuffix);
@@ -329,6 +390,7 @@ async function uploadBanner(event, type) {
     if (publicUrl) {
         adminData.banners[type] = publicUrl;
         localStorage.setItem('divine_admin_banners', JSON.stringify(adminData.banners));
+        saveAdminDataToCloud();
         if (preview) preview.src = publicUrl;
         showToast('Banner updated!', 'success');
     } else {
@@ -336,6 +398,7 @@ async function uploadBanner(event, type) {
         reader.onload = function(evt) {
             adminData.banners[type] = evt.target.result;
             localStorage.setItem('divine_admin_banners', JSON.stringify(adminData.banners));
+            saveAdminDataToCloud();
             if (preview) preview.src = evt.target.result;
             showToast('Banner saved locally (Supabase offline/paused).', 'warning');
         };
@@ -359,6 +422,7 @@ function saveDonationPrices(e) {
         'don-100': document.getElementById('don-100').value
     };
     localStorage.setItem('divine_admin_donations', JSON.stringify(adminData.donations));
+    saveAdminDataToCloud();
     showToast('Donation pricing saved!', 'success');
 }
 
@@ -406,4 +470,5 @@ document.addEventListener('DOMContentLoaded', function() {
     renderTables();
     renderBanners();
     renderDonations();
+    loadAdminDataFromCloud();
 });
