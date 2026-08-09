@@ -1,119 +1,60 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/css" href="https://www.xml-sitemaps.com/css/sitemap.css"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-
-  <url>
-       <loc>https://www.voiceofbhakthi.in/</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>1.0000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/index.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/online-homam.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/temple-prasadham.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/donate-for-food.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/about-us.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/wishlist.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=diyas</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=essentials</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=incense</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=kits</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=brass</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/puja-products.html?category=camphor</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/shipping-policy.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/returns-refund.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/terms-and-conditions.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/privacy-policy.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
-  <url>
-       <loc>https://www.voiceofbhakthi.in/admin-login.html</loc>
-       <lastmod>2026-08-09T12:47:11+00:00</lastmod>
-       <changefreq>daily</changefreq>
-       <priority>0.8000</priority>
-  </url>
+<?xml version="1.0" encoding="UTF-8"?> 
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"> 
+<url>
+  <loc>https://www.voiceofbhakthi.in/index.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/online-homam.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/temple-prasadham.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/donate-for-food.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/about-us.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/wishlist.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=diyas</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=essentials</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=incense</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=kits</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=brass</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/puja-products.html?category=camphor</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/shipping-policy.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/returns-refund.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/terms-and-conditions.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/privacy-policy.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/admin-login.html</loc>
+</url>
+<url>
+  <loc>https://www.voiceofbhakthi.in/index.html#contact-us</loc>
+</url>
 </urlset>
