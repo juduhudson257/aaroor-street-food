@@ -17,7 +17,8 @@
     { "source": "/privacy-policy", "destination": "/privacy-policy.html" },
     { "source": "/terms-and-conditions", "destination": "/terms-and-conditions.html" },
     { "source": "/returns-refund", "destination": "/returns-refund.html" },
-    { "source": "/shipping-policy", "destination": "/shipping-policy.html" }
+    { "source": "/shipping-policy", "destination": "/shipping-policy.html" },
+    { "source": "/sitemap.xml", "destination": "/public/sitemap.xml" }
   ],
   "headers": [
     {
