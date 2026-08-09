@@ -22,5 +22,9 @@
   "homepage": "https://github.com/juduhudson257/aaroor-street-food#readme",
   "devDependencies": {
     "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.112.2",
+    "axios": "^1.19.0"
   }
 }

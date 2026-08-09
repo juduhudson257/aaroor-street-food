@@ -1,71 +1,16 @@
 
-const DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
+var DEFAULT_PRODUCT_IMAGE = 'product-image.jpg';
 
-let adminData = {
-    products:    JSON.parse(localStorage.getItem('divine_admin_products'))    || [],
-    homams:      JSON.parse(localStorage.getItem('divine_admin_homams'))      || [],
-    prasadhams:  JSON.parse(localStorage.getItem('divine_admin_prasadhams')) || [],
-    achievements: JSON.parse(localStorage.getItem('divine_admin_achievements')) || [],
-    banners:     JSON.parse(localStorage.getItem('divine_admin_banners'))     || {},
-    donations:   JSON.parse(localStorage.getItem('divine_admin_donations'))   || { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 }
+var adminData = {
+    products:     [],
+    homams:       [],
+    prasadhams:   [],
+    achievements: [],
+    banners:      {},
+    donations:    { 'don-1': 50, 'don-10': 500, 'don-50': 2500, 'don-100': 5000 }
 };
 
-const CLOUD_CATALOG_URL = 'https://api.restful-api.dev/objects/ff8081819f7e10ae019fdd4de6750c25';
-
-async function saveAdminDataToCloud() {
-    try {
-        await fetch(CLOUD_CATALOG_URL, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                name: 'divine_admin_catalog',
-                data: adminData
-            })
-        });
-    } catch (e) {
-        console.warn('Failed to sync admin data to cloud:', e);
-    }
-}
-
-async function loadAdminDataFromCloud() {
-    try {
-        const response = await fetch(CLOUD_CATALOG_URL);
-        if (!response.ok) return;
-        const resJson = await response.json();
-        if (resJson && resJson.data) {
-            const cloudData = resJson.data;
-            if (Array.isArray(cloudData.products)) {
-                adminData.products = cloudData.products;
-                localStorage.setItem('divine_admin_products', JSON.stringify(cloudData.products));
-            }
-            if (Array.isArray(cloudData.homams)) {
-                adminData.homams = cloudData.homams;
-                localStorage.setItem('divine_admin_homams', JSON.stringify(cloudData.homams));
-            }
-            if (Array.isArray(cloudData.prasadhams)) {
-                adminData.prasadhams = cloudData.prasadhams;
-                localStorage.setItem('divine_admin_prasadhams', JSON.stringify(cloudData.prasadhams));
-            }
-            if (cloudData.banners && typeof cloudData.banners === 'object') {
-                adminData.banners = cloudData.banners;
-                localStorage.setItem('divine_admin_banners', JSON.stringify(cloudData.banners));
-            }
-            if (cloudData.donations && typeof cloudData.donations === 'object') {
-                adminData.donations = cloudData.donations;
-                localStorage.setItem('divine_admin_donations', JSON.stringify(cloudData.donations));
-            }
-            if (Array.isArray(cloudData.achievements)) {
-                adminData.achievements = cloudData.achievements;
-                localStorage.setItem('divine_admin_achievements', JSON.stringify(cloudData.achievements));
-            }
-            renderTables();
-            renderBanners();
-            renderDonations();
-        }
-    } catch (e) {
-        console.warn('Cloud data load error:', e);
-    }
-}
+// ── Toast / Confirm helpers (unchanged) ──────────────────────────────
 
 function escHtml(str) {
     return String(str)
@@ -126,6 +71,8 @@ function showConfirm(message, onYes) {
     document.getElementById('_conf_cancel').onclick = function() { overlay.remove(); };
     overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
 }
+
+// ── Render tables (unchanged) ────────────────────────────────────────
 
 function renderTables() {
     var prodTbody = document.getElementById('table-products');
@@ -221,40 +168,59 @@ function deleteBtnStyle() {
     return 'cursor:pointer;padding:7px 12px;border-radius:5px;font-size:0.8rem;font-weight:600;font-family:Inter,sans-serif;border:1px solid #f5c6cb;background:#fff5f5;color:#e53935;';
 }
 
-function setSpecial(id) {
-    adminData.prasadhams.forEach(function(p) {
-        if (p.id === id) {
-            p.isSpecial = !p.isSpecial;
-        } else {
-            p.isSpecial = false;
-        }
-    });
-    localStorage.setItem('divine_admin_prasadhams', JSON.stringify(adminData.prasadhams));
-    saveAdminDataToCloud();
-    showToast("Today's Special Prasadham updated!", 'success');
-    renderTables();
-}
+// ── Supabase-backed actions ──────────────────────────────────────────
 
-function toggleStock(id) {
-    var product = null;
-    for (var i = 0; i < adminData.products.length; i++) {
-        if (adminData.products[i].id === id) { product = adminData.products[i]; break; }
-    }
-    if (!product) { showToast('Product not found!', 'error'); return; }
-    product.inStock = (product.inStock === false) ? true : false;
-    localStorage.setItem('divine_admin_products', JSON.stringify(adminData.products));
-    saveAdminDataToCloud();
-    showToast(product.inStock ? 'Marked as In Stock.' : 'Marked as Out of Stock.', 'info');
-    renderTables();
-}
-
-function deleteItem(id, type) {
-    showConfirm('Are you sure you want to delete this item?', function() {
-        adminData[type] = adminData[type].filter(function(i) { return i.id !== id; });
-        localStorage.setItem('divine_admin_' + type, JSON.stringify(adminData[type]));
-        saveAdminDataToCloud();
+async function setSpecial(id) {
+    try {
+        var supabase = getSupabaseClient();
+        // Clear all specials first
+        await supabase.from('prasadhams').update({ is_special: false }).neq('id', '');
+        // Set the selected one
+        await supabase.from('prasadhams').update({ is_special: true }).eq('id', id);
+        // Reload
+        adminData.prasadhams = await fetchPrasadhams();
         renderTables();
-        showToast('Item deleted successfully.', 'success');
+        showToast("Today's Special Prasadham updated!", 'success');
+    } catch (err) {
+        console.error('setSpecial error:', err);
+        showToast('Failed to update special: ' + err.message, 'error');
+    }
+}
+
+async function toggleStock(id) {
+    try {
+        var product = null;
+        for (var i = 0; i < adminData.products.length; i++) {
+            if (adminData.products[i].id === id) { product = adminData.products[i]; break; }
+        }
+        if (!product) { showToast('Product not found!', 'error'); return; }
+        var newStockVal = !product.inStock;
+        var supabase = getSupabaseClient();
+        var { error } = await supabase.from('products').update({ in_stock: newStockVal }).eq('id', id);
+        if (error) throw error;
+        adminData.products = await fetchProducts();
+        renderTables();
+        showToast(newStockVal ? 'Marked as In Stock.' : 'Marked as Out of Stock.', 'info');
+    } catch (err) {
+        console.error('toggleStock error:', err);
+        showToast('Failed to update stock: ' + err.message, 'error');
+    }
+}
+
+async function deleteItem(id, type) {
+    showConfirm('Are you sure you want to delete this item?', async function() {
+        try {
+            if (type === 'products') { await deleteProduct(id); }
+            else if (type === 'homams') { await deleteHomam(id); }
+            else if (type === 'prasadhams') { await deletePrasadham(id); }
+            else if (type === 'achievements') { await deleteAchievement(id); }
+            await loadAllAdminData();
+            renderTables();
+            showToast('Item deleted successfully.', 'success');
+        } catch (err) {
+            console.error('deleteItem error:', err);
+            showToast('Failed to delete item: ' + err.message, 'error');
+        }
     });
 }
 
@@ -286,7 +252,7 @@ function editItem(id, type) {
     }
 }
 
-function saveItem(e, type) {
+async function saveItem(e, type) {
     e.preventDefault();
     var newItem = {};
     if (type === 'products') {
@@ -299,6 +265,11 @@ function saveItem(e, type) {
             image: document.getElementById('prod-image-base64').value || DEFAULT_PRODUCT_IMAGE,
             inStock: true
         };
+        // If editing, keep existing image when no new image uploaded
+        if (document.getElementById('prod-id').value && !document.getElementById('prod-image-base64').value) {
+            var existing = adminData.products.find(function(p) { return p.id === id; });
+            if (existing) newItem.image = existing.image;
+        }
     } else if (type === 'homams') {
         var id = document.getElementById('homam-id').value || ('h' + Date.now());
         newItem = {
@@ -308,10 +279,14 @@ function saveItem(e, type) {
             price: parseFloat(document.getElementById('homam-price').value),
             image: document.getElementById('homam-image-base64').value || DEFAULT_PRODUCT_IMAGE
         };
+        if (document.getElementById('homam-id').value && !document.getElementById('homam-image-base64').value) {
+            var existing = adminData.homams.find(function(h) { return h.id === id; });
+            if (existing) newItem.image = existing.image;
+        }
     } else if (type === 'prasadhams') {
         var id = document.getElementById('pras-id').value || ('pr' + Date.now());
-        var existing = adminData.prasadhams.find(function(p) { return p.id === id; });
-        var isSpecial = existing ? existing.isSpecial : false;
+        var existingPras = adminData.prasadhams.find(function(p) { return p.id === id; });
+        var isSpecial = existingPras ? existingPras.isSpecial : false;
         newItem = {
             id: id,
             name: document.getElementById('pras-name').value,
@@ -321,40 +296,45 @@ function saveItem(e, type) {
             image: document.getElementById('pras-image-base64').value || DEFAULT_PRODUCT_IMAGE,
             isSpecial: isSpecial
         };
+        if (document.getElementById('pras-id').value && !document.getElementById('pras-image-base64').value) {
+            if (existingPras) newItem.image = existingPras.image;
+        }
     } else if (type === 'achievements') {
         var id = document.getElementById('ach-id').value || ('ach' + Date.now());
-        var imgBase64 = document.getElementById('ach-image-base64').value;
-        if (!imgBase64 && !document.getElementById('ach-id').value) {
+        var imgVal = document.getElementById('ach-image-base64').value;
+        if (!imgVal && !document.getElementById('ach-id').value) {
             showToast('Image is required for achievements!', 'error');
             return;
         }
         newItem = {
             id: id,
             name: document.getElementById('ach-name').value || '',
-            image: imgBase64 || ''
+            image: imgVal || ''
         };
-    }
-
-    var index = -1;
-    for (var i = 0; i < adminData[type].length; i++) {
-        if (adminData[type][i].id === newItem.id) { index = i; break; }
-    }
-    if (index > -1) {
-        var prefix = type === 'products' ? 'prod' : type === 'homams' ? 'homam' : type === 'prasadhams' ? 'pras' : 'ach';
-        if (!document.getElementById(prefix + '-image-base64').value) {
-            newItem.image = adminData[type][index].image;
+        if (document.getElementById('ach-id').value && !imgVal) {
+            var existingAch = adminData.achievements.find(function(a) { return a.id === id; });
+            if (existingAch) newItem.image = existingAch.image;
         }
-        adminData[type][index] = newItem;
-    } else {
-        adminData[type].push(newItem);
     }
 
-    localStorage.setItem('divine_admin_' + type, JSON.stringify(adminData[type]));
-    saveAdminDataToCloud();
-    showToast('Saved successfully!', 'success');
-    var formSuffix = type === 'products' ? 'product' : type === 'homams' ? 'homam' : type === 'prasadhams' ? 'prasadham' : 'achievement';
-    resetForm('form-' + formSuffix);
-    renderTables();
+    // Save to Supabase
+    try {
+        if (type === 'products') { await upsertProduct(newItem); }
+        else if (type === 'homams') { await upsertHomam(newItem); }
+        else if (type === 'prasadhams') { await upsertPrasadham(newItem); }
+        else if (type === 'achievements') { await upsertAchievement(newItem); }
+
+        showToast('Saved successfully!', 'success');
+        var formSuffix = type === 'products' ? 'product' : type === 'homams' ? 'homam' : type === 'prasadhams' ? 'prasadham' : 'achievement';
+        resetForm('form-' + formSuffix);
+
+        // Reload from Supabase (source of truth)
+        await loadAllAdminData();
+        renderTables();
+    } catch (err) {
+        console.error('saveItem error:', err);
+        showToast('Failed to save: ' + err.message, 'error');
+    }
 }
 
 function resetForm(formId) {
@@ -371,6 +351,8 @@ function logoutAdmin() {
     window.location.href = 'admin-login.html';
 }
 
+// ── Banners ──────────────────────────────────────────────────────────
+
 function renderBanners() {
     ['home', 'puja', 'homam', 'prasadham', 'donate', 'about-hero', 'about-story'].forEach(function(key) {
         if (adminData.banners[key]) {
@@ -386,25 +368,21 @@ async function uploadBanner(event, type) {
     var preview = document.getElementById('preview-' + type);
     var oldSrc = preview ? preview.src : '';
     if (preview) preview.src = 'https://placehold.co/400x160?text=Uploading...';
-    var publicUrl = await uploadToSupabase(file);
-    if (publicUrl) {
+
+    try {
+        var publicUrl = await uploadToSupabase(file);
         adminData.banners[type] = publicUrl;
-        localStorage.setItem('divine_admin_banners', JSON.stringify(adminData.banners));
-        saveAdminDataToCloud();
+        await saveSettingToSupabase('banners', adminData.banners);
         if (preview) preview.src = publicUrl;
         showToast('Banner updated!', 'success');
-    } else {
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-            adminData.banners[type] = evt.target.result;
-            localStorage.setItem('divine_admin_banners', JSON.stringify(adminData.banners));
-            saveAdminDataToCloud();
-            if (preview) preview.src = evt.target.result;
-            showToast('Banner saved locally (Supabase offline/paused).', 'warning');
-        };
-        reader.readAsDataURL(file);
+    } catch (err) {
+        console.error('uploadBanner error:', err);
+        if (preview) preview.src = oldSrc;
+        showToast('Failed to upload banner: ' + err.message, 'error');
     }
 }
+
+// ── Donations ────────────────────────────────────────────────────────
 
 function renderDonations() {
     ['don-1', 'don-10', 'don-50', 'don-100'].forEach(function(id) {
@@ -413,7 +391,7 @@ function renderDonations() {
     });
 }
 
-function saveDonationPrices(e) {
+async function saveDonationPrices(e) {
     e.preventDefault();
     adminData.donations = {
         'don-1':   document.getElementById('don-1').value,
@@ -421,14 +399,43 @@ function saveDonationPrices(e) {
         'don-50':  document.getElementById('don-50').value,
         'don-100': document.getElementById('don-100').value
     };
-    localStorage.setItem('divine_admin_donations', JSON.stringify(adminData.donations));
-    saveAdminDataToCloud();
-    showToast('Donation pricing saved!', 'success');
+    try {
+        await saveSettingToSupabase('donations', adminData.donations);
+        showToast('Donation pricing saved!', 'success');
+    } catch (err) {
+        console.error('saveDonationPrices error:', err);
+        showToast('Failed to save donation pricing: ' + err.message, 'error');
+    }
 }
 
+// ── Load all data from Supabase ──────────────────────────────────────
 
+async function loadAllAdminData() {
+    try {
+        adminData.products = await fetchProducts();
+    } catch (err) { console.error('Load products error:', err); }
+    try {
+        adminData.homams = await fetchHomams();
+    } catch (err) { console.error('Load homams error:', err); }
+    try {
+        adminData.prasadhams = await fetchPrasadhams();
+    } catch (err) { console.error('Load prasadhams error:', err); }
+    try {
+        adminData.achievements = await fetchAchievements();
+    } catch (err) { console.error('Load achievements error:', err); }
+    try {
+        var bannersVal = await getSettingFromSupabase('banners');
+        if (bannersVal && typeof bannersVal === 'object') adminData.banners = bannersVal;
+    } catch (err) { console.error('Load banners error:', err); }
+    try {
+        var donationsVal = await getSettingFromSupabase('donations');
+        if (donationsVal && typeof donationsVal === 'object') adminData.donations = donationsVal;
+    } catch (err) { console.error('Load donations error:', err); }
+}
 
-document.addEventListener('DOMContentLoaded', function() {
+// ── DOMContentLoaded ─────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', async function() {
     document.querySelectorAll('.admin-menu li[data-target]').forEach(function(li) {
         li.addEventListener('click', function() {
             document.querySelectorAll('.admin-menu li').forEach(function(el) { el.classList.remove('active'); });
@@ -451,24 +458,21 @@ document.addEventListener('DOMContentLoaded', function() {
             var formIdMap = { prod: 'product', homam: 'homam', pras: 'prasadham', ach: 'achievement' };
             var btn = document.querySelector('#form-' + formIdMap[prefix] + ' button[type="submit"]');
             if (btn) { btn.disabled = true; btn.innerText = 'Uploading...'; }
-            var publicUrl = await uploadToSupabase(file);
-            if (publicUrl) {
+            try {
+                var publicUrl = await uploadToSupabase(file);
                 document.getElementById(prefix + '-image-base64').value = publicUrl;
                 showToast('Image uploaded!', 'success');
-            } else {
-                const reader = new FileReader();
-                reader.onload = function(evt) {
-                    document.getElementById(prefix + '-image-base64').value = evt.target.result;
-                    showToast('Saved image locally (Supabase is offline/paused).', 'warning');
-                };
-                reader.readAsDataURL(file);
+            } catch (err) {
+                console.error('Image upload error:', err);
+                showToast('Image upload failed: ' + err.message, 'error');
             }
             if (btn) { btn.disabled = false; btn.innerText = 'Save Item'; }
         });
     });
 
+    // Load all data from Supabase, then render
+    await loadAllAdminData();
     renderTables();
     renderBanners();
     renderDonations();
-    loadAdminDataFromCloud();
 });

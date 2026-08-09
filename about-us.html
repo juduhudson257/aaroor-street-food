@@ -342,6 +342,8 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabase-config.js"></script>
     <script src="app.js"></script>
     <script src="catalog-sync.js"></script>
     <script src="buy-modal.js"></script>
@@ -353,13 +355,12 @@
     </script>
     <script src="clerk-init.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', async function() {
             var track = document.getElementById('achievements-track');
             if (!track) return;
 
-            var raw = localStorage.getItem('divine_admin_achievements');
             var achievements = [];
-            try { achievements = JSON.parse(raw) || []; } catch(e) { achievements = []; }
+            try { achievements = await fetchAchievements(); } catch(e) { achievements = []; }
 
             if (achievements.length === 0) {
                 track.style.justifyContent = 'center';
