@@ -224,6 +224,87 @@ async function deleteItem(id, type) {
     });
 }
 
+// ── Product Category Management Helpers ──────────────────────────────
+
+function populateCategorySelect(selectedCategory) {
+    var selectEl = document.getElementById('prod-category-select');
+    var newInputEl = document.getElementById('prod-category-new');
+    if (!selectEl) return;
+
+    var defaultCategories = ['diyas', 'brass', 'incense', 'kits', 'camphor', 'essentials'];
+    var catMap = {};
+
+    defaultCategories.forEach(function(cat) {
+        catMap[cat.toLowerCase()] = cat;
+    });
+
+    if (adminData.products && Array.isArray(adminData.products)) {
+        adminData.products.forEach(function(p) {
+            if (p.category && p.category.trim()) {
+                var raw = p.category.trim();
+                catMap[raw.toLowerCase()] = raw;
+            }
+        });
+    }
+
+    if (selectedCategory && selectedCategory.trim()) {
+        var rawSel = selectedCategory.trim();
+        catMap[rawSel.toLowerCase()] = rawSel;
+    }
+
+    var keys = Object.keys(catMap).sort(function(a, b) {
+        return a.localeCompare(b);
+    });
+
+    var optionsHtml = '<option value="">-- Select Category --</option>';
+    keys.forEach(function(key) {
+        var originalVal = catMap[key];
+        var displayLabel = originalVal.charAt(0).toUpperCase() + originalVal.slice(1).replace(/-/g, ' ');
+        optionsHtml += '<option value="' + escHtml(originalVal) + '">' + escHtml(displayLabel) + '</option>';
+    });
+    optionsHtml += '<option value="__new__">+ Create New Category...</option>';
+
+    selectEl.innerHTML = optionsHtml;
+
+    if (selectedCategory && selectedCategory.trim()) {
+        selectEl.value = selectedCategory.trim();
+        if (newInputEl) {
+            newInputEl.style.display = 'none';
+            newInputEl.value = '';
+            newInputEl.required = false;
+        }
+        selectEl.required = true;
+    } else {
+        selectEl.value = '';
+        if (newInputEl) {
+            newInputEl.style.display = 'none';
+            newInputEl.value = '';
+            newInputEl.required = false;
+        }
+        selectEl.required = true;
+    }
+}
+
+function handleCategorySelectChange(val) {
+    var newInputEl = document.getElementById('prod-category-new');
+    var selectEl = document.getElementById('prod-category-select');
+    if (val === '__new__') {
+        if (newInputEl) {
+            newInputEl.style.display = 'block';
+            newInputEl.required = true;
+            newInputEl.focus();
+        }
+        if (selectEl) selectEl.required = false;
+    } else {
+        if (newInputEl) {
+            newInputEl.style.display = 'none';
+            newInputEl.value = '';
+            newInputEl.required = false;
+        }
+        if (selectEl) selectEl.required = true;
+    }
+}
+
 function editItem(id, type) {
     var item = null;
     for (var i = 0; i < adminData[type].length; i++) {
@@ -233,7 +314,7 @@ function editItem(id, type) {
     if (type === 'products') {
         document.getElementById('prod-id').value = item.id;
         document.getElementById('prod-name').value = item.name;
-        document.getElementById('prod-category').value = item.category;
+        populateCategorySelect(item.category);
         document.getElementById('prod-price').value = item.price;
         document.getElementById('prod-image-base64').value = '';
     } else if (type === 'homams') {
@@ -257,10 +338,20 @@ async function saveItem(e, type) {
     var newItem = {};
     if (type === 'products') {
         var id = document.getElementById('prod-id').value || ('p' + Date.now());
+        var selectVal = document.getElementById('prod-category-select') ? document.getElementById('prod-category-select').value : '';
+        var categoryVal = selectVal === '__new__' 
+            ? (document.getElementById('prod-category-new').value || '').trim() 
+            : selectVal;
+
+        if (!categoryVal) {
+            showToast('Please select or enter a category!', 'error');
+            return;
+        }
+
         newItem = {
             id: id,
             name: document.getElementById('prod-name').value,
-            category: document.getElementById('prod-category').value,
+            category: categoryVal,
             price: parseFloat(document.getElementById('prod-price').value),
             image: document.getElementById('prod-image-base64').value || DEFAULT_PRODUCT_IMAGE,
             inStock: true
@@ -331,6 +422,7 @@ async function saveItem(e, type) {
         // Reload from Supabase (source of truth)
         await loadAllAdminData();
         renderTables();
+        populateCategorySelect('');
     } catch (err) {
         console.error('saveItem error:', err);
         showToast('Failed to save: ' + err.message, 'error');
@@ -342,6 +434,9 @@ function resetForm(formId) {
     if (f) f.reset();
     var hidden = f ? f.querySelector('input[type="hidden"]') : null;
     if (hidden) hidden.value = '';
+    if (formId === 'form-product') {
+        populateCategorySelect('');
+    }
 }
 
 function logoutAdmin() {
@@ -475,4 +570,5 @@ document.addEventListener('DOMContentLoaded', async function() {
     renderTables();
     renderBanners();
     renderDonations();
+    populateCategorySelect('');
 });

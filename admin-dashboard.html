@@ -481,7 +481,11 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <input type="text" id="prod-category" required>
+                        <select id="prod-category-select" onchange="handleCategorySelectChange(this.value)" required>
+                            <option value="">-- Select Category --</option>
+                            <option value="__new__">+ Create New Category...</option>
+                        </select>
+                        <input type="text" id="prod-category-new" placeholder="Enter new category name" style="display:none; margin-top:8px;">
                     </div>
                     <div class="form-group">
                         <label>Price (₹)</label>
