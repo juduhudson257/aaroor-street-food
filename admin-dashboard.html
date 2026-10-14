@@ -390,6 +390,10 @@
                 font-size: 0.8rem !important;
             }
         }
+        .prod-category-new-input {
+            display: none;
+            margin-top: 8px;
+        }
     </style>
 </head>
 <body>
@@ -481,11 +485,13 @@
                     </div>
                     <div class="form-group">
                         <label>Category</label>
-                        <select id="prod-category-select" onchange="handleCategorySelectChange(this.value)" required>
-                            <option value="">-- Select Category --</option>
-                            <option value="__new__">+ Create New Category...</option>
-                        </select>
-                        <input type="text" id="prod-category-new" placeholder="Enter new category name" style="display:none; margin-top:8px;">
+                        <div style="display:flex;gap:8px;align-items:center;">
+                            <select id="prod-category-select" onchange="handleCategorySelectChange(this.value)" required style="flex:1;">
+                                <option value="">-- Select Category --</option>
+                            </select>
+                            <button type="button" id="prod-category-delete" class="btn-secondary" style="display:none;padding:10px 16px;white-space:nowrap;" onclick="deleteCategory()">Delete Category</button>
+                        </div>
+                        <input type="text" id="prod-category-new" class="prod-category-new-input" placeholder="Enter new category name">
                     </div>
                     <div class="form-group">
                         <label>Price (₹)</label>

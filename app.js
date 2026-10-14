@@ -115,11 +115,11 @@ class AppState {
         });
     }
 
-    renderWishlistItems() {
+    async renderWishlistItems() {
         const wishlistContainer = document.getElementById('wishlist-grid');
         if (!wishlistContainer) return;
 
-        if (this.wishlist.length === 0) {
+        if (!this.wishlist || this.wishlist.length === 0) {
             wishlistContainer.innerHTML = `<div class="empty-state" style="text-align: center; grid-column: 1 / -1; padding: 40px;">
                 <i class="fa-regular fa-heart" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 20px;"></i>
                 <h3>Your Wishlist is Empty</h3>
@@ -129,31 +129,80 @@ class AppState {
             return;
         }
 
-        const allItems = [...PRODUCTS, ...HOMAMS, ...PRASADHAMS];
-        const wishlistedItems = allItems.filter(item => this.wishlist.includes(item.id));
+        let prods = (typeof PRODUCTS !== 'undefined' && Array.isArray(PRODUCTS) && PRODUCTS.length > 0) ? PRODUCTS : (window.PRODUCTS || []);
+        let homs = (typeof HOMAMS !== 'undefined' && Array.isArray(HOMAMS) && HOMAMS.length > 0) ? HOMAMS : (window.HOMAMS || []);
+        let pras = (typeof PRASADHAMS !== 'undefined' && Array.isArray(PRASADHAMS) && PRASADHAMS.length > 0) ? PRASADHAMS : (window.PRASADHAMS || []);
+        let allItems = [...prods, ...homs, ...pras];
 
-        wishlistContainer.innerHTML = wishlistedItems.map(product => `
-            <div class="product-card">
+        // If catalog is not loaded yet, fetch it automatically
+        if (allItems.length === 0 && typeof loadCatalogFromSupabase === 'function' && !this._fetchingCatalog) {
+            this._fetchingCatalog = true;
+            wishlistContainer.innerHTML = `<div class="empty-state" style="text-align: center; grid-column: 1 / -1; padding: 40px;">
+                <i class="fa-solid fa-spinner fa-spin" style="font-size: 2.5rem; color: var(--primary-gold); margin-bottom: 20px;"></i>
+                <h3>Loading Wishlist Items...</h3>
+            </div>`;
+            try {
+                await loadCatalogFromSupabase();
+            } catch (err) {
+                console.error('Catalog fetch error:', err);
+            }
+            this._fetchingCatalog = false;
+
+            prods = (typeof PRODUCTS !== 'undefined' && Array.isArray(PRODUCTS) && PRODUCTS.length > 0) ? PRODUCTS : (window.PRODUCTS || []);
+            homs = (typeof HOMAMS !== 'undefined' && Array.isArray(HOMAMS) && HOMAMS.length > 0) ? HOMAMS : (window.HOMAMS || []);
+            pras = (typeof PRASADHAMS !== 'undefined' && Array.isArray(PRASADHAMS) && PRASADHAMS.length > 0) ? PRASADHAMS : (window.PRASADHAMS || []);
+            allItems = [...prods, ...homs, ...pras];
+        }
+
+        const wishlistStrIds = this.wishlist.map(String);
+        const wishlistedItems = allItems.filter(item => item && item.id != null && wishlistStrIds.includes(String(item.id)));
+
+        if (wishlistedItems.length === 0) {
+            wishlistContainer.innerHTML = `<div class="empty-state" style="text-align: center; grid-column: 1 / -1; padding: 40px;">
+                <i class="fa-regular fa-heart" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 20px;"></i>
+                <h3>Your Wishlist is Empty</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 20px;">You haven't added any items to your wishlist yet.</p>
+                <a href="puja-products.html" class="primary-btn">Explore Products</a>
+            </div>`;
+            return;
+        }
+
+        wishlistContainer.innerHTML = wishlistedItems.map(p => {
+            const isWishlisted = wishlistStrIds.includes(String(p.id));
+            const itemType = p.temple ? 'prasadham' : p.description ? 'homam' : 'product';
+            const rawCat = p.category || (p.temple ? 'Temple Prasadham' : 'Online Homam');
+            const categoryLabel = rawCat.charAt(0).toUpperCase() + rawCat.slice(1);
+            const safeName = (p.name || '').replace(/'/g, "\\'");
+            const safeImg = (p.image || DEFAULT_PRODUCT_IMAGE).replace(/'/g, "\\'");
+
+            return `<div class="product-card">
+                <button class="wishlist-btn ${isWishlisted ? 'active' : ''}" data-id="${p.id}" onclick="window.appState.toggleWishlist('${p.id}')" title="Remove from Wishlist">
+                    <i class="${isWishlisted ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
+                </button>
                 <div class="product-img-wrapper">
-                    <img src="${product.image}" alt="${product.name}">
-                    <button class="wishlist-btn ${this.wishlist.includes(product.id) ? 'active' : ''}" data-id="${product.id}" onclick="window.appState.toggleWishlist('${product.id}')" title="Wishlist">
-                        <i class="${this.wishlist.includes(product.id) ? 'fa-solid' : 'fa-regular'} fa-heart"></i>
-                    </button>
+                    <img src="${p.image || DEFAULT_PRODUCT_IMAGE}" alt="${p.name}">
                 </div>
-                <div class="product-info">
-                    <span class="product-category">${product.category || 'Homam/Prasadham'}</span>
-                    <h3>${product.name}</h3>
-                    <div class="product-rating">
+                <div class="product-details">
+                    <span class="product-category" style="font-size: 0.8rem; color: var(--primary-gold); text-transform: uppercase; font-weight: 600; margin-bottom: 4px; display: block;">${categoryLabel}</span>
+                    <h4 style="font-size: 1.05rem; font-weight: 600; margin-bottom: 8px;">${p.name}</h4>
+                    <div class="rating-container" style="margin-bottom: 12px; color: var(--primary-gold); display: flex; align-items: center; gap: 4px;">
                         <i class="fa-solid fa-star"></i>
-                        <span>${product.rating || '4.8'} (${product.reviews || '100'})</span>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star-half-stroke"></i>
+                        <span class="review-count" style="font-size: 0.8rem; color: var(--text-secondary);">(${p.reviews || 100})</span>
                     </div>
-                    <div class="product-bottom">
-                        <span class="product-price">₹${product.price}</span>
-                        ${product.id.startsWith('h') ? `<button class="primary-btn" onclick="window.location.href='online-homam.html'">Book Now</button>` : `<div style="display: flex; gap: 6px;"><button class="add-cart-btn" onclick="window.appState.addToCart(${JSON.stringify(product).replace(/"/g, '&quot;')})" title="Add to Cart"><i class="fa-solid fa-cart-shopping"></i></button><button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${product.name.replace(/'/g, "\\'")}', price: ${product.price}, image: '${product.image.replace(/'/g, "\\'")}'})">Buy Now</button></div>`}
+                    <div class="price-row" style="flex-wrap: wrap; gap: 8px; margin-top: auto; display: flex; align-items: center; justify-content: space-between;">
+                        <span class="price-val" style="font-size: 1.2rem; font-weight: 700; color: var(--text-dark);">₹${p.price}</span>
+                        <div style="display: flex; gap: 6px;">
+                            <button class="add-cart-btn" onclick="window.appState.addToCart({id: '${p.id}', name: '${safeName}', price: ${p.price}, image: '${safeImg}'}, '${itemType}')" title="Add to Cart"><i class="fa-solid fa-cart-shopping"></i></button>
+                            <button class="buy-now-direct-btn" onclick="window.openBuyModal({name: '${safeName}', price: ${p.price}, image: '${safeImg}'})">Buy Now</button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        `).join('');
+            </div>`;
+        }).join('');
     }
 
     registerUser(name, email, password) {

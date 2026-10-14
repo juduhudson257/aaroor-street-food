@@ -285,6 +285,58 @@ function populateCategorySelect(selectedCategory) {
     }
 }
 
+
+function deleteCategory() {
+    var selectEl = document.getElementById('prod-category-select');
+    var cat = selectEl ? selectEl.value : '';
+    if (!cat || cat === '__new__') {
+        showToast('Select a valid category to delete.', 'error');
+        return;
+    }
+    // Prevent deletion of default categories
+    var defaultCategories = ['diyas', 'brass', 'incense', 'kits', 'camphor', 'essentials'];
+    if (defaultCategories.indexOf(cat.toLowerCase()) !== -1) {
+        showToast('Cannot delete default category.', 'error');
+        return;
+    }
+
+    showConfirm('Delete category "' + cat + '"? This will remove the category from all products.', async function() {
+        try {
+            var supabase = getSupabaseClient();
+            var { data, error } = await supabase.from('products').select('id').eq('category', cat);
+            if (error) throw error;
+            if (data && data.length > 0) {
+                for (var i = 0; i < data.length; i++) {
+                    await supabase.from('products').update({ category: '' }).eq('id', data[i].id);
+                }
+            }
+            await loadAllAdminData();
+            renderTables();
+            populateCategorySelect('');
+            updateDeleteCategoryButton();
+            showToast('Category deleted.', 'success');
+        } catch (err) {
+            console.error('deleteCategory error:', err);
+            showToast('Failed to delete category: ' + err.message, 'error');
+        }
+    });
+}
+
+// Update button visibility when category changes
+function updateDeleteCategoryButton() {
+    var selectEl = document.getElementById('prod-category-select');
+    var btn = document.getElementById('prod-category-delete');
+    if (!selectEl || !btn) return;
+    var val = selectEl.value;
+    var defaultCategories = ['diyas', 'brass', 'incense', 'kits', 'camphor', 'essentials'];
+    if (val && val !== '__new__' && defaultCategories.indexOf(val.toLowerCase()) === -1) {
+        btn.style.display = 'inline-block';
+    } else {
+        btn.style.display = 'none';
+    }
+}
+
+// Extend existing handler
 function handleCategorySelectChange(val) {
     var newInputEl = document.getElementById('prod-category-new');
     var selectEl = document.getElementById('prod-category-select');
@@ -303,6 +355,7 @@ function handleCategorySelectChange(val) {
         }
         if (selectEl) selectEl.required = true;
     }
+    updateDeleteCategoryButton();
 }
 
 function editItem(id, type) {
